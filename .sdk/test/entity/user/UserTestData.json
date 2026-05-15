@@ -1,0 +1,61 @@
+{
+  "existing": {
+    "user": {
+      "USER00": {
+        "city": "s6e",
+        "district": "s6f",
+        "email": "s70",
+        "id": "USER00",
+        "name": "s72",
+        "phone": "s73",
+        "province": "s74",
+        "street": "s75",
+        "username": "s76",
+        "website": "s77",
+        "zipcode": "s78"
+      },
+      "USER01": {
+        "city": "sdc",
+        "district": "sdd",
+        "email": "sde",
+        "id": "USER01",
+        "name": "se0",
+        "phone": "se1",
+        "province": "se2",
+        "street": "se3",
+        "username": "se4",
+        "website": "se5",
+        "zipcode": "se6"
+      },
+      "USER02": {
+        "city": "s14a",
+        "district": "s14b",
+        "email": "s14c",
+        "id": "USER02",
+        "name": "s14e",
+        "phone": "s14f",
+        "province": "s150",
+        "street": "s151",
+        "username": "s152",
+        "website": "s153",
+        "zipcode": "s154"
+      }
+    }
+  },
+  "new": {
+    "user": {
+      "user_ref01": {
+        "city": "s1b8",
+        "district": "s1b9",
+        "email": "s1ba",
+        "name": "s1bc",
+        "phone": "s1bd",
+        "province": "s1be",
+        "street": "s1bf",
+        "username": "s1c0",
+        "website": "s1c1",
+        "zipcode": "s1c2"
+      }
+    }
+  }
+}

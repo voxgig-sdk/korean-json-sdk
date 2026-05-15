@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "post": {
+      "POST00": {
+        "content": "s3c",
+        "created_at": "s3d",
+        "id": "POST00",
+        "title": "s3f",
+        "updated_at": "s40",
+        "user_id": "USER01"
+      },
+      "POST01": {
+        "content": "s78",
+        "created_at": "s79",
+        "id": "POST01",
+        "title": "s7b",
+        "updated_at": "s7c",
+        "user_id": "USER01"
+      },
+      "POST02": {
+        "content": "sb4",
+        "created_at": "sb5",
+        "id": "POST02",
+        "title": "sb7",
+        "updated_at": "sb8",
+        "user_id": "USER01"
+      }
+    }
+  },
+  "new": {
+    "post": {
+      "post_ref01": {
+        "content": "sf0",
+        "created_at": "sf1",
+        "title": "sf3",
+        "updated_at": "sf4",
+        "user_id": "USER01"
+      }
+    }
+  }
+}

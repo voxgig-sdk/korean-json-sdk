@@ -1,0 +1,56 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 4
+  metrics: count: path: 8
+  metrics: count: method: 20
+
+  entity: comment: {
+    path: "/comments": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/comments/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+  }
+
+  entity: post: {
+    path: "/posts": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/posts/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+  }
+
+  entity: todo: {
+    path: "/todos": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/todos/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+  }
+
+  entity: user: {
+    path: "/users": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/users/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+  }
+
+}
