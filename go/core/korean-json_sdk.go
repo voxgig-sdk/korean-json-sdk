@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/korean-json-sdk/go/utility/struct"
 )
 
 type KoreanJsonSDK struct {

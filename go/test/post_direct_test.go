@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/korean-json-sdk"
-	"github.com/voxgig-sdk/korean-json-sdk/core"
+	sdk "github.com/voxgig-sdk/korean-json-sdk/go"
+	"github.com/voxgig-sdk/korean-json-sdk/go/core"
 )
 
 func TestPostDirect(t *testing.T) {

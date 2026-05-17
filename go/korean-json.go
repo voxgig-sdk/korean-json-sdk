@@ -1,10 +1,10 @@
 package voxgigkoreanjsonsdk
 
 import (
-	"github.com/voxgig-sdk/korean-json-sdk/core"
-	"github.com/voxgig-sdk/korean-json-sdk/entity"
-	"github.com/voxgig-sdk/korean-json-sdk/feature"
-	_ "github.com/voxgig-sdk/korean-json-sdk/utility"
+	"github.com/voxgig-sdk/korean-json-sdk/go/core"
+	"github.com/voxgig-sdk/korean-json-sdk/go/entity"
+	"github.com/voxgig-sdk/korean-json-sdk/go/feature"
+	_ "github.com/voxgig-sdk/korean-json-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

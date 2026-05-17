@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/korean-json-sdk/core"
+	"github.com/voxgig-sdk/korean-json-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/korean-json-sdk/go/utility/struct"
 )
 
 type CommentEntity struct {

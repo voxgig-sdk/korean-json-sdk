@@ -10,10 +10,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/korean-json-sdk"
-	"github.com/voxgig-sdk/korean-json-sdk/core"
+	sdk "github.com/voxgig-sdk/korean-json-sdk/go"
+	"github.com/voxgig-sdk/korean-json-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/korean-json-sdk/go/utility/struct"
 )
 
 func TestCommentEntity(t *testing.T) {

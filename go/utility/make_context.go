@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/korean-json-sdk/core"
+import "github.com/voxgig-sdk/korean-json-sdk/go/core"
 
 func makeContextUtil(ctxmap map[string]any, basectx *core.Context) *core.Context {
 	return core.NewContext(ctxmap, basectx)
