@@ -135,7 +135,6 @@ def user_basic_setup(extra)
     "KOREANJSON_TEST_USER_ENTID" => idmap,
     "KOREANJSON_TEST_LIVE" => "FALSE",
     "KOREANJSON_TEST_EXPLAIN" => "FALSE",
-    "KOREANJSON_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -147,7 +146,6 @@ def user_basic_setup(extra)
   if env["KOREANJSON_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["KOREANJSON_APIKEY"],
       },
       extra || {},
     ])

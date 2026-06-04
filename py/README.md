@@ -23,12 +23,9 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from koreanjson_sdk import KoreanJsonSDK
 
-client = KoreanJsonSDK({
-    "apikey": os.environ.get("KOREAN-JSON_APIKEY"),
-})
+client = KoreanJsonSDK({})
 ```
 
 ### 2. List comments
@@ -143,7 +140,6 @@ Create a `.env.local` file at the project root:
 
 ```
 KOREAN-JSON_TEST_LIVE=TRUE
-KOREAN-JSON_APIKEY=<your-key>
 ```
 
 Then run:
@@ -167,7 +163,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

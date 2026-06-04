@@ -16,8 +16,26 @@ main: {
       ]
       title: "Korean JSON API"
       version: "1.0.0"
+      tagline: "Fake JSON REST API serving Korean-language sample data for prototyping"
+      homepage: "https://koreanjson.com"
+      docs_url: "https://koreanjson.com"
+      about_md: `[Korean JSON](https://koreanjson.com) is a free, JSONPlaceholder-style REST API that returns sample data in Korean. It was built by Korean developers based in Pangyo, South Korea, and has been running since February 2019.
+
+What you get from the API:
+
+- \`GET\`, \`POST\`, \`PUT\`, and \`DELETE\` requests against \`/users\`, \`/posts\`, \`/todos\`, and \`/comments\`
+- List endpoints plus by-id item endpoints (e.g. \`/posts/1\`)
+- Filtered queries via parameters such as \`userId\` and \`postId\`
+- Fixed sample sets: 10 users, 200 posts, 200 todos, and 200 comments
+
+CORS is enabled on all endpoints, so the API can be called directly from browser code. Source and contribution guidelines live at the project's [GitHub repository](https://github.com/jd1386/korean-json).`
+      entity_desc: {
+        comment: "Korean-language sample comment records exposed under `/comments` (filterable by `postId`)."
+        post: "Korean-language sample post records exposed under `/posts` (filterable by `userId`)."
+        todo: "Korean-language sample todo items exposed under `/todos` (filterable by `userId`)."
+        user: "Korean-language sample user profiles exposed under `/users`."
+      }
+      auth: false
     }
   }
-}
-
 }

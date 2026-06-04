@@ -17,9 +17,7 @@ loading a specific record.
 ```ts
 import { KoreanJsonSDK } from 'korean-json'
 
-const client = new KoreanJsonSDK({
-  apikey: process.env.KOREAN-JSON_APIKEY,
-})
+const client = new KoreanJsonSDK({})
 ```
 
 ### 2. List comments
@@ -114,7 +112,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new KoreanJsonSDK({ apikey: '...' })
+const client = new KoreanJsonSDK()
 const testClient = client.tester()
 ```
 
@@ -150,7 +148,6 @@ const logger = {
 }
 
 const client = new KoreanJsonSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -161,7 +158,6 @@ Create a `.env.local` file at the project root:
 
 ```
 KOREAN-JSON_TEST_LIVE=TRUE
-KOREAN-JSON_APIKEY=<your-key>
 ```
 
 Then run:
@@ -179,7 +175,6 @@ cd ts && npm test
 
 ```ts
 new KoreanJsonSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -190,7 +185,6 @@ new KoreanJsonSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

@@ -144,7 +144,6 @@ function comment_basic_setup(extra)
     ["KOREANJSON_TEST_COMMENT_ENTID"] = idmap,
     ["KOREANJSON_TEST_LIVE"] = "FALSE",
     ["KOREANJSON_TEST_EXPLAIN"] = "FALSE",
-    ["KOREANJSON_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -156,7 +155,6 @@ function comment_basic_setup(extra)
   if env["KOREANJSON_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["KOREANJSON_APIKEY"],
       },
       extra or {},
     })

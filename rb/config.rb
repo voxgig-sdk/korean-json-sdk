@@ -15,9 +15,6 @@ module KoreanJsonConfig
       },
       "options" => {
         "base" => "https://koreanjson.com",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

@@ -116,14 +116,12 @@ def comment_direct_setup(mockres)
   env = Runner.env_override({
     "KOREANJSON_TEST_COMMENT_ENTID" => {},
     "KOREANJSON_TEST_LIVE" => "FALSE",
-    "KOREANJSON_APIKEY" => "NONE",
   })
 
   live = env["KOREANJSON_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["KOREANJSON_APIKEY"],
     }
     client = KoreanJsonSDK.new(merged_opts)
     return {
