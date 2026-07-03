@@ -10,7 +10,7 @@ The PHP SDK for the KoreanJson API — an entity-oriented client using PHP conve
 
 ## Install
 ```bash
-composer require voxgig/korean-json-sdk
+composer require voxgig-sdk/korean-json
 ```
 
 

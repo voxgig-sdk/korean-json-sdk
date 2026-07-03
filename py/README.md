@@ -10,7 +10,7 @@ The Python SDK for the KoreanJson API — an entity-oriented client following Py
 
 ## Install
 ```bash
-pip install korean-json-sdk
+pip install voxgig-sdk-korean-json
 ```
 
 Or install from source:

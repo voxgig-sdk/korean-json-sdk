@@ -8,12 +8,14 @@ source = {
   dir = "korean-json-sdk/lua"
 }
 description = {
-  summary = "KoreanJson SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Korean JSON public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/korean-json-sdk",
+  issues_url = "https://github.com/voxgig-sdk/korean-json-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "korean-json" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

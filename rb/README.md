@@ -10,13 +10,13 @@ The Ruby SDK for the KoreanJson API — an entity-oriented client using idiomati
 
 ## Install
 ```bash
-gem install korean-json-sdk
+gem install voxgig-sdk-korean-json
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "korean-json-sdk"
+gem "voxgig-sdk-korean-json"
 ```
 
 Then run:

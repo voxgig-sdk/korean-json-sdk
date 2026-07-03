@@ -10,7 +10,7 @@ The TypeScript SDK for the KoreanJson API — a type-safe, entity-oriented clien
 
 ## Install
 ```bash
-npm install korean-json
+npm install @voxgig-sdk/korean-json
 ```
 ## Tutorial: your first API call
 
