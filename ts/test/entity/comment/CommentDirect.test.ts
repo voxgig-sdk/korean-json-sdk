@@ -136,12 +136,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'KOREANJSON_TEST_COMMENT_ENTID': {},
     'KOREANJSON_TEST_LIVE': 'FALSE',
+    'KOREANJSON_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.KOREANJSON_TEST_LIVE
 
   if (live) {
     const client = new KoreanJsonSDK({
+      apikey: env.KOREANJSON_APIKEY,
     })
 
     let idmap: any = env['KOREANJSON_TEST_COMMENT_ENTID']

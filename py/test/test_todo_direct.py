@@ -109,12 +109,14 @@ def _todo_direct_setup(mockres):
     env = runner.env_override({
         "KOREANJSON_TEST_TODO_ENTID": {},
         "KOREANJSON_TEST_LIVE": "FALSE",
+        "KOREANJSON_APIKEY": "NONE",
     })
 
     live = env.get("KOREANJSON_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("KOREANJSON_APIKEY"),
         }
         client = KoreanJsonSDK(merged_opts)
         return {

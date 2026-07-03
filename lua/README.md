@@ -1,6 +1,11 @@
 # KoreanJson Lua SDK
 
-The Lua SDK for the KoreanJson API. Provides an entity-oriented interface using Lua conventions.
+
+
+The Lua SDK for the KoreanJson API — an entity-oriented client using Lua conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -26,13 +31,15 @@ loading a specific record.
 ```lua
 local sdk = require("korean-json_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("KOREAN-JSON_APIKEY"),
+})
 ```
 
 ### 2. List comments
 
 ```lua
-local result, err = client:Comment(nil):list(nil, nil)
+local result, err = client:Comment():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -46,7 +53,7 @@ end
 ### 3. Load a comment
 
 ```lua
-local result, err = client:Comment(nil):load({ id = "example_id" }, nil)
+local result, err = client:Comment():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -55,13 +62,13 @@ print(result)
 
 ```lua
 -- Create
-local created, _ = client:Comment(nil):create({ name = "Example" }, nil)
+local created, _ = client:Comment():create({ name = "Example" })
 
 -- Update
-client:Comment(nil):update({ id = created["id"], name = "Example-Renamed" }, nil)
+client:Comment():update({ id = created["id"], name = "Example-Renamed" })
 
 -- Remove
-client:Comment(nil):remove({ id = created["id"] }, nil)
+client:Comment():remove({ id = created["id"] })
 ```
 
 
@@ -105,11 +112,9 @@ print(fetchdef["headers"])
 Create a mock client for unit testing — no server required:
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 
-local result, err = client:KoreanJson(nil):load(
-  { id = "test01" }, nil
-)
+local result, err = client:KoreanJson():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -143,6 +148,7 @@ Create a `.env.local` file at the project root:
 
 ```
 KOREAN-JSON_TEST_LIVE=TRUE
+KOREAN-JSON_APIKEY=<your-key>
 ```
 
 Then run:
@@ -165,6 +171,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

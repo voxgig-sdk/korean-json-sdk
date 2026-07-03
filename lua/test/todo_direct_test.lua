@@ -117,12 +117,14 @@ function todo_direct_setup(mockres)
   local env = runner.env_override({
     ["KOREANJSON_TEST_TODO_ENTID"] = {},
     ["KOREANJSON_TEST_LIVE"] = "FALSE",
+    ["KOREANJSON_APIKEY"] = "NONE",
   })
 
   local live = env["KOREANJSON_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["KOREANJSON_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

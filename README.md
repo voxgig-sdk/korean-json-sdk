@@ -1,21 +1,8 @@
 # KoreanJson SDK
 
-Fake JSON REST API serving Korean-language sample data for prototyping
+Korean JSON API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Korean JSON API
-
-[Korean JSON](https://koreanjson.com) is a free, JSONPlaceholder-style REST API that returns sample data in Korean. It was built by Korean developers based in Pangyo, South Korea, and has been running since February 2019.
-
-What you get from the API:
-
-- `GET`, `POST`, `PUT`, and `DELETE` requests against `/users`, `/posts`, `/todos`, and `/comments`
-- List endpoints plus by-id item endpoints (e.g. `/posts/1`)
-- Filtered queries via parameters such as `userId` and `postId`
-- Fixed sample sets: 10 users, 200 posts, 200 todos, and 200 comments
-
-CORS is enabled on all endpoints, so the API can be called directly from browser code. Source and contribution guidelines live at the project's [GitHub repository](https://github.com/jd1386/korean-json).
 
 ## Try it
 
@@ -49,29 +36,31 @@ gem install korean-json-sdk
 luarocks install korean-json-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { KoreanJsonSDK } from 'korean-json'
 
-const client = new KoreanJsonSDK({})
+const client = new KoreanJsonSDK({
+  apikey: process.env.KOREAN-JSON_APIKEY,
+})
 
 // List all comments
 const comments = await client.Comment().list()
+console.log(comments.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -101,10 +90,10 @@ The API exposes 4 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Comment** | Korean-language sample comment records exposed under `/comments` (filterable by `postId`). | `/comments` |
-| **Post** | Korean-language sample post records exposed under `/posts` (filterable by `userId`). | `/posts` |
-| **Todo** | Korean-language sample todo items exposed under `/todos` (filterable by `userId`). | `/todos` |
-| **User** | Korean-language sample user profiles exposed under `/users`. | `/users` |
+| **Comment** |  | `/comments` |
+| **Post** |  | `/posts` |
+| **Todo** |  | `/todos` |
+| **User** |  | `/users` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -114,17 +103,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from koreanjson_sdk import KoreanJsonSDK
 
-client = KoreanJsonSDK({})
+client = KoreanJsonSDK({
+    "apikey": os.environ.get("KOREAN-JSON_APIKEY"),
+})
 
 # List all comments
-comments, err = client.Comment(None).list(None, None)
+comments, err = client.Comment().list()
+print(comments)
 
 # Load a specific comment
-comment, err = client.Comment(None).load(
-    {"id": "example_id"}, None
-)
+comment, err = client.Comment().load({"id": "example_id"})
+print(comment)
 ```
 
 ### PHP
@@ -133,15 +125,17 @@ comment, err = client.Comment(None).load(
 <?php
 require_once 'koreanjson_sdk.php';
 
-$client = new KoreanJsonSDK([]);
+$client = new KoreanJsonSDK([
+    "apikey" => getenv("KOREAN-JSON_APIKEY"),
+]);
 
 // List all comments
-[$comments, $err] = $client->Comment(null)->list(null, null);
+[$comments, $err] = $client->Comment()->list();
+print_r($comments);
 
 // Load a specific comment
-[$comment, $err] = $client->Comment(null)->load(
-    ["id" => "example_id"], null
-);
+[$comment, $err] = $client->Comment()->load(["id" => "example_id"]);
+print_r($comment);
 ```
 
 ### Golang
@@ -149,10 +143,13 @@ $client = new KoreanJsonSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/korean-json-sdk/go"
 
-client := sdk.NewKoreanJsonSDK(map[string]any{})
+client := sdk.NewKoreanJsonSDK(map[string]any{
+    "apikey": os.Getenv("KOREAN-JSON_APIKEY"),
+})
 
 // List all comments
 comments, err := client.Comment(nil).List(nil, nil)
+fmt.Println(comments)
 ```
 
 ### Ruby
@@ -160,15 +157,17 @@ comments, err := client.Comment(nil).List(nil, nil)
 ```ruby
 require_relative "KoreanJson_sdk"
 
-client = KoreanJsonSDK.new({})
+client = KoreanJsonSDK.new({
+  "apikey" => ENV["KOREAN-JSON_APIKEY"],
+})
 
 # List all comments
-comments, err = client.Comment(nil).list(nil, nil)
+comments, err = client.Comment().list
+puts comments
 
 # Load a specific comment
-comment, err = client.Comment(nil).load(
-  { "id" => "example_id" }, nil
-)
+comment, err = client.Comment().load({ "id" => "example_id" })
+puts comment
 ```
 
 ### Lua
@@ -176,15 +175,17 @@ comment, err = client.Comment(nil).load(
 ```lua
 local sdk = require("korean-json_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("KOREAN-JSON_APIKEY"),
+})
 
 -- List all comments
-local comments, err = client:Comment(nil):list(nil, nil)
+local comments, err = client:Comment():list()
+print(comments)
 
 -- Load a specific comment
-local comment, err = client:Comment(nil):load(
-  { id = "example_id" }, nil
-)
+local comment, err = client:Comment():load({ id = "example_id" })
+print(comment)
 ```
 
 ## Unit testing in offline mode
@@ -203,25 +204,21 @@ const result = await client.Comment().load({ id: 'test01' })
 ### Python
 
 ```python
-client = KoreanJsonSDK.test(None, None)
-result, err = client.Comment(None).load(
-    {"id": "test01"}, None
-)
+client = KoreanJsonSDK.test()
+result, err = client.Comment().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = KoreanJsonSDK::test(null, null);
-[$result, $err] = $client->Comment(null)->load(
-    ["id" => "test01"], null
-);
+$client = KoreanJsonSDK::test();
+[$result, $err] = $client->Comment()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Comment(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -230,19 +227,15 @@ result, err := client.Comment(nil).Load(
 ### Ruby
 
 ```ruby
-client = KoreanJsonSDK.test(nil, nil)
-result, err = client.Comment(nil).load(
-  { "id" => "test01" }, nil
-)
+client = KoreanJsonSDK.test
+result, err = client.Comment().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Comment(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Comment():load({ id = "test01" })
 ```
 
 ## How it works
@@ -346,10 +339,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Korean JSON API
-
-- Upstream: [https://koreanjson.com](https://koreanjson.com)
 
 ---
 

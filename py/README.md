@@ -1,6 +1,11 @@
 # KoreanJson Python SDK
 
-The Python SDK for the KoreanJson API. Provides an entity-oriented interface following Pythonic conventions.
+
+
+The Python SDK for the KoreanJson API — an entity-oriented client following Pythonic conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -23,15 +28,18 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
+import os
 from koreanjson_sdk import KoreanJsonSDK
 
-client = KoreanJsonSDK({})
+client = KoreanJsonSDK({
+    "apikey": os.environ.get("KOREAN-JSON_APIKEY"),
+})
 ```
 
 ### 2. List comments
 
 ```python
-result, err = client.Comment(None).list(None, None)
+result, err = client.Comment().list()
 if err:
     raise Exception(err)
 
@@ -44,7 +52,7 @@ if isinstance(result, list):
 ### 3. Load a comment
 
 ```python
-result, err = client.Comment(None).load({"id": "example_id"}, None)
+result, err = client.Comment().load({"id": "example_id"})
 if err:
     raise Exception(err)
 print(result)
@@ -54,13 +62,13 @@ print(result)
 
 ```python
 # Create
-created, _ = client.Comment(None).create({"name": "Example"}, None)
+created, _ = client.Comment().create({"name": "Example"})
 
 # Update
-client.Comment(None).update({"id": created["id"], "name": "Example-Renamed"}, None)
+client.Comment().update({"id": created["id"], "name": "Example-Renamed"})
 
 # Remove
-client.Comment(None).remove({"id": created["id"]}, None)
+client.Comment().remove({"id": created["id"]})
 ```
 
 
@@ -105,11 +113,9 @@ print(fetchdef["headers"])
 Create a mock client for unit testing — no server required:
 
 ```python
-client = KoreanJsonSDK.test(None, None)
+client = KoreanJsonSDK.test()
 
-result, err = client.KoreanJson(None).load(
-    {"id": "test01"}, None
-)
+result, err = client.KoreanJson().load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -140,6 +146,7 @@ Create a `.env.local` file at the project root:
 
 ```
 KOREAN-JSON_TEST_LIVE=TRUE
+KOREAN-JSON_APIKEY=<your-key>
 ```
 
 Then run:
@@ -163,6 +170,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

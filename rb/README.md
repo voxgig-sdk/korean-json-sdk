@@ -1,6 +1,11 @@
 # KoreanJson Ruby SDK
 
-The Ruby SDK for the KoreanJson API. Provides an entity-oriented interface using idiomatic Ruby conventions.
+
+
+The Ruby SDK for the KoreanJson API — an entity-oriented client using idiomatic Ruby conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -31,13 +36,15 @@ loading a specific record.
 ```ruby
 require_relative "KoreanJson_sdk"
 
-client = KoreanJsonSDK.new({})
+client = KoreanJsonSDK.new({
+  "apikey" => ENV["KOREAN-JSON_APIKEY"],
+})
 ```
 
 ### 2. List comments
 
 ```ruby
-result, err = client.Comment(nil).list(nil, nil)
+result, err = client.Comment().list
 raise err if err
 
 if result.is_a?(Array)
@@ -51,7 +58,7 @@ end
 ### 3. Load a comment
 
 ```ruby
-result, err = client.Comment(nil).load({ "id" => "example_id" }, nil)
+result, err = client.Comment().load({ "id" => "example_id" })
 raise err if err
 puts result
 ```
@@ -60,13 +67,13 @@ puts result
 
 ```ruby
 # Create
-created, _ = client.Comment(nil).create({ "name" => "Example" }, nil)
+created, _ = client.Comment().create({ "name" => "Example" })
 
 # Update
-client.Comment(nil).update({ "id" => created["id"], "name" => "Example-Renamed" }, nil)
+client.Comment().update({ "id" => created["id"], "name" => "Example-Renamed" })
 
 # Remove
-client.Comment(nil).remove({ "id" => created["id"] }, nil)
+client.Comment().remove({ "id" => created["id"] })
 ```
 
 
@@ -110,11 +117,9 @@ puts fetchdef["headers"]
 Create a mock client for unit testing — no server required:
 
 ```ruby
-client = KoreanJsonSDK.test(nil, nil)
+client = KoreanJsonSDK.test
 
-result, err = client.KoreanJson(nil).load(
-  { "id" => "test01" }, nil
-)
+result, err = client.KoreanJson().load({ "id" => "test01" })
 # result contains mock response data
 ```
 
@@ -146,6 +151,7 @@ Create a `.env.local` file at the project root:
 
 ```
 KOREAN-JSON_TEST_LIVE=TRUE
+KOREAN-JSON_APIKEY=<your-key>
 ```
 
 Then run:
@@ -168,6 +174,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |
