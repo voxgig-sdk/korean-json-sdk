@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:comment():list() / client:comment():load({ id = ... })
-function KoreanJsonSDK:comment(data)
+-- Idiomatic facade: client:Comment():list() / client:Comment():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function KoreanJsonSDK:Comment(data)
   local EntityMod = require("entity.comment_entity")
   if data == nil then
     if self._comment == nil then
@@ -256,15 +257,10 @@ function KoreanJsonSDK:comment(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:comment() instead.
-function KoreanJsonSDK:Comment(data)
-  local EntityMod = require("entity.comment_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:post():list() / client:post():load({ id = ... })
-function KoreanJsonSDK:post(data)
+-- Idiomatic facade: client:Post():list() / client:Post():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function KoreanJsonSDK:Post(data)
   local EntityMod = require("entity.post_entity")
   if data == nil then
     if self._post == nil then
@@ -275,15 +271,10 @@ function KoreanJsonSDK:post(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:post() instead.
-function KoreanJsonSDK:Post(data)
-  local EntityMod = require("entity.post_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:todo():list() / client:todo():load({ id = ... })
-function KoreanJsonSDK:todo(data)
+-- Idiomatic facade: client:Todo():list() / client:Todo():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function KoreanJsonSDK:Todo(data)
   local EntityMod = require("entity.todo_entity")
   if data == nil then
     if self._todo == nil then
@@ -294,15 +285,10 @@ function KoreanJsonSDK:todo(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:todo() instead.
-function KoreanJsonSDK:Todo(data)
-  local EntityMod = require("entity.todo_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:user():list() / client:user():load({ id = ... })
-function KoreanJsonSDK:user(data)
+-- Idiomatic facade: client:User():list() / client:User():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function KoreanJsonSDK:User(data)
   local EntityMod = require("entity.user_entity")
   if data == nil then
     if self._user == nil then
@@ -310,12 +296,6 @@ function KoreanJsonSDK:user(data)
     end
     return self._user
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:user() instead.
-function KoreanJsonSDK:User(data)
-  local EntityMod = require("entity.user_entity")
   return EntityMod.new(self, data)
 end
 

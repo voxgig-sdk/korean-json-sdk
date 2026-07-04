@@ -31,24 +31,28 @@ from koreanjson_sdk import KoreanJsonSDK
 client = KoreanJsonSDK()
 ```
 
-### 2. List comments
+### 2. List comment records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.comment.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    comments = client.Comment().list({})
+    for comment in comments:
+        print(comment)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load a comment
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.comment.load({"id": "example_id"})
-    print(result)
+    comment = client.Comment().load({"id": "example_id"})
+    print(comment)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -56,14 +60,14 @@ except Exception as err:
 ### 4. Create, update, and remove
 
 ```python
-# Create
-created = client.comment.create({"name": "Example"})
+# Create — returns the bare created record (a dict)
+created = client.Comment().create({"name": "Example"})
 
-# Update
-client.comment.update({"id": created["id"], "name": "Example-Renamed"})
+# Update — the created record's id is a plain dict key
+client.Comment().update({"id": created["id"], "name": "Example-Renamed"})
 
 # Remove
-client.comment.remove({"id": created["id"]})
+client.Comment().remove({"id": created["id"]})
 ```
 
 
@@ -109,8 +113,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = KoreanJsonSDK.test()
 
-result = client.comment.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+comment = client.Comment().load({"id": "test01"})
+# comment contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -189,7 +194,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `Comment` | `(data) -> CommentEntity` | Create a Comment entity instance. |
 | `Post` | `(data) -> PostEntity` | Create a Post entity instance. |
 | `Todo` | `(data) -> TodoEntity` | Create a Todo entity instance. |
-| `User` | `(data) -> UserEntity` | Create a User entity instance. |
+| `User` | `(data) -> UserEntity` | Create an User entity instance. |
 
 ### Entity interface
 
@@ -299,7 +304,7 @@ API path: `/users`
 
 ### Comment
 
-Create an instance: `const comment = client.comment`
+Create an instance: `comment = client.Comment()`
 
 #### Operations
 
@@ -324,27 +329,27 @@ Create an instance: `const comment = client.comment`
 
 #### Example: Load
 
-```ts
-const comment = await client.comment.load({ id: 'comment_id' })
+```python
+comment = client.Comment().load({"id": "comment_id"})
 ```
 
 #### Example: List
 
-```ts
-const comments = await client.comment.list()
+```python
+comments = client.Comment().list({})
 ```
 
 #### Example: Create
 
-```ts
-const comment = await client.comment.create({
+```python
+comment = client.Comment().create({
 })
 ```
 
 
 ### Post
 
-Create an instance: `const post = client.post`
+Create an instance: `post = client.Post()`
 
 #### Operations
 
@@ -369,27 +374,27 @@ Create an instance: `const post = client.post`
 
 #### Example: Load
 
-```ts
-const post = await client.post.load({ id: 'post_id' })
+```python
+post = client.Post().load({"id": "post_id"})
 ```
 
 #### Example: List
 
-```ts
-const posts = await client.post.list()
+```python
+posts = client.Post().list({})
 ```
 
 #### Example: Create
 
-```ts
-const post = await client.post.create({
+```python
+post = client.Post().create({
 })
 ```
 
 
 ### Todo
 
-Create an instance: `const todo = client.todo`
+Create an instance: `todo = client.Todo()`
 
 #### Operations
 
@@ -412,27 +417,27 @@ Create an instance: `const todo = client.todo`
 
 #### Example: Load
 
-```ts
-const todo = await client.todo.load({ id: 'todo_id' })
+```python
+todo = client.Todo().load({"id": "todo_id"})
 ```
 
 #### Example: List
 
-```ts
-const todos = await client.todo.list()
+```python
+todos = client.Todo().list({})
 ```
 
 #### Example: Create
 
-```ts
-const todo = await client.todo.create({
+```python
+todo = client.Todo().create({
 })
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `user = client.User()`
 
 #### Operations
 
@@ -462,20 +467,20 @@ Create an instance: `const user = client.user`
 
 #### Example: Load
 
-```ts
-const user = await client.user.load({ id: 'user_id' })
+```python
+user = client.User().load({"id": "user_id"})
 ```
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```python
+users = client.User().list({})
 ```
 
 #### Example: Create
 
-```ts
-const user = await client.user.create({
+```python
+user = client.User().create({
 })
 ```
 
@@ -550,7 +555,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-comment = client.comment
+comment = client.Comment()
 comment.load({"id": "example_id"})
 
 # comment.data_get() now returns the loaded comment data

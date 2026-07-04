@@ -29,18 +29,16 @@ require_once 'koreanjson_sdk.php';
 $client = new KoreanJsonSDK();
 ```
 
-### 2. List comments
+### 2. List comment records
 
 ```php
 try {
-    $result = $client->comment()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Comment records — iterate directly.
+    $comments = $client->Comment()->list();
+    foreach ($comments as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -49,9 +47,10 @@ try {
 
 ```php
 try {
-    $result = $client->comment()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Comment record (throws on error).
+    $comment = $client->Comment()->load(["id" => "example_id"]);
+    print_r($comment);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -59,14 +58,14 @@ try {
 ### 4. Create, update, and remove
 
 ```php
-// Create
-$created = $client->comment()->create(["name" => "Example"]);
+// create() returns the bare created Comment record.
+$created = $client->Comment()->create(["name" => "Example"]);
 
-// Update
-$client->comment()->update(["id" => $created["id"], "name" => "Example-Renamed"]);
+// Update — index the bare record directly ($created["id"]).
+$client->Comment()->update(["id" => $created["id"], "name" => "Example-Renamed"]);
 
 // Remove
-$client->comment()->remove(["id" => $created["id"]]);
+$client->Comment()->remove(["id" => $created["id"]]);
 ```
 
 
@@ -110,13 +109,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = KoreanJsonSDK::test();
+$client = KoreanJsonSDK::test([
+    "entity" => ["comment" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->comment()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$comment = $client->Comment()->load(["id" => "test01"]);
+print_r($comment);
 ```
 
 ### Use a custom fetch function
@@ -198,7 +201,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `Comment` | `($data): CommentEntity` | Create a Comment entity instance. |
 | `Post` | `($data): PostEntity` | Create a Post entity instance. |
 | `Todo` | `($data): TodoEntity` | Create a Todo entity instance. |
-| `User` | `($data): UserEntity` | Create a User entity instance. |
+| `User` | `($data): UserEntity` | Create an User entity instance. |
 
 ### Entity interface
 
@@ -308,7 +311,7 @@ API path: `/users`
 
 ### Comment
 
-Create an instance: `const comment = client.comment`
+Create an instance: `$comment = $client->Comment();`
 
 #### Operations
 
@@ -333,27 +336,29 @@ Create an instance: `const comment = client.comment`
 
 #### Example: Load
 
-```ts
-const comment = await client.comment.load({ id: 'comment_id' })
+```php
+// load() returns the bare Comment record (throws on error).
+$comment = $client->Comment()->load(["id" => "comment_id"]);
 ```
 
 #### Example: List
 
-```ts
-const comments = await client.comment.list()
+```php
+// list() returns an array of Comment records (throws on error).
+$comments = $client->Comment()->list();
 ```
 
 #### Example: Create
 
-```ts
-const comment = await client.comment.create({
-})
+```php
+$comment = $client->Comment()->create([
+]);
 ```
 
 
 ### Post
 
-Create an instance: `const post = client.post`
+Create an instance: `$post = $client->Post();`
 
 #### Operations
 
@@ -378,27 +383,29 @@ Create an instance: `const post = client.post`
 
 #### Example: Load
 
-```ts
-const post = await client.post.load({ id: 'post_id' })
+```php
+// load() returns the bare Post record (throws on error).
+$post = $client->Post()->load(["id" => "post_id"]);
 ```
 
 #### Example: List
 
-```ts
-const posts = await client.post.list()
+```php
+// list() returns an array of Post records (throws on error).
+$posts = $client->Post()->list();
 ```
 
 #### Example: Create
 
-```ts
-const post = await client.post.create({
-})
+```php
+$post = $client->Post()->create([
+]);
 ```
 
 
 ### Todo
 
-Create an instance: `const todo = client.todo`
+Create an instance: `$todo = $client->Todo();`
 
 #### Operations
 
@@ -421,27 +428,29 @@ Create an instance: `const todo = client.todo`
 
 #### Example: Load
 
-```ts
-const todo = await client.todo.load({ id: 'todo_id' })
+```php
+// load() returns the bare Todo record (throws on error).
+$todo = $client->Todo()->load(["id" => "todo_id"]);
 ```
 
 #### Example: List
 
-```ts
-const todos = await client.todo.list()
+```php
+// list() returns an array of Todo records (throws on error).
+$todos = $client->Todo()->list();
 ```
 
 #### Example: Create
 
-```ts
-const todo = await client.todo.create({
-})
+```php
+$todo = $client->Todo()->create([
+]);
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `$user = $client->User();`
 
 #### Operations
 
@@ -471,21 +480,23 @@ Create an instance: `const user = client.user`
 
 #### Example: Load
 
-```ts
-const user = await client.user.load({ id: 'user_id' })
+```php
+// load() returns the bare User record (throws on error).
+$user = $client->User()->load(["id" => "user_id"]);
 ```
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```php
+// list() returns an array of User records (throws on error).
+$users = $client->User()->list();
 ```
 
 #### Example: Create
 
-```ts
-const user = await client.user.create({
-})
+```php
+$user = $client->User()->create([
+]);
 ```
 
 
@@ -560,7 +571,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$comment = $client->comment();
+$comment = $client->Comment();
 $comment->load(["id" => "example_id"]);
 
 // $comment->dataGet() now returns the loaded comment data

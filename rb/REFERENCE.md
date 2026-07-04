@@ -98,7 +98,7 @@ same parameters as `direct()`. Raises on error.
 ## CommentEntity
 
 ```ruby
-comment = client.comment
+comment = client.Comment
 ```
 
 ### Fields
@@ -119,7 +119,7 @@ comment = client.comment
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.comment.create({
+result = client.Comment.create({
 })
 ```
 
@@ -128,7 +128,7 @@ result = client.comment.create({
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.comment.list(nil)
+results = client.Comment.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -136,7 +136,7 @@ results = client.comment.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.comment.load({ "id" => "comment_id" })
+result = client.Comment.load({ "id" => "comment_id" })
 ```
 
 #### `remove(reqmatch, ctrl = nil) -> result`
@@ -144,7 +144,7 @@ result = client.comment.load({ "id" => "comment_id" })
 Remove the entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.comment.remove({ "id" => "comment_id" })
+result = client.Comment.remove({ "id" => "comment_id" })
 ```
 
 #### `update(reqdata, ctrl = nil) -> result`
@@ -152,7 +152,7 @@ result = client.comment.remove({ "id" => "comment_id" })
 Update an existing entity. The data must include the entity `id`. Raises on error.
 
 ```ruby
-result = client.comment.update({
+result = client.Comment.update({
   "id" => "comment_id",
   # Fields to update
 })
@@ -191,7 +191,7 @@ Return the entity name.
 ## PostEntity
 
 ```ruby
-post = client.post
+post = client.Post
 ```
 
 ### Fields
@@ -212,7 +212,7 @@ post = client.post
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.post.create({
+result = client.Post.create({
 })
 ```
 
@@ -221,7 +221,7 @@ result = client.post.create({
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.post.list(nil)
+results = client.Post.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -229,7 +229,7 @@ results = client.post.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.post.load({ "id" => "post_id" })
+result = client.Post.load({ "id" => "post_id" })
 ```
 
 #### `remove(reqmatch, ctrl = nil) -> result`
@@ -237,7 +237,7 @@ result = client.post.load({ "id" => "post_id" })
 Remove the entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.post.remove({ "id" => "post_id" })
+result = client.Post.remove({ "id" => "post_id" })
 ```
 
 #### `update(reqdata, ctrl = nil) -> result`
@@ -245,7 +245,7 @@ result = client.post.remove({ "id" => "post_id" })
 Update an existing entity. The data must include the entity `id`. Raises on error.
 
 ```ruby
-result = client.post.update({
+result = client.Post.update({
   "id" => "post_id",
   # Fields to update
 })
@@ -284,7 +284,7 @@ Return the entity name.
 ## TodoEntity
 
 ```ruby
-todo = client.todo
+todo = client.Todo
 ```
 
 ### Fields
@@ -303,7 +303,7 @@ todo = client.todo
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.todo.create({
+result = client.Todo.create({
 })
 ```
 
@@ -312,7 +312,7 @@ result = client.todo.create({
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.todo.list(nil)
+results = client.Todo.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -320,7 +320,7 @@ results = client.todo.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.todo.load({ "id" => "todo_id" })
+result = client.Todo.load({ "id" => "todo_id" })
 ```
 
 #### `remove(reqmatch, ctrl = nil) -> result`
@@ -328,7 +328,7 @@ result = client.todo.load({ "id" => "todo_id" })
 Remove the entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.todo.remove({ "id" => "todo_id" })
+result = client.Todo.remove({ "id" => "todo_id" })
 ```
 
 #### `update(reqdata, ctrl = nil) -> result`
@@ -336,7 +336,7 @@ result = client.todo.remove({ "id" => "todo_id" })
 Update an existing entity. The data must include the entity `id`. Raises on error.
 
 ```ruby
-result = client.todo.update({
+result = client.Todo.update({
   "id" => "todo_id",
   # Fields to update
 })
@@ -375,7 +375,7 @@ Return the entity name.
 ## UserEntity
 
 ```ruby
-user = client.user
+user = client.User
 ```
 
 ### Fields
@@ -401,7 +401,7 @@ user = client.user
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.user.create({
+result = client.User.create({
 })
 ```
 
@@ -410,7 +410,7 @@ result = client.user.create({
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.user.list(nil)
+results = client.User.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -418,7 +418,7 @@ results = client.user.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.user.load({ "id" => "user_id" })
+result = client.User.load({ "id" => "user_id" })
 ```
 
 #### `remove(reqmatch, ctrl = nil) -> result`
@@ -426,7 +426,7 @@ result = client.user.load({ "id" => "user_id" })
 Remove the entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.user.remove({ "id" => "user_id" })
+result = client.User.remove({ "id" => "user_id" })
 ```
 
 #### `update(reqdata, ctrl = nil) -> result`
@@ -434,7 +434,7 @@ result = client.user.remove({ "id" => "user_id" })
 Update an existing entity. The data must include the entity `id`. Raises on error.
 
 ```ruby
-result = client.user.update({
+result = client.User.update({
   "id" => "user_id",
   # Fields to update
 })

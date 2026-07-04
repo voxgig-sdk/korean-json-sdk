@@ -233,10 +233,10 @@ class KoreanJsonSDK
 
     private $_comment = null;
 
-    // Idiomatic facade: $client->comment()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Comment() (PHP method
-    // names are case-insensitive).
-    public function comment($data = null)
+    // Canonical facade: $client->Comment()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->comment()
+    // resolves here too.
+    public function Comment($data = null)
     {
         require_once __DIR__ . '/entity/comment_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class KoreanJsonSDK
 
     private $_post = null;
 
-    // Idiomatic facade: $client->post()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Post() (PHP method
-    // names are case-insensitive).
-    public function post($data = null)
+    // Canonical facade: $client->Post()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->post()
+    // resolves here too.
+    public function Post($data = null)
     {
         require_once __DIR__ . '/entity/post_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class KoreanJsonSDK
 
     private $_todo = null;
 
-    // Idiomatic facade: $client->todo()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Todo() (PHP method
-    // names are case-insensitive).
-    public function todo($data = null)
+    // Canonical facade: $client->Todo()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->todo()
+    // resolves here too.
+    public function Todo($data = null)
     {
         require_once __DIR__ . '/entity/todo_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class KoreanJsonSDK
 
     private $_user = null;
 
-    // Idiomatic facade: $client->user()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias User() (PHP method
-    // names are case-insensitive).
-    public function user($data = null)
+    // Canonical facade: $client->User()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->user()
+    // resolves here too.
+    public function User($data = null)
     {
         require_once __DIR__ . '/entity/user_entity.php';
         if ($data === null) {

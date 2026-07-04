@@ -28,16 +28,14 @@ require_relative "KoreanJson_sdk"
 client = KoreanJsonSDK.new
 ```
 
-### 2. List comments
+### 2. List comment records
 
 ```ruby
 begin
-  result = client.comment.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Comment records — iterate directly.
+  comments = client.Comment.list
+  comments.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,8 +46,9 @@ end
 
 ```ruby
 begin
-  result = client.comment.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Comment record (raises on error).
+  comment = client.Comment.load({ "id" => "example_id" })
+  puts comment
 rescue => err
   warn "load failed: #{err}"
 end
@@ -58,14 +57,14 @@ end
 ### 4. Create, update, and remove
 
 ```ruby
-# Create
-created = client.comment.create({ "name" => "Example" })
+# create returns the bare created Comment record.
+created = client.Comment.create({ "name" => "Example" })
 
-# Update
-client.comment.update({ "id" => created["id"], "name" => "Example-Renamed" })
+# Update — index the bare record directly (created["id"]).
+client.Comment.update({ "id" => created["id"], "name" => "Example-Renamed" })
 
 # Remove
-client.comment.remove({ "id" => created["id"] })
+client.Comment.remove({ "id" => created["id"] })
 ```
 
 
@@ -109,13 +108,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = KoreanJsonSDK.test
+client = KoreanJsonSDK.test({
+  "entity" => { "comment" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.comment.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+comment = client.Comment.load({ "id" => "test01" })
+puts comment
 ```
 
 ### Use a custom fetch function
@@ -194,7 +197,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Comment` | `(data) -> CommentEntity` | Create a Comment entity instance. |
 | `Post` | `(data) -> PostEntity` | Create a Post entity instance. |
 | `Todo` | `(data) -> TodoEntity` | Create a Todo entity instance. |
-| `User` | `(data) -> UserEntity` | Create a User entity instance. |
+| `User` | `(data) -> UserEntity` | Create an User entity instance. |
 
 ### Entity interface
 
@@ -303,7 +306,7 @@ API path: `/users`
 
 ### Comment
 
-Create an instance: `const comment = client.comment`
+Create an instance: `comment = client.Comment`
 
 #### Operations
 
@@ -328,27 +331,29 @@ Create an instance: `const comment = client.comment`
 
 #### Example: Load
 
-```ts
-const comment = await client.comment.load({ id: 'comment_id' })
+```ruby
+# load returns the bare Comment record (raises on error).
+comment = client.Comment.load({ "id" => "comment_id" })
 ```
 
 #### Example: List
 
-```ts
-const comments = await client.comment.list()
+```ruby
+# list returns an Array of Comment records (raises on error).
+comments = client.Comment.list
 ```
 
 #### Example: Create
 
-```ts
-const comment = await client.comment.create({
+```ruby
+comment = client.Comment.create({
 })
 ```
 
 
 ### Post
 
-Create an instance: `const post = client.post`
+Create an instance: `post = client.Post`
 
 #### Operations
 
@@ -373,27 +378,29 @@ Create an instance: `const post = client.post`
 
 #### Example: Load
 
-```ts
-const post = await client.post.load({ id: 'post_id' })
+```ruby
+# load returns the bare Post record (raises on error).
+post = client.Post.load({ "id" => "post_id" })
 ```
 
 #### Example: List
 
-```ts
-const posts = await client.post.list()
+```ruby
+# list returns an Array of Post records (raises on error).
+posts = client.Post.list
 ```
 
 #### Example: Create
 
-```ts
-const post = await client.post.create({
+```ruby
+post = client.Post.create({
 })
 ```
 
 
 ### Todo
 
-Create an instance: `const todo = client.todo`
+Create an instance: `todo = client.Todo`
 
 #### Operations
 
@@ -416,27 +423,29 @@ Create an instance: `const todo = client.todo`
 
 #### Example: Load
 
-```ts
-const todo = await client.todo.load({ id: 'todo_id' })
+```ruby
+# load returns the bare Todo record (raises on error).
+todo = client.Todo.load({ "id" => "todo_id" })
 ```
 
 #### Example: List
 
-```ts
-const todos = await client.todo.list()
+```ruby
+# list returns an Array of Todo records (raises on error).
+todos = client.Todo.list
 ```
 
 #### Example: Create
 
-```ts
-const todo = await client.todo.create({
+```ruby
+todo = client.Todo.create({
 })
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `user = client.User`
 
 #### Operations
 
@@ -466,20 +475,22 @@ Create an instance: `const user = client.user`
 
 #### Example: Load
 
-```ts
-const user = await client.user.load({ id: 'user_id' })
+```ruby
+# load returns the bare User record (raises on error).
+user = client.User.load({ "id" => "user_id" })
 ```
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```ruby
+# list returns an Array of User records (raises on error).
+users = client.User.list
 ```
 
 #### Example: Create
 
-```ts
-const user = await client.user.create({
+```ruby
+user = client.User.create({
 })
 ```
 
@@ -555,7 +566,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-comment = client.comment
+comment = client.Comment
 comment.load({ "id" => "example_id" })
 
 # comment.data_get now returns the loaded comment data

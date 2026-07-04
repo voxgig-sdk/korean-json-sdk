@@ -26,9 +26,11 @@ import { KoreanJsonSDK } from '@voxgig-sdk/korean-json'
 
 const client = new KoreanJsonSDK()
 
-// List all comments
-const comments = await client.comment.list()
-console.log(comments.data)
+// List all comments (returns Comment[])
+const comments = await client.Comment().list()
+for (const comment of comments) {
+  console.log(comment)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -86,12 +88,13 @@ from koreanjson_sdk import KoreanJsonSDK
 
 client = KoreanJsonSDK()
 
-# List all comments
-comments = client.comment.list()
-print(comments)
+# List all comments (returns a list, raises on error)
+comments = client.Comment().list({})
+for comment in comments:
+    print(comment)
 
-# Load a specific comment
-comment = client.comment.load({"id": "example_id"})
+# Load a specific comment (returns the record, raises on error)
+comment = client.Comment().load({"id": "example_id"})
 print(comment)
 ```
 
@@ -103,12 +106,12 @@ require_once 'koreanjson_sdk.php';
 
 $client = new KoreanJsonSDK();
 
-// List all comments (throws on error)
-$comments = $client->comment()->list();
+// List all comments (returns an array; throws on error)
+$comments = $client->Comment()->list();
 print_r($comments);
 
-// Load a specific comment
-$comment = $client->comment()->load(["id" => "example_id"]);
+// Load a specific comment (returns the bare record; throws on error)
+$comment = $client->Comment()->load(["id" => "example_id"]);
 print_r($comment);
 ```
 
@@ -131,12 +134,12 @@ require_relative "KoreanJson_sdk"
 
 client = KoreanJsonSDK.new
 
-# List all comments
-comments = client.comment.list
+# List all comments (returns an Array; raises on error)
+comments = client.Comment.list
 puts comments
 
-# Load a specific comment
-comment = client.comment.load({ "id" => "example_id" })
+# Load a specific comment (returns the bare record; raises on error)
+comment = client.Comment.load({ "id" => "example_id" })
 puts comment
 ```
 
@@ -148,11 +151,11 @@ local sdk = require("korean-json_sdk")
 local client = sdk.new()
 
 -- List all comments
-local comments, err = client:comment():list()
+local comments, err = client:Comment():list()
 print(comments)
 
 -- Load a specific comment
-local comment, err = client:comment():load({ id = "example_id" })
+local comment, err = client:Comment():load({ id = "example_id" })
 print(comment)
 ```
 
@@ -165,22 +168,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = KoreanJsonSDK.test()
-const result = await client.comment.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const comment = await client.Comment().load({ id: 1 })
+// comment is a bare Comment populated with mock data
+console.log(comment)
 ```
 
 ### Python
 
 ```python
 client = KoreanJsonSDK.test()
-result = client.comment.load({"id": "test01"})
+comment = client.Comment().load({"id": "test01"})
+print(comment)
 ```
 
 ### PHP
 
 ```php
-$client = KoreanJsonSDK::test();
-$result = $client->comment()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = KoreanJsonSDK::test([
+    "entity" => ["comment" => ["test01" => ["id" => "test01"]]],
+]);
+$comment = $client->Comment()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -195,15 +203,18 @@ result, err := client.Comment(nil).Load(
 ### Ruby
 
 ```ruby
-client = KoreanJsonSDK.test
-result = client.comment.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = KoreanJsonSDK.test({
+  "entity" => { "comment" => { "test01" => { "id" => "test01" } } },
+})
+comment = client.Comment.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:comment():load({ id = "test01" })
+local result, err = client:Comment():load({ id = "test01" })
 ```
 
 ## How it works
@@ -251,6 +262,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 
