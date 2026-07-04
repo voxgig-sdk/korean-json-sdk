@@ -43,8 +43,7 @@ class TodoEntityTest extends TestCase
         $todo_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.todo"), "todo_ref01"));
 
-        [$todo_ref01_data_result, $err] = $todo_ref01_ent->create($todo_ref01_data, null);
-        $this->assertNull($err);
+        $todo_ref01_data_result = $todo_ref01_ent->create($todo_ref01_data, null);
         $todo_ref01_data = Helpers::to_map($todo_ref01_data_result);
         $this->assertNotNull($todo_ref01_data);
         $this->assertNotNull($todo_ref01_data["id"]);
@@ -52,8 +51,7 @@ class TodoEntityTest extends TestCase
         // LIST
         $todo_ref01_match = [];
 
-        [$todo_ref01_list_result, $err] = $todo_ref01_ent->list($todo_ref01_match, null);
-        $this->assertNull($err);
+        $todo_ref01_list_result = $todo_ref01_ent->list($todo_ref01_match, null);
         $this->assertIsArray($todo_ref01_list_result);
 
         $found_item = sdk_select(
@@ -70,8 +68,7 @@ class TodoEntityTest extends TestCase
         $todo_ref01_markdef_up0_value = "Mark01-todo_ref01_" . $setup["now"];
         $todo_ref01_data_up0_up[$todo_ref01_markdef_up0_name] = $todo_ref01_markdef_up0_value;
 
-        [$todo_ref01_resdata_up0_result, $err] = $todo_ref01_ent->update($todo_ref01_data_up0_up, null);
-        $this->assertNull($err);
+        $todo_ref01_resdata_up0_result = $todo_ref01_ent->update($todo_ref01_data_up0_up, null);
         $todo_ref01_resdata_up0 = Helpers::to_map($todo_ref01_resdata_up0_result);
         $this->assertNotNull($todo_ref01_resdata_up0);
         $this->assertEquals($todo_ref01_resdata_up0["id"], $todo_ref01_data_up0_up["id"]);
@@ -81,8 +78,7 @@ class TodoEntityTest extends TestCase
         $todo_ref01_match_dt0 = [
             "id" => $todo_ref01_data["id"],
         ];
-        [$todo_ref01_data_dt0_loaded, $err] = $todo_ref01_ent->load($todo_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $todo_ref01_data_dt0_loaded = $todo_ref01_ent->load($todo_ref01_match_dt0, null);
         $todo_ref01_data_dt0_load_result = Helpers::to_map($todo_ref01_data_dt0_loaded);
         $this->assertNotNull($todo_ref01_data_dt0_load_result);
         $this->assertEquals($todo_ref01_data_dt0_load_result["id"], $todo_ref01_data["id"]);
@@ -91,14 +87,12 @@ class TodoEntityTest extends TestCase
         $todo_ref01_match_rm0 = [
             "id" => $todo_ref01_data["id"],
         ];
-        [$_, $err] = $todo_ref01_ent->remove($todo_ref01_match_rm0, null);
-        $this->assertNull($err);
+        $todo_ref01_ent->remove($todo_ref01_match_rm0, null);
 
         // LIST
         $todo_ref01_match_rt0 = [];
 
-        [$todo_ref01_list_rt0_result, $err] = $todo_ref01_ent->list($todo_ref01_match_rt0, null);
-        $this->assertNull($err);
+        $todo_ref01_list_rt0_result = $todo_ref01_ent->list($todo_ref01_match_rt0, null);
         $this->assertIsArray($todo_ref01_list_rt0_result);
 
         $not_found_item = sdk_select(
@@ -138,7 +132,6 @@ function todo_basic_setup($extra)
         "KOREANJSON_TEST_TODO_ENTID" => $idmap,
         "KOREANJSON_TEST_LIVE" => "FALSE",
         "KOREANJSON_TEST_EXPLAIN" => "FALSE",
-        "KOREANJSON_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -150,7 +143,6 @@ function todo_basic_setup($extra)
     if ($env["KOREANJSON_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["KOREANJSON_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -154,7 +154,6 @@ function basicSetup(extra?: any) {
     'KOREAN_JSON_TEST_COMMENT_ENTID': idmap,
     'KOREAN_JSON_TEST_LIVE': 'FALSE',
     'KOREAN_JSON_TEST_EXPLAIN': 'FALSE',
-    'KOREAN_JSON_APIKEY': 'NONE',
   })
 
   idmap = env['KOREAN_JSON_TEST_COMMENT_ENTID']
@@ -164,7 +163,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new KoreanJsonSDK(merge([
       {
-        apikey: env.KOREAN_JSON_APIKEY,
       },
       extra
     ]))

@@ -245,21 +245,33 @@ func (sdk *KoreanJsonSDK) Direct(fetchargs map[string]any) (map[string]any, erro
 }
 
 
+// Comment returns a Comment entity bound to this client.
+// Idiomatic usage: client.Comment(nil).List(nil, nil) or
+// client.Comment(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *KoreanJsonSDK) Comment(data map[string]any) KoreanJsonEntity {
 	return NewCommentEntityFunc(sdk, data)
 }
 
 
+// Post returns a Post entity bound to this client.
+// Idiomatic usage: client.Post(nil).List(nil, nil) or
+// client.Post(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *KoreanJsonSDK) Post(data map[string]any) KoreanJsonEntity {
 	return NewPostEntityFunc(sdk, data)
 }
 
 
+// Todo returns a Todo entity bound to this client.
+// Idiomatic usage: client.Todo(nil).List(nil, nil) or
+// client.Todo(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *KoreanJsonSDK) Todo(data map[string]any) KoreanJsonEntity {
 	return NewTodoEntityFunc(sdk, data)
 }
 
 
+// User returns a User entity bound to this client.
+// Idiomatic usage: client.User(nil).List(nil, nil) or
+// client.User(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *KoreanJsonSDK) User(data map[string]any) KoreanJsonEntity {
 	return NewUserEntityFunc(sdk, data)
 }

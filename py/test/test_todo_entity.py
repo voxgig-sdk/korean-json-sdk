@@ -44,17 +44,14 @@ class TestTodoEntity:
         todo_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.todo"), "todo_ref01"))
 
-        todo_ref01_data_result, err = todo_ref01_ent.create(todo_ref01_data, None)
-        assert err is None
-        todo_ref01_data = helpers.to_map(todo_ref01_data_result)
+        todo_ref01_data = helpers.to_map(todo_ref01_ent.create(todo_ref01_data, None))
         assert todo_ref01_data is not None
         assert todo_ref01_data["id"] is not None
 
         # LIST
         todo_ref01_match = {}
 
-        todo_ref01_list_result, err = todo_ref01_ent.list(todo_ref01_match, None)
-        assert err is None
+        todo_ref01_list_result = todo_ref01_ent.list(todo_ref01_match, None)
         assert isinstance(todo_ref01_list_result, list)
 
         found_item = vs.select(
@@ -71,9 +68,7 @@ class TestTodoEntity:
         todo_ref01_markdef_up0_value = "Mark01-todo_ref01_" + str(setup["now"])
         todo_ref01_data_up0_up[todo_ref01_markdef_up0_name] = todo_ref01_markdef_up0_value
 
-        todo_ref01_resdata_up0_result, err = todo_ref01_ent.update(todo_ref01_data_up0_up, None)
-        assert err is None
-        todo_ref01_resdata_up0 = helpers.to_map(todo_ref01_resdata_up0_result)
+        todo_ref01_resdata_up0 = helpers.to_map(todo_ref01_ent.update(todo_ref01_data_up0_up, None))
         assert todo_ref01_resdata_up0 is not None
         assert todo_ref01_resdata_up0["id"] == todo_ref01_data_up0_up["id"]
         assert todo_ref01_resdata_up0[todo_ref01_markdef_up0_name] == todo_ref01_markdef_up0_value
@@ -82,8 +77,7 @@ class TestTodoEntity:
         todo_ref01_match_dt0 = {
             "id": todo_ref01_data["id"],
         }
-        todo_ref01_data_dt0_loaded, err = todo_ref01_ent.load(todo_ref01_match_dt0, None)
-        assert err is None
+        todo_ref01_data_dt0_loaded = todo_ref01_ent.load(todo_ref01_match_dt0, None)
         todo_ref01_data_dt0_load_result = helpers.to_map(todo_ref01_data_dt0_loaded)
         assert todo_ref01_data_dt0_load_result is not None
         assert todo_ref01_data_dt0_load_result["id"] == todo_ref01_data["id"]
@@ -92,14 +86,12 @@ class TestTodoEntity:
         todo_ref01_match_rm0 = {
             "id": todo_ref01_data["id"],
         }
-        _, err = todo_ref01_ent.remove(todo_ref01_match_rm0, None)
-        assert err is None
+        todo_ref01_ent.remove(todo_ref01_match_rm0, None)
 
         # LIST
         todo_ref01_match_rt0 = {}
 
-        todo_ref01_list_rt0_result, err = todo_ref01_ent.list(todo_ref01_match_rt0, None)
-        assert err is None
+        todo_ref01_list_rt0_result = todo_ref01_ent.list(todo_ref01_match_rt0, None)
         assert isinstance(todo_ref01_list_rt0_result, list)
 
         not_found_item = vs.select(
@@ -145,7 +137,6 @@ def _todo_basic_setup(extra):
         "KOREANJSON_TEST_TODO_ENTID": idmap,
         "KOREANJSON_TEST_LIVE": "FALSE",
         "KOREANJSON_TEST_EXPLAIN": "FALSE",
-        "KOREANJSON_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -156,7 +147,6 @@ def _todo_basic_setup(extra):
     if env.get("KOREANJSON_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("KOREANJSON_APIKEY"),
             },
             extra or {},
         ])

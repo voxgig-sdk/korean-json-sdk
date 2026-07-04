@@ -36,8 +36,7 @@ class TodoEntityTest < Minitest::Test
     todo_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.todo"), "todo_ref01"))
 
-    todo_ref01_data_result, err = todo_ref01_ent.create(todo_ref01_data, nil)
-    assert_nil err
+    todo_ref01_data_result = todo_ref01_ent.create(todo_ref01_data, nil)
     todo_ref01_data = Helpers.to_map(todo_ref01_data_result)
     assert !todo_ref01_data.nil?
     assert !todo_ref01_data["id"].nil?
@@ -45,8 +44,7 @@ class TodoEntityTest < Minitest::Test
     # LIST
     todo_ref01_match = {}
 
-    todo_ref01_list_result, err = todo_ref01_ent.list(todo_ref01_match, nil)
-    assert_nil err
+    todo_ref01_list_result = todo_ref01_ent.list(todo_ref01_match, nil)
     assert todo_ref01_list_result.is_a?(Array)
 
     found_item = Vs.select(
@@ -63,8 +61,7 @@ class TodoEntityTest < Minitest::Test
     todo_ref01_markdef_up0_value = "Mark01-todo_ref01_#{setup[:now]}"
     todo_ref01_data_up0_up[todo_ref01_markdef_up0_name] = todo_ref01_markdef_up0_value
 
-    todo_ref01_resdata_up0_result, err = todo_ref01_ent.update(todo_ref01_data_up0_up, nil)
-    assert_nil err
+    todo_ref01_resdata_up0_result = todo_ref01_ent.update(todo_ref01_data_up0_up, nil)
     todo_ref01_resdata_up0 = Helpers.to_map(todo_ref01_resdata_up0_result)
     assert !todo_ref01_resdata_up0.nil?
     assert_equal todo_ref01_resdata_up0["id"], todo_ref01_data_up0_up["id"]
@@ -74,8 +71,7 @@ class TodoEntityTest < Minitest::Test
     todo_ref01_match_dt0 = {
       "id" => todo_ref01_data["id"],
     }
-    todo_ref01_data_dt0_loaded, err = todo_ref01_ent.load(todo_ref01_match_dt0, nil)
-    assert_nil err
+    todo_ref01_data_dt0_loaded = todo_ref01_ent.load(todo_ref01_match_dt0, nil)
     todo_ref01_data_dt0_load_result = Helpers.to_map(todo_ref01_data_dt0_loaded)
     assert !todo_ref01_data_dt0_load_result.nil?
     assert_equal todo_ref01_data_dt0_load_result["id"], todo_ref01_data["id"]
@@ -84,14 +80,12 @@ class TodoEntityTest < Minitest::Test
     todo_ref01_match_rm0 = {
       "id" => todo_ref01_data["id"],
     }
-    _, err = todo_ref01_ent.remove(todo_ref01_match_rm0, nil)
-    assert_nil err
+    todo_ref01_ent.remove(todo_ref01_match_rm0, nil)
 
     # LIST
     todo_ref01_match_rt0 = {}
 
-    todo_ref01_list_rt0_result, err = todo_ref01_ent.list(todo_ref01_match_rt0, nil)
-    assert_nil err
+    todo_ref01_list_rt0_result = todo_ref01_ent.list(todo_ref01_match_rt0, nil)
     assert todo_ref01_list_rt0_result.is_a?(Array)
 
     not_found_item = Vs.select(
@@ -135,7 +129,6 @@ def todo_basic_setup(extra)
     "KOREANJSON_TEST_TODO_ENTID" => idmap,
     "KOREANJSON_TEST_LIVE" => "FALSE",
     "KOREANJSON_TEST_EXPLAIN" => "FALSE",
-    "KOREANJSON_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -147,7 +140,6 @@ def todo_basic_setup(extra)
   if env["KOREANJSON_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["KOREANJSON_APIKEY"],
       },
       extra || {},
     ])

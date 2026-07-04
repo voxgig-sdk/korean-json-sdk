@@ -36,8 +36,7 @@ class CommentEntityTest < Minitest::Test
     comment_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.comment"), "comment_ref01"))
 
-    comment_ref01_data_result, err = comment_ref01_ent.create(comment_ref01_data, nil)
-    assert_nil err
+    comment_ref01_data_result = comment_ref01_ent.create(comment_ref01_data, nil)
     comment_ref01_data = Helpers.to_map(comment_ref01_data_result)
     assert !comment_ref01_data.nil?
     assert !comment_ref01_data["id"].nil?
@@ -45,8 +44,7 @@ class CommentEntityTest < Minitest::Test
     # LIST
     comment_ref01_match = {}
 
-    comment_ref01_list_result, err = comment_ref01_ent.list(comment_ref01_match, nil)
-    assert_nil err
+    comment_ref01_list_result = comment_ref01_ent.list(comment_ref01_match, nil)
     assert comment_ref01_list_result.is_a?(Array)
 
     found_item = Vs.select(
@@ -63,8 +61,7 @@ class CommentEntityTest < Minitest::Test
     comment_ref01_markdef_up0_value = "Mark01-comment_ref01_#{setup[:now]}"
     comment_ref01_data_up0_up[comment_ref01_markdef_up0_name] = comment_ref01_markdef_up0_value
 
-    comment_ref01_resdata_up0_result, err = comment_ref01_ent.update(comment_ref01_data_up0_up, nil)
-    assert_nil err
+    comment_ref01_resdata_up0_result = comment_ref01_ent.update(comment_ref01_data_up0_up, nil)
     comment_ref01_resdata_up0 = Helpers.to_map(comment_ref01_resdata_up0_result)
     assert !comment_ref01_resdata_up0.nil?
     assert_equal comment_ref01_resdata_up0["id"], comment_ref01_data_up0_up["id"]
@@ -74,8 +71,7 @@ class CommentEntityTest < Minitest::Test
     comment_ref01_match_dt0 = {
       "id" => comment_ref01_data["id"],
     }
-    comment_ref01_data_dt0_loaded, err = comment_ref01_ent.load(comment_ref01_match_dt0, nil)
-    assert_nil err
+    comment_ref01_data_dt0_loaded = comment_ref01_ent.load(comment_ref01_match_dt0, nil)
     comment_ref01_data_dt0_load_result = Helpers.to_map(comment_ref01_data_dt0_loaded)
     assert !comment_ref01_data_dt0_load_result.nil?
     assert_equal comment_ref01_data_dt0_load_result["id"], comment_ref01_data["id"]
@@ -84,14 +80,12 @@ class CommentEntityTest < Minitest::Test
     comment_ref01_match_rm0 = {
       "id" => comment_ref01_data["id"],
     }
-    _, err = comment_ref01_ent.remove(comment_ref01_match_rm0, nil)
-    assert_nil err
+    comment_ref01_ent.remove(comment_ref01_match_rm0, nil)
 
     # LIST
     comment_ref01_match_rt0 = {}
 
-    comment_ref01_list_rt0_result, err = comment_ref01_ent.list(comment_ref01_match_rt0, nil)
-    assert_nil err
+    comment_ref01_list_rt0_result = comment_ref01_ent.list(comment_ref01_match_rt0, nil)
     assert comment_ref01_list_rt0_result.is_a?(Array)
 
     not_found_item = Vs.select(
@@ -135,7 +129,6 @@ def comment_basic_setup(extra)
     "KOREANJSON_TEST_COMMENT_ENTID" => idmap,
     "KOREANJSON_TEST_LIVE" => "FALSE",
     "KOREANJSON_TEST_EXPLAIN" => "FALSE",
-    "KOREANJSON_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -147,7 +140,6 @@ def comment_basic_setup(extra)
   if env["KOREANJSON_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["KOREANJSON_APIKEY"],
       },
       extra || {},
     ])

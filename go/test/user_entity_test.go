@@ -197,7 +197,6 @@ func userBasicSetup(extra map[string]any) *entityTestSetup {
 		"KOREANJSON_TEST_USER_ENTID": idmap,
 		"KOREANJSON_TEST_LIVE":      "FALSE",
 		"KOREANJSON_TEST_EXPLAIN":   "FALSE",
-		"KOREANJSON_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["KOREANJSON_TEST_USER_ENTID"])
@@ -208,7 +207,6 @@ func userBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["KOREANJSON_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["KOREANJSON_APIKEY"],
 			},
 			extra,
 		})

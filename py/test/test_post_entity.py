@@ -44,17 +44,14 @@ class TestPostEntity:
         post_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.post"), "post_ref01"))
 
-        post_ref01_data_result, err = post_ref01_ent.create(post_ref01_data, None)
-        assert err is None
-        post_ref01_data = helpers.to_map(post_ref01_data_result)
+        post_ref01_data = helpers.to_map(post_ref01_ent.create(post_ref01_data, None))
         assert post_ref01_data is not None
         assert post_ref01_data["id"] is not None
 
         # LIST
         post_ref01_match = {}
 
-        post_ref01_list_result, err = post_ref01_ent.list(post_ref01_match, None)
-        assert err is None
+        post_ref01_list_result = post_ref01_ent.list(post_ref01_match, None)
         assert isinstance(post_ref01_list_result, list)
 
         found_item = vs.select(
@@ -71,9 +68,7 @@ class TestPostEntity:
         post_ref01_markdef_up0_value = "Mark01-post_ref01_" + str(setup["now"])
         post_ref01_data_up0_up[post_ref01_markdef_up0_name] = post_ref01_markdef_up0_value
 
-        post_ref01_resdata_up0_result, err = post_ref01_ent.update(post_ref01_data_up0_up, None)
-        assert err is None
-        post_ref01_resdata_up0 = helpers.to_map(post_ref01_resdata_up0_result)
+        post_ref01_resdata_up0 = helpers.to_map(post_ref01_ent.update(post_ref01_data_up0_up, None))
         assert post_ref01_resdata_up0 is not None
         assert post_ref01_resdata_up0["id"] == post_ref01_data_up0_up["id"]
         assert post_ref01_resdata_up0[post_ref01_markdef_up0_name] == post_ref01_markdef_up0_value
@@ -82,8 +77,7 @@ class TestPostEntity:
         post_ref01_match_dt0 = {
             "id": post_ref01_data["id"],
         }
-        post_ref01_data_dt0_loaded, err = post_ref01_ent.load(post_ref01_match_dt0, None)
-        assert err is None
+        post_ref01_data_dt0_loaded = post_ref01_ent.load(post_ref01_match_dt0, None)
         post_ref01_data_dt0_load_result = helpers.to_map(post_ref01_data_dt0_loaded)
         assert post_ref01_data_dt0_load_result is not None
         assert post_ref01_data_dt0_load_result["id"] == post_ref01_data["id"]
@@ -92,14 +86,12 @@ class TestPostEntity:
         post_ref01_match_rm0 = {
             "id": post_ref01_data["id"],
         }
-        _, err = post_ref01_ent.remove(post_ref01_match_rm0, None)
-        assert err is None
+        post_ref01_ent.remove(post_ref01_match_rm0, None)
 
         # LIST
         post_ref01_match_rt0 = {}
 
-        post_ref01_list_rt0_result, err = post_ref01_ent.list(post_ref01_match_rt0, None)
-        assert err is None
+        post_ref01_list_rt0_result = post_ref01_ent.list(post_ref01_match_rt0, None)
         assert isinstance(post_ref01_list_rt0_result, list)
 
         not_found_item = vs.select(
@@ -145,7 +137,6 @@ def _post_basic_setup(extra):
         "KOREANJSON_TEST_POST_ENTID": idmap,
         "KOREANJSON_TEST_LIVE": "FALSE",
         "KOREANJSON_TEST_EXPLAIN": "FALSE",
-        "KOREANJSON_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -156,7 +147,6 @@ def _post_basic_setup(extra):
     if env.get("KOREANJSON_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("KOREANJSON_APIKEY"),
             },
             extra or {},
         ])

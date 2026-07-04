@@ -194,14 +194,12 @@ func postDirectSetup(mockres any) *postDirectSetupResult {
 	env := envOverride(map[string]any{
 		"KOREANJSON_TEST_POST_ENTID": map[string]any{},
 		"KOREANJSON_TEST_LIVE":    "FALSE",
-		"KOREANJSON_APIKEY":       "NONE",
 	})
 
 	live := env["KOREANJSON_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["KOREANJSON_APIKEY"],
 		}
 		client := sdk.NewKoreanJsonSDK(mergedOpts)
 

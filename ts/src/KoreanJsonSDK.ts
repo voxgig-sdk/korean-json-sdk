@@ -5,6 +5,8 @@ import { PostEntity } from './entity/PostEntity'
 import { TodoEntity } from './entity/TodoEntity'
 import { UserEntity } from './entity/UserEntity'
 
+export type * from './KoreanJsonTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -205,24 +207,56 @@ class KoreanJsonSDK {
 
 
 
+  _comment?: CommentEntity
+
+  // Idiomatic facade: `client.comment.list()` / `client.comment.load({ id })`.
+  get comment(): CommentEntity {
+    return (this._comment ??= new CommentEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.comment` instead. */
   Comment(data?: any) {
     const self = this
     return new CommentEntity(self,data)
   }
 
 
+  _post?: PostEntity
+
+  // Idiomatic facade: `client.post.list()` / `client.post.load({ id })`.
+  get post(): PostEntity {
+    return (this._post ??= new PostEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.post` instead. */
   Post(data?: any) {
     const self = this
     return new PostEntity(self,data)
   }
 
 
+  _todo?: TodoEntity
+
+  // Idiomatic facade: `client.todo.list()` / `client.todo.load({ id })`.
+  get todo(): TodoEntity {
+    return (this._todo ??= new TodoEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.todo` instead. */
   Todo(data?: any) {
     const self = this
     return new TodoEntity(self,data)
   }
 
 
+  _user?: UserEntity
+
+  // Idiomatic facade: `client.user.list()` / `client.user.load({ id })`.
+  get user(): UserEntity {
+    return (this._user ??= new UserEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.user` instead. */
   User(data?: any) {
     const self = this
     return new UserEntity(self,data)

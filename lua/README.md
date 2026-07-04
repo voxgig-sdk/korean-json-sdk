@@ -9,12 +9,9 @@ The Lua SDK for the KoreanJson API — an entity-oriented client using Lua conve
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-korean-json
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/korean-json-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("korean-json_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("KOREAN-JSON_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List comments
 
 ```lua
-local result, err = client:Comment():list()
+local result, err = client:comment():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -53,7 +48,7 @@ end
 ### 3. Load a comment
 
 ```lua
-local result, err = client:Comment():load({ id = "example_id" })
+local result, err = client:comment():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -62,13 +57,13 @@ print(result)
 
 ```lua
 -- Create
-local created, _ = client:Comment():create({ name = "Example" })
+local created, _ = client:comment():create({ name = "Example" })
 
 -- Update
-client:Comment():update({ id = created["id"], name = "Example-Renamed" })
+client:comment():update({ id = created["id"], name = "Example-Renamed" })
 
 -- Remove
-client:Comment():remove({ id = created["id"] })
+client:comment():remove({ id = created["id"] })
 ```
 
 
@@ -114,7 +109,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:KoreanJson():load({ id = "test01" })
+local result, err = client:comment():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -147,8 +142,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-KOREAN-JSON_TEST_LIVE=TRUE
-KOREAN-JSON_APIKEY=<your-key>
+KOREAN_JSON_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -171,7 +165,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -304,7 +297,7 @@ API path: `/users`
 
 ### Comment
 
-Create an instance: `const comment = client.Comment()`
+Create an instance: `const comment = client.comment`
 
 #### Operations
 
@@ -330,26 +323,26 @@ Create an instance: `const comment = client.Comment()`
 #### Example: Load
 
 ```ts
-const comment = await client.Comment().load({ id: 'comment_id' })
+const comment = await client.comment.load({ id: 'comment_id' })
 ```
 
 #### Example: List
 
 ```ts
-const comments = await client.Comment().list()
+const comments = await client.comment.list()
 ```
 
 #### Example: Create
 
 ```ts
-const comment = await client.Comment().create({
+const comment = await client.comment.create({
 })
 ```
 
 
 ### Post
 
-Create an instance: `const post = client.Post()`
+Create an instance: `const post = client.post`
 
 #### Operations
 
@@ -375,26 +368,26 @@ Create an instance: `const post = client.Post()`
 #### Example: Load
 
 ```ts
-const post = await client.Post().load({ id: 'post_id' })
+const post = await client.post.load({ id: 'post_id' })
 ```
 
 #### Example: List
 
 ```ts
-const posts = await client.Post().list()
+const posts = await client.post.list()
 ```
 
 #### Example: Create
 
 ```ts
-const post = await client.Post().create({
+const post = await client.post.create({
 })
 ```
 
 
 ### Todo
 
-Create an instance: `const todo = client.Todo()`
+Create an instance: `const todo = client.todo`
 
 #### Operations
 
@@ -418,26 +411,26 @@ Create an instance: `const todo = client.Todo()`
 #### Example: Load
 
 ```ts
-const todo = await client.Todo().load({ id: 'todo_id' })
+const todo = await client.todo.load({ id: 'todo_id' })
 ```
 
 #### Example: List
 
 ```ts
-const todos = await client.Todo().list()
+const todos = await client.todo.list()
 ```
 
 #### Example: Create
 
 ```ts
-const todo = await client.Todo().create({
+const todo = await client.todo.create({
 })
 ```
 
 
 ### User
 
-Create an instance: `const user = client.User()`
+Create an instance: `const user = client.user`
 
 #### Operations
 
@@ -468,19 +461,19 @@ Create an instance: `const user = client.User()`
 #### Example: Load
 
 ```ts
-const user = await client.User().load({ id: 'user_id' })
+const user = await client.user.load({ id: 'user_id' })
 ```
 
 #### Example: List
 
 ```ts
-const users = await client.User().list()
+const users = await client.user.list()
 ```
 
 #### Example: Create
 
 ```ts
-const user = await client.User().create({
+const user = await client.user.create({
 })
 ```
 
@@ -556,11 +549,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local comment = client:comment()
+comment:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- comment:data_get() now returns the loaded comment data
+-- comment:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration
