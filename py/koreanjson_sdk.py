@@ -221,25 +221,25 @@ class KoreanJsonSDK:
 
 
     def Comment(self, data=None) -> "CommentEntity":
-        """Entity factory: client.Comment().list({}) / client.Comment().load({"id": ...})."""
+        """Entity factory: client.Comment().list() / client.Comment().load({"id": ...})."""
         from entity.comment_entity import CommentEntity
         return CommentEntity(self, data)
 
 
     def Post(self, data=None) -> "PostEntity":
-        """Entity factory: client.Post().list({}) / client.Post().load({"id": ...})."""
+        """Entity factory: client.Post().list() / client.Post().load({"id": ...})."""
         from entity.post_entity import PostEntity
         return PostEntity(self, data)
 
 
     def Todo(self, data=None) -> "TodoEntity":
-        """Entity factory: client.Todo().list({}) / client.Todo().load({"id": ...})."""
+        """Entity factory: client.Todo().list() / client.Todo().load({"id": ...})."""
         from entity.todo_entity import TodoEntity
         return TodoEntity(self, data)
 
 
     def User(self, data=None) -> "UserEntity":
-        """Entity factory: client.User().list({}) / client.User().load({"id": ...})."""
+        """Entity factory: client.User().list() / client.User().load({"id": ...})."""
         from entity.user_entity import UserEntity
         return UserEntity(self, data)
 

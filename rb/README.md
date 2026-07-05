@@ -4,6 +4,8 @@
 
 The Ruby SDK for the KoreanJson API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Comment` — with named operations (`list`/`load`/`create`/`update`/`remove`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -35,7 +37,7 @@ begin
   # list returns an Array of Comment records — iterate directly.
   comments = client.Comment.list
   comments.each do |item|
-    puts "#{item["id"]} #{item["name"]}"
+    puts "#{item["id"]} #{item["content"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -58,13 +60,40 @@ end
 
 ```ruby
 # create returns the bare created Comment record.
-created = client.Comment.create({ "name" => "Example" })
+created = client.Comment.create({ "content" => "example", "created_at" => "example" })
 
 # Update — index the bare record directly (created["id"]).
-client.Comment.update({ "id" => created["id"], "name" => "Example-Renamed" })
+client.Comment.update({ "id" => created["id"] })
 
 # Remove
 client.Comment.remove({ "id" => created["id"] })
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  comments = client.Comment.list()
+rescue => err
+  warn "list failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -85,7 +114,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -116,8 +147,8 @@ client = KoreanJsonSDK.test({
   "entity" => { "comment" => { "test01" => { "id" => "test01" } } },
 })
 
-# load returns the bare mock record (raises on error).
-comment = client.Comment.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+comment = client.Comment.list()
 puts comment
 ```
 
@@ -206,7 +237,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
 | `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
 | `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
@@ -322,12 +353,12 @@ Create an instance: `comment = client.Comment`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | ``$STRING`` |  |
-| `created_at` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `post_id` | ``$INTEGER`` |  |
-| `updated_at` | ``$STRING`` |  |
-| `user_id` | ``$INTEGER`` |  |
+| `content` | `String` |  |
+| `created_at` | `String` |  |
+| `id` | `Integer` |  |
+| `post_id` | `Integer` |  |
+| `updated_at` | `String` |  |
+| `user_id` | `Integer` |  |
 
 #### Example: Load
 
@@ -369,12 +400,12 @@ Create an instance: `post = client.Post`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | ``$STRING`` |  |
-| `created_at` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$STRING`` |  |
-| `user_id` | ``$INTEGER`` |  |
+| `content` | `String` |  |
+| `created_at` | `String` |  |
+| `id` | `Integer` |  |
+| `title` | `String` |  |
+| `updated_at` | `String` |  |
+| `user_id` | `Integer` |  |
 
 #### Example: Load
 
@@ -416,10 +447,10 @@ Create an instance: `todo = client.Todo`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `completed` | ``$BOOLEAN`` |  |
-| `id` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `user_id` | ``$INTEGER`` |  |
+| `completed` | `Boolean` |  |
+| `id` | `Integer` |  |
+| `title` | `String` |  |
+| `user_id` | `Integer` |  |
 
 #### Example: Load
 
@@ -461,17 +492,17 @@ Create an instance: `user = client.User`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `district` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
-| `province` | ``$STRING`` |  |
-| `street` | ``$STRING`` |  |
-| `username` | ``$STRING`` |  |
-| `website` | ``$STRING`` |  |
-| `zipcode` | ``$STRING`` |  |
+| `city` | `String` |  |
+| `district` | `String` |  |
+| `email` | `String` |  |
+| `id` | `Integer` |  |
+| `name` | `String` |  |
+| `phone` | `String` |  |
+| `province` | `String` |  |
+| `street` | `String` |  |
+| `username` | `String` |  |
+| `website` | `String` |  |
+| `zipcode` | `String` |  |
 
 #### Example: Load
 
@@ -495,12 +526,16 @@ user = client.User.create({
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -517,8 +552,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -562,14 +598,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
 comment = client.Comment
-comment.load({ "id" => "example_id" })
+comment.list()
 
-# comment.data_get now returns the loaded comment data
+# comment.data_get now returns the comment data from the last list
 # comment.match_get returns the last match criteria
 ```
 

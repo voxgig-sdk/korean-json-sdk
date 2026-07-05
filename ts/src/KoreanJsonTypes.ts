@@ -18,9 +18,23 @@ export interface CommentLoadMatch {
   id: number
 }
 
-export type CommentListMatch = Partial<Comment>
+export interface CommentListMatch {
+  content?: string
+  created_at?: string
+  id?: number
+  post_id?: number
+  updated_at?: string
+  user_id?: number
+}
 
-export type CommentCreateData = Partial<Comment>
+export interface CommentCreateData {
+  content?: string
+  created_at?: string
+  id?: number
+  post_id?: number
+  updated_at?: string
+  user_id?: number
+}
 
 export interface CommentUpdateData {
   id: number
@@ -43,9 +57,23 @@ export interface PostLoadMatch {
   id: number
 }
 
-export type PostListMatch = Partial<Post>
+export interface PostListMatch {
+  content?: string
+  created_at?: string
+  id?: number
+  title?: string
+  updated_at?: string
+  user_id?: number
+}
 
-export type PostCreateData = Partial<Post>
+export interface PostCreateData {
+  content?: string
+  created_at?: string
+  id?: number
+  title?: string
+  updated_at?: string
+  user_id?: number
+}
 
 export interface PostUpdateData {
   id: number
@@ -66,9 +94,19 @@ export interface TodoLoadMatch {
   id: number
 }
 
-export type TodoListMatch = Partial<Todo>
+export interface TodoListMatch {
+  completed?: boolean
+  id?: number
+  title?: string
+  user_id?: number
+}
 
-export type TodoCreateData = Partial<Todo>
+export interface TodoCreateData {
+  completed?: boolean
+  id?: number
+  title?: string
+  user_id?: number
+}
 
 export interface TodoUpdateData {
   id: number
@@ -96,9 +134,33 @@ export interface UserLoadMatch {
   id: number
 }
 
-export type UserListMatch = Partial<User>
+export interface UserListMatch {
+  city?: string
+  district?: string
+  email?: string
+  id?: number
+  name?: string
+  phone?: string
+  province?: string
+  street?: string
+  username?: string
+  website?: string
+  zipcode?: string
+}
 
-export type UserCreateData = Partial<User>
+export interface UserCreateData {
+  city?: string
+  district?: string
+  email?: string
+  id?: number
+  name?: string
+  phone?: string
+  province?: string
+  street?: string
+  username?: string
+  website?: string
+  zipcode?: string
+}
 
 export interface UserUpdateData {
   id: number

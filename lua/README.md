@@ -4,6 +4,8 @@
 
 The Lua SDK for the KoreanJson API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Comment()` — each with the same small set of operations (`list`, `load`, `create`, `update`, `remove`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -41,7 +43,7 @@ local comments, err = client:Comment():list()
 if err then error(err) end
 
 for _, item in ipairs(comments) do
-  print(item["id"], item["name"])
+  print(item["id"], item["content"])
 end
 ```
 
@@ -57,14 +59,36 @@ print(comment)
 
 ```lua
 -- Create
-local created, err = client:Comment():create({ name = "Example" })
+local created, err = client:Comment():create({ content = "example", created_at = "example" })
 if err then error(err) end
 
 -- Update
-client:Comment():update({ id = created["id"], name = "Example-Renamed" })
+client:Comment():update({ id = created["id"] })
 
 -- Remove
 client:Comment():remove({ id = created["id"] })
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local comments, err = client:Comment():list()
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -110,8 +134,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Comment():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:Comment():list()
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -319,12 +343,12 @@ Create an instance: `local comment = client:Comment(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | ``$STRING`` |  |
-| `created_at` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `post_id` | ``$INTEGER`` |  |
-| `updated_at` | ``$STRING`` |  |
-| `user_id` | ``$INTEGER`` |  |
+| `content` | `string` |  |
+| `created_at` | `string` |  |
+| `id` | `number` |  |
+| `post_id` | `number` |  |
+| `updated_at` | `string` |  |
+| `user_id` | `number` |  |
 
 #### Example: Load
 
@@ -364,12 +388,12 @@ Create an instance: `local post = client:Post(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | ``$STRING`` |  |
-| `created_at` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$STRING`` |  |
-| `user_id` | ``$INTEGER`` |  |
+| `content` | `string` |  |
+| `created_at` | `string` |  |
+| `id` | `number` |  |
+| `title` | `string` |  |
+| `updated_at` | `string` |  |
+| `user_id` | `number` |  |
 
 #### Example: Load
 
@@ -409,10 +433,10 @@ Create an instance: `local todo = client:Todo(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `completed` | ``$BOOLEAN`` |  |
-| `id` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `user_id` | ``$INTEGER`` |  |
+| `completed` | `boolean` |  |
+| `id` | `number` |  |
+| `title` | `string` |  |
+| `user_id` | `number` |  |
 
 #### Example: Load
 
@@ -452,17 +476,17 @@ Create an instance: `local user = client:User(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `district` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
-| `province` | ``$STRING`` |  |
-| `street` | ``$STRING`` |  |
-| `username` | ``$STRING`` |  |
-| `website` | ``$STRING`` |  |
-| `zipcode` | ``$STRING`` |  |
+| `city` | `string` |  |
+| `district` | `string` |  |
+| `email` | `string` |  |
+| `id` | `number` |  |
+| `name` | `string` |  |
+| `phone` | `string` |  |
+| `province` | `string` |  |
+| `street` | `string` |  |
+| `username` | `string` |  |
+| `website` | `string` |  |
+| `zipcode` | `string` |  |
 
 #### Example: Load
 
@@ -484,12 +508,16 @@ local user, err = client:User():create({
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -506,8 +534,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -551,14 +580,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
 local comment = client:Comment()
-comment:load({ id = "example_id" })
+comment:list()
 
--- comment:data_get() now returns the loaded comment data
+-- comment:data_get() now returns the comment data from the last list
 -- comment:match_get() returns the last match criteria
 ```
 

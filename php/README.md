@@ -4,6 +4,8 @@
 
 The PHP SDK for the KoreanJson API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Comment()` — with named operations (`list`/`load`/`create`/`update`/`remove`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,7 +38,7 @@ try {
     // list() returns an array of Comment records — iterate directly.
     $comments = $client->Comment()->list();
     foreach ($comments as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo $item["id"] . " " . $item["content"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -59,13 +61,44 @@ try {
 
 ```php
 // create() returns the bare created Comment record.
-$created = $client->Comment()->create(["name" => "Example"]);
+$created = $client->Comment()->create(["content" => "example", "created_at" => "example"]);
 
 // Update — index the bare record directly ($created["id"]).
-$client->Comment()->update(["id" => $created["id"], "name" => "Example-Renamed"]);
+$client->Comment()->update(["id" => $created["id"]]);
 
 // Remove
 $client->Comment()->remove(["id" => $created["id"]]);
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $comments = $client->Comment()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
+}
 ```
 
 
@@ -88,7 +121,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -117,8 +153,8 @@ $client = KoreanJsonSDK::test([
     "entity" => ["comment" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// load() returns the bare mock record (throws on error).
-$comment = $client->Comment()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$comment = $client->Comment()->list();
 print_r($comment);
 ```
 
@@ -210,7 +246,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `create` | `($reqdata, $ctrl): array` | Create a new entity. |
 | `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
 | `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
@@ -327,12 +363,12 @@ Create an instance: `$comment = $client->Comment();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | ``$STRING`` |  |
-| `created_at` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `post_id` | ``$INTEGER`` |  |
-| `updated_at` | ``$STRING`` |  |
-| `user_id` | ``$INTEGER`` |  |
+| `content` | `string` |  |
+| `created_at` | `string` |  |
+| `id` | `int` |  |
+| `post_id` | `int` |  |
+| `updated_at` | `string` |  |
+| `user_id` | `int` |  |
 
 #### Example: Load
 
@@ -374,12 +410,12 @@ Create an instance: `$post = $client->Post();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | ``$STRING`` |  |
-| `created_at` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$STRING`` |  |
-| `user_id` | ``$INTEGER`` |  |
+| `content` | `string` |  |
+| `created_at` | `string` |  |
+| `id` | `int` |  |
+| `title` | `string` |  |
+| `updated_at` | `string` |  |
+| `user_id` | `int` |  |
 
 #### Example: Load
 
@@ -421,10 +457,10 @@ Create an instance: `$todo = $client->Todo();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `completed` | ``$BOOLEAN`` |  |
-| `id` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `user_id` | ``$INTEGER`` |  |
+| `completed` | `bool` |  |
+| `id` | `int` |  |
+| `title` | `string` |  |
+| `user_id` | `int` |  |
 
 #### Example: Load
 
@@ -466,17 +502,17 @@ Create an instance: `$user = $client->User();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `district` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
-| `province` | ``$STRING`` |  |
-| `street` | ``$STRING`` |  |
-| `username` | ``$STRING`` |  |
-| `website` | ``$STRING`` |  |
-| `zipcode` | ``$STRING`` |  |
+| `city` | `string` |  |
+| `district` | `string` |  |
+| `email` | `string` |  |
+| `id` | `int` |  |
+| `name` | `string` |  |
+| `phone` | `string` |  |
+| `province` | `string` |  |
+| `street` | `string` |  |
+| `username` | `string` |  |
+| `website` | `string` |  |
+| `zipcode` | `string` |  |
 
 #### Example: Load
 
@@ -500,12 +536,16 @@ $user = $client->User()->create([
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -522,8 +562,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -567,15 +608,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $comment = $client->Comment();
-$comment->load(["id" => "example_id"]);
+$comment->list();
 
-// $comment->dataGet() now returns the loaded comment data
-// $comment->matchGet() returns the last match criteria
+// $comment->data_get() now returns the comment data from the last list
+// $comment->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

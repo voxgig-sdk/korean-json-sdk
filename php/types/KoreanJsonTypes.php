@@ -29,7 +29,7 @@ class CommentLoadMatch
     public int $id;
 }
 
-/** Match filter for Comment#list (any subset of Comment fields). */
+/** Request payload for Comment#list. */
 class CommentListMatch
 {
     public ?string $content = null;
@@ -40,7 +40,7 @@ class CommentListMatch
     public ?int $user_id = null;
 }
 
-/** Match filter for Comment#create (any subset of Comment fields). */
+/** Request payload for Comment#create. */
 class CommentCreateData
 {
     public ?string $content = null;
@@ -80,7 +80,7 @@ class PostLoadMatch
     public int $id;
 }
 
-/** Match filter for Post#list (any subset of Post fields). */
+/** Request payload for Post#list. */
 class PostListMatch
 {
     public ?string $content = null;
@@ -91,7 +91,7 @@ class PostListMatch
     public ?int $user_id = null;
 }
 
-/** Match filter for Post#create (any subset of Post fields). */
+/** Request payload for Post#create. */
 class PostCreateData
 {
     public ?string $content = null;
@@ -129,7 +129,7 @@ class TodoLoadMatch
     public int $id;
 }
 
-/** Match filter for Todo#list (any subset of Todo fields). */
+/** Request payload for Todo#list. */
 class TodoListMatch
 {
     public ?bool $completed = null;
@@ -138,7 +138,7 @@ class TodoListMatch
     public ?int $user_id = null;
 }
 
-/** Match filter for Todo#create (any subset of Todo fields). */
+/** Request payload for Todo#create. */
 class TodoCreateData
 {
     public ?bool $completed = null;
@@ -181,7 +181,7 @@ class UserLoadMatch
     public int $id;
 }
 
-/** Match filter for User#list (any subset of User fields). */
+/** Request payload for User#list. */
 class UserListMatch
 {
     public ?string $city = null;
@@ -197,7 +197,7 @@ class UserListMatch
     public ?string $zipcode = null;
 }
 
-/** Match filter for User#create (any subset of User fields). */
+/** Request payload for User#create. */
 class UserCreateData
 {
     public ?string $city = null;

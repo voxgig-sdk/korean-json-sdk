@@ -46,7 +46,7 @@ CommentLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Comment#list (any subset of Comment fields).
+# Request payload for Comment#list.
 #
 # @!attribute [rw] content
 #   @return [String, nil]
@@ -75,7 +75,7 @@ CommentListMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Comment#create (any subset of Comment fields).
+# Request payload for Comment#create.
 #
 # @!attribute [rw] content
 #   @return [String, nil]
@@ -160,7 +160,7 @@ PostLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Post#list (any subset of Post fields).
+# Request payload for Post#list.
 #
 # @!attribute [rw] content
 #   @return [String, nil]
@@ -189,7 +189,7 @@ PostListMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Post#create (any subset of Post fields).
+# Request payload for Post#create.
 #
 # @!attribute [rw] content
 #   @return [String, nil]
@@ -266,7 +266,7 @@ TodoLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Todo#list (any subset of Todo fields).
+# Request payload for Todo#list.
 #
 # @!attribute [rw] completed
 #   @return [Boolean, nil]
@@ -287,7 +287,7 @@ TodoListMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Todo#create (any subset of Todo fields).
+# Request payload for Todo#create.
 #
 # @!attribute [rw] completed
 #   @return [Boolean, nil]
@@ -384,7 +384,7 @@ UserLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for User#list (any subset of User fields).
+# Request payload for User#list.
 #
 # @!attribute [rw] city
 #   @return [String, nil]
@@ -433,7 +433,7 @@ UserListMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for User#create (any subset of User fields).
+# Request payload for User#create.
 #
 # @!attribute [rw] city
 #   @return [String, nil]

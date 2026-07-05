@@ -152,12 +152,12 @@ const comment = client.Comment()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `created_at` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `post_id` | ``$INTEGER`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
-| `user_id` | ``$INTEGER`` | No |  |
+| `content` | `string` | No |  |
+| `created_at` | `string` | No |  |
+| `id` | `number` | No |  |
+| `post_id` | `number` | No |  |
+| `updated_at` | `string` | No |  |
+| `user_id` | `number` | No |  |
 
 ### Operations
 
@@ -183,7 +183,7 @@ const results = await client.Comment().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Comment().load({ id: 'comment_id' })
+const result = await client.Comment().load({ id: 1 })
 ```
 
 #### `remove(match: object, ctrl?: object)`
@@ -191,7 +191,7 @@ const result = await client.Comment().load({ id: 'comment_id' })
 Remove the entity matching the given criteria.
 
 ```ts
-const result = await client.Comment().remove({ id: 'comment_id' })
+const result = await client.Comment().remove({ id: 1 })
 ```
 
 #### `update(data: object, ctrl?: object)`
@@ -200,7 +200,7 @@ Update an existing entity. The data must include the entity `id`.
 
 ```ts
 const result = await client.Comment().update({
-  id: 'comment_id',
+  id: 1,
   // Fields to update
 })
 ```
@@ -243,12 +243,12 @@ const post = client.Post()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `created_at` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
-| `user_id` | ``$INTEGER`` | No |  |
+| `content` | `string` | No |  |
+| `created_at` | `string` | No |  |
+| `id` | `number` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `string` | No |  |
+| `user_id` | `number` | No |  |
 
 ### Operations
 
@@ -274,7 +274,7 @@ const results = await client.Post().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Post().load({ id: 'post_id' })
+const result = await client.Post().load({ id: 1 })
 ```
 
 #### `remove(match: object, ctrl?: object)`
@@ -282,7 +282,7 @@ const result = await client.Post().load({ id: 'post_id' })
 Remove the entity matching the given criteria.
 
 ```ts
-const result = await client.Post().remove({ id: 'post_id' })
+const result = await client.Post().remove({ id: 1 })
 ```
 
 #### `update(data: object, ctrl?: object)`
@@ -291,7 +291,7 @@ Update an existing entity. The data must include the entity `id`.
 
 ```ts
 const result = await client.Post().update({
-  id: 'post_id',
+  id: 1,
   // Fields to update
 })
 ```
@@ -334,10 +334,10 @@ const todo = client.Todo()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `completed` | ``$BOOLEAN`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `user_id` | ``$INTEGER`` | No |  |
+| `completed` | `boolean` | No |  |
+| `id` | `number` | No |  |
+| `title` | `string` | No |  |
+| `user_id` | `number` | No |  |
 
 ### Operations
 
@@ -363,7 +363,7 @@ const results = await client.Todo().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Todo().load({ id: 'todo_id' })
+const result = await client.Todo().load({ id: 1 })
 ```
 
 #### `remove(match: object, ctrl?: object)`
@@ -371,7 +371,7 @@ const result = await client.Todo().load({ id: 'todo_id' })
 Remove the entity matching the given criteria.
 
 ```ts
-const result = await client.Todo().remove({ id: 'todo_id' })
+const result = await client.Todo().remove({ id: 1 })
 ```
 
 #### `update(data: object, ctrl?: object)`
@@ -380,7 +380,7 @@ Update an existing entity. The data must include the entity `id`.
 
 ```ts
 const result = await client.Todo().update({
-  id: 'todo_id',
+  id: 1,
   // Fields to update
 })
 ```
@@ -423,17 +423,17 @@ const user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `district` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `province` | ``$STRING`` | No |  |
-| `street` | ``$STRING`` | No |  |
-| `username` | ``$STRING`` | No |  |
-| `website` | ``$STRING`` | No |  |
-| `zipcode` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `district` | `string` | No |  |
+| `email` | `string` | No |  |
+| `id` | `number` | No |  |
+| `name` | `string` | No |  |
+| `phone` | `string` | No |  |
+| `province` | `string` | No |  |
+| `street` | `string` | No |  |
+| `username` | `string` | No |  |
+| `website` | `string` | No |  |
+| `zipcode` | `string` | No |  |
 
 ### Operations
 
@@ -459,7 +459,7 @@ const results = await client.User().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.User().load({ id: 'user_id' })
+const result = await client.User().load({ id: 1 })
 ```
 
 #### `remove(match: object, ctrl?: object)`
@@ -467,7 +467,7 @@ const result = await client.User().load({ id: 'user_id' })
 Remove the entity matching the given criteria.
 
 ```ts
-const result = await client.User().remove({ id: 'user_id' })
+const result = await client.User().remove({ id: 1 })
 ```
 
 #### `update(data: object, ctrl?: object)`
@@ -476,7 +476,7 @@ Update an existing entity. The data must include the entity `id`.
 
 ```ts
 const result = await client.User().update({
-  id: 'user_id',
+  id: 1,
   // Fields to update
 })
 ```

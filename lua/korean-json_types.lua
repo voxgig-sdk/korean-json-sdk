@@ -18,8 +18,20 @@
 ---@field id number
 
 ---@class CommentListMatch
+---@field content? string
+---@field created_at? string
+---@field id? number
+---@field post_id? number
+---@field updated_at? string
+---@field user_id? number
 
 ---@class CommentCreateData
+---@field content? string
+---@field created_at? string
+---@field id? number
+---@field post_id? number
+---@field updated_at? string
+---@field user_id? number
 
 ---@class CommentUpdateData
 ---@field id number
@@ -39,8 +51,20 @@
 ---@field id number
 
 ---@class PostListMatch
+---@field content? string
+---@field created_at? string
+---@field id? number
+---@field title? string
+---@field updated_at? string
+---@field user_id? number
 
 ---@class PostCreateData
+---@field content? string
+---@field created_at? string
+---@field id? number
+---@field title? string
+---@field updated_at? string
+---@field user_id? number
 
 ---@class PostUpdateData
 ---@field id number
@@ -58,8 +82,16 @@
 ---@field id number
 
 ---@class TodoListMatch
+---@field completed? boolean
+---@field id? number
+---@field title? string
+---@field user_id? number
 
 ---@class TodoCreateData
+---@field completed? boolean
+---@field id? number
+---@field title? string
+---@field user_id? number
 
 ---@class TodoUpdateData
 ---@field id number
@@ -84,8 +116,30 @@
 ---@field id number
 
 ---@class UserListMatch
+---@field city? string
+---@field district? string
+---@field email? string
+---@field id? number
+---@field name? string
+---@field phone? string
+---@field province? string
+---@field street? string
+---@field username? string
+---@field website? string
+---@field zipcode? string
 
 ---@class UserCreateData
+---@field city? string
+---@field district? string
+---@field email? string
+---@field id? number
+---@field name? string
+---@field phone? string
+---@field province? string
+---@field street? string
+---@field username? string
+---@field website? string
+---@field zipcode? string
 
 ---@class UserUpdateData
 ---@field id number

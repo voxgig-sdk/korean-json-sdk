@@ -4,6 +4,8 @@
 
 The Golang SDK for the KoreanJson API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.Comment(nil)` — each with the same small set of operations (`List`, `Load`, `Create`, `Update`, `Remove`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -58,33 +60,62 @@ func main() {
     }
 
     // Load a single comment — the value is the loaded record.
-    comment, err := client.Comment(nil).Load(map[string]any{"id": "example_id"}, nil)
+    comment, err := client.Comment(nil).Load(map[string]any{"id": 1}, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(comment)
 
     // Create a comment.
-    created, err := client.Comment(nil).Create(map[string]any{"name": "Example"}, nil)
+    created, err := client.Comment(nil).Create(map[string]any{"content": "example", "created_at": "example"}, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(created)
 
     // Update a comment.
-    updated, err := client.Comment(nil).Update(map[string]any{"id": "example_id", "name": "Renamed"}, nil)
+    updated, err := client.Comment(nil).Update(map[string]any{"id": 1}, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(updated)
 
     // Remove a comment.
-    removed, err := client.Comment(nil).Remove(map[string]any{"id": "example_id"}, nil)
+    removed, err := client.Comment(nil).Remove(map[string]any{"id": 1}, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(removed)
 }
+```
+
+
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+comments, err := client.Comment(nil).List(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = comments
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
 ```
 
 
@@ -134,13 +165,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-comment, err := client.Comment(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+comment, err := client.Comment(nil).List(
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(comment) // the loaded mock data
+fmt.Println(comment) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -252,9 +283,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    comment, err := client.Comment(nil).Load(map[string]any{"id": "example_id"}, nil)
+    comment, err := client.Comment(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // comment is the loaded record
+    // comment is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -347,12 +378,12 @@ Create an instance: `comment := client.Comment(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | ``$STRING`` |  |
-| `created_at` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `post_id` | ``$INTEGER`` |  |
-| `updated_at` | ``$STRING`` |  |
-| `user_id` | ``$INTEGER`` |  |
+| `content` | `string` |  |
+| `created_at` | `string` |  |
+| `id` | `int` |  |
+| `post_id` | `int` |  |
+| `updated_at` | `string` |  |
+| `user_id` | `int` |  |
 
 #### Example: Load
 
@@ -400,12 +431,12 @@ Create an instance: `post := client.Post(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | ``$STRING`` |  |
-| `created_at` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$STRING`` |  |
-| `user_id` | ``$INTEGER`` |  |
+| `content` | `string` |  |
+| `created_at` | `string` |  |
+| `id` | `int` |  |
+| `title` | `string` |  |
+| `updated_at` | `string` |  |
+| `user_id` | `int` |  |
 
 #### Example: Load
 
@@ -453,10 +484,10 @@ Create an instance: `todo := client.Todo(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `completed` | ``$BOOLEAN`` |  |
-| `id` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `user_id` | ``$INTEGER`` |  |
+| `completed` | `bool` |  |
+| `id` | `int` |  |
+| `title` | `string` |  |
+| `user_id` | `int` |  |
 
 #### Example: Load
 
@@ -504,17 +535,17 @@ Create an instance: `user := client.User(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `district` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
-| `province` | ``$STRING`` |  |
-| `street` | ``$STRING`` |  |
-| `username` | ``$STRING`` |  |
-| `website` | ``$STRING`` |  |
-| `zipcode` | ``$STRING`` |  |
+| `city` | `string` |  |
+| `district` | `string` |  |
+| `email` | `string` |  |
+| `id` | `int` |  |
+| `name` | `string` |  |
+| `phone` | `string` |  |
+| `province` | `string` |  |
+| `street` | `string` |  |
+| `username` | `string` |  |
+| `website` | `string` |  |
+| `zipcode` | `string` |  |
 
 #### Example: Load
 
@@ -544,12 +575,16 @@ result, err := client.User(nil).Create(map[string]any{
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -566,9 +601,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -609,14 +644,14 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
 comment := client.Comment(nil)
-comment.Load(map[string]any{"id": "example_id"}, nil)
+comment.List(nil, nil)
 
-// comment.Data() now returns the loaded comment data
+// comment.Data() now returns the comment data from the last list
 // comment.Match() returns the last match criteria
 ```
 

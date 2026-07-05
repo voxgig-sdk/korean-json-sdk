@@ -8,7 +8,7 @@ Complete API reference for the KoreanJson Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'korean-json_sdk'
+require_relative 'KoreanJson_sdk'
 
 client = KoreanJsonSDK.new(options)
 ```
@@ -105,12 +105,12 @@ comment = client.Comment
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `created_at` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `post_id` | ``$INTEGER`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
-| `user_id` | ``$INTEGER`` | No |  |
+| `content` | `String` | No |  |
+| `created_at` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `post_id` | `Integer` | No |  |
+| `updated_at` | `String` | No |  |
+| `user_id` | `Integer` | No |  |
 
 ### Operations
 
@@ -123,12 +123,12 @@ result = client.Comment.create({
 })
 ```
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Comment.list(nil)
+results = client.Comment.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -198,12 +198,12 @@ post = client.Post
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `created_at` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
-| `user_id` | ``$INTEGER`` | No |  |
+| `content` | `String` | No |  |
+| `created_at` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `String` | No |  |
+| `user_id` | `Integer` | No |  |
 
 ### Operations
 
@@ -216,12 +216,12 @@ result = client.Post.create({
 })
 ```
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Post.list(nil)
+results = client.Post.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -291,10 +291,10 @@ todo = client.Todo
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `completed` | ``$BOOLEAN`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `user_id` | ``$INTEGER`` | No |  |
+| `completed` | `Boolean` | No |  |
+| `id` | `Integer` | No |  |
+| `title` | `String` | No |  |
+| `user_id` | `Integer` | No |  |
 
 ### Operations
 
@@ -307,12 +307,12 @@ result = client.Todo.create({
 })
 ```
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Todo.list(nil)
+results = client.Todo.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -382,17 +382,17 @@ user = client.User
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `district` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `province` | ``$STRING`` | No |  |
-| `street` | ``$STRING`` | No |  |
-| `username` | ``$STRING`` | No |  |
-| `website` | ``$STRING`` | No |  |
-| `zipcode` | ``$STRING`` | No |  |
+| `city` | `String` | No |  |
+| `district` | `String` | No |  |
+| `email` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `name` | `String` | No |  |
+| `phone` | `String` | No |  |
+| `province` | `String` | No |  |
+| `street` | `String` | No |  |
+| `username` | `String` | No |  |
+| `website` | `String` | No |  |
+| `zipcode` | `String` | No |  |
 
 ### Operations
 
@@ -405,12 +405,12 @@ result = client.User.create({
 })
 ```
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.User.list(nil)
+results = client.User.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`

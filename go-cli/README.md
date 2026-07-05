@@ -19,6 +19,7 @@ go build -o korean-json-cli ./...
 ./korean-json-cli list comment
 ./korean-json-cli load 1 comment
 ./korean-json-cli load '{id:1}' comment
+./korean-json-cli update '{id:1}' comment
 
 # REPL
 ./korean-json-cli

@@ -109,12 +109,12 @@ comment := client.Comment(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `created_at` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `post_id` | ``$INTEGER`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
-| `user_id` | ``$INTEGER`` | No |  |
+| `content` | `string` | No |  |
+| `created_at` | `string` | No |  |
+| `id` | `int` | No |  |
+| `post_id` | `int` | No |  |
+| `updated_at` | `string` | No |  |
+| `user_id` | `int` | No |  |
 
 ### Operations
 
@@ -196,12 +196,12 @@ post := client.Post(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `created_at` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
-| `user_id` | ``$INTEGER`` | No |  |
+| `content` | `string` | No |  |
+| `created_at` | `string` | No |  |
+| `id` | `int` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `string` | No |  |
+| `user_id` | `int` | No |  |
 
 ### Operations
 
@@ -283,10 +283,10 @@ todo := client.Todo(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `completed` | ``$BOOLEAN`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `user_id` | ``$INTEGER`` | No |  |
+| `completed` | `bool` | No |  |
+| `id` | `int` | No |  |
+| `title` | `string` | No |  |
+| `user_id` | `int` | No |  |
 
 ### Operations
 
@@ -368,17 +368,17 @@ user := client.User(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `district` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `province` | ``$STRING`` | No |  |
-| `street` | ``$STRING`` | No |  |
-| `username` | ``$STRING`` | No |  |
-| `website` | ``$STRING`` | No |  |
-| `zipcode` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `district` | `string` | No |  |
+| `email` | `string` | No |  |
+| `id` | `int` | No |  |
+| `name` | `string` | No |  |
+| `phone` | `string` | No |  |
+| `province` | `string` | No |  |
+| `street` | `string` | No |  |
+| `username` | `string` | No |  |
+| `website` | `string` | No |  |
+| `zipcode` | `string` | No |  |
 
 ### Operations
 

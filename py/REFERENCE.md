@@ -8,7 +8,7 @@ Complete API reference for the KoreanJson Python SDK.
 ### Constructor
 
 ```python
-from korean-json_sdk import KoreanJsonSDK
+from koreanjson_sdk import KoreanJsonSDK
 
 client = KoreanJsonSDK(options)
 ```
@@ -99,12 +99,12 @@ comment = client.Comment()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `created_at` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `post_id` | ``$INTEGER`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
-| `user_id` | ``$INTEGER`` | No |  |
+| `content` | `str` | No |  |
+| `created_at` | `str` | No |  |
+| `id` | `int` | No |  |
+| `post_id` | `int` | No |  |
+| `updated_at` | `str` | No |  |
+| `user_id` | `int` | No |  |
 
 ### Operations
 
@@ -117,12 +117,12 @@ result = client.Comment().create({
 })
 ```
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Comment().list({})
+results = client.Comment().list()
 for comment in results:
     print(comment)
 ```
@@ -193,12 +193,12 @@ post = client.Post()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `created_at` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
-| `user_id` | ``$INTEGER`` | No |  |
+| `content` | `str` | No |  |
+| `created_at` | `str` | No |  |
+| `id` | `int` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `str` | No |  |
+| `user_id` | `int` | No |  |
 
 ### Operations
 
@@ -211,12 +211,12 @@ result = client.Post().create({
 })
 ```
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Post().list({})
+results = client.Post().list()
 for post in results:
     print(post)
 ```
@@ -287,10 +287,10 @@ todo = client.Todo()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `completed` | ``$BOOLEAN`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `user_id` | ``$INTEGER`` | No |  |
+| `completed` | `bool` | No |  |
+| `id` | `int` | No |  |
+| `title` | `str` | No |  |
+| `user_id` | `int` | No |  |
 
 ### Operations
 
@@ -303,12 +303,12 @@ result = client.Todo().create({
 })
 ```
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Todo().list({})
+results = client.Todo().list()
 for todo in results:
     print(todo)
 ```
@@ -379,17 +379,17 @@ user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `district` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `province` | ``$STRING`` | No |  |
-| `street` | ``$STRING`` | No |  |
-| `username` | ``$STRING`` | No |  |
-| `website` | ``$STRING`` | No |  |
-| `zipcode` | ``$STRING`` | No |  |
+| `city` | `str` | No |  |
+| `district` | `str` | No |  |
+| `email` | `str` | No |  |
+| `id` | `int` | No |  |
+| `name` | `str` | No |  |
+| `phone` | `str` | No |  |
+| `province` | `str` | No |  |
+| `street` | `str` | No |  |
+| `username` | `str` | No |  |
+| `website` | `str` | No |  |
+| `zipcode` | `str` | No |  |
 
 ### Operations
 
@@ -402,12 +402,12 @@ result = client.User().create({
 })
 ```
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.User().list({})
+results = client.User().list()
 for user in results:
     print(user)
 ```
