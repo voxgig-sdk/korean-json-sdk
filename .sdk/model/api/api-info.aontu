@@ -15,9 +15,9 @@ main: {
           url: "https://koreanjson.com"
         }
       ]
+      summary: "Super simple JSON API in Korean for GET, POST, PUT, DELETE actions providing JSON data in Korean for prototyping projects."
       title: "Korean JSON API"
       version: "1.0.0"
+      website: "https://koreanjson.com"
     }
   }
-}
-

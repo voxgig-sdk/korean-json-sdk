@@ -49,7 +49,7 @@ end
 ```ruby
 begin
   # load returns the bare Comment record (raises on error).
-  comment = client.Comment.load({ "id" => "example_id" })
+  comment = client.Comment.load({ "id" => 1 })
   puts comment
 rescue => err
   warn "load failed: #{err}"
@@ -60,7 +60,7 @@ end
 
 ```ruby
 # create returns the bare created Comment record.
-created = client.Comment.create({ "content" => "example", "created_at" => "example" })
+created = client.Comment.create({ "content" => "example_content", "created_at" => "example_created_at" })
 
 # Update — index the bare record directly (created["id"]).
 client.Comment.update({ "id" => created["id"] })
@@ -364,7 +364,7 @@ Create an instance: `comment = client.Comment`
 
 ```ruby
 # load returns the bare Comment record (raises on error).
-comment = client.Comment.load({ "id" => "comment_id" })
+comment = client.Comment.load({ "id" => 1 })
 ```
 
 #### Example: List
@@ -411,7 +411,7 @@ Create an instance: `post = client.Post`
 
 ```ruby
 # load returns the bare Post record (raises on error).
-post = client.Post.load({ "id" => "post_id" })
+post = client.Post.load({ "id" => 1 })
 ```
 
 #### Example: List
@@ -456,7 +456,7 @@ Create an instance: `todo = client.Todo`
 
 ```ruby
 # load returns the bare Todo record (raises on error).
-todo = client.Todo.load({ "id" => "todo_id" })
+todo = client.Todo.load({ "id" => 1 })
 ```
 
 #### Example: List
@@ -508,7 +508,7 @@ Create an instance: `user = client.User`
 
 ```ruby
 # load returns the bare User record (raises on error).
-user = client.User.load({ "id" => "user_id" })
+user = client.User.load({ "id" => 1 })
 ```
 
 #### Example: List

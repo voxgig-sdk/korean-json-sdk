@@ -132,7 +132,7 @@ for comment in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Comment().load({"id": "comment_id"})
+result = client.Comment().load({"id": 1})
 ```
 
 #### `remove(reqmatch, ctrl=None) -> dict`
@@ -140,7 +140,7 @@ result = client.Comment().load({"id": "comment_id"})
 Remove the entity matching the given criteria. Raises on error.
 
 ```python
-result = client.Comment().remove({"id": "comment_id"})
+result = client.Comment().remove({"id": 1})
 ```
 
 #### `update(reqdata, ctrl=None) -> dict`
@@ -149,7 +149,7 @@ Update an existing entity. The data must include the entity `id`. Returns the up
 
 ```python
 result = client.Comment().update({
-    "id": "comment_id",
+    "id": 1,
     # Fields to update
 })
 ```
@@ -226,7 +226,7 @@ for post in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Post().load({"id": "post_id"})
+result = client.Post().load({"id": 1})
 ```
 
 #### `remove(reqmatch, ctrl=None) -> dict`
@@ -234,7 +234,7 @@ result = client.Post().load({"id": "post_id"})
 Remove the entity matching the given criteria. Raises on error.
 
 ```python
-result = client.Post().remove({"id": "post_id"})
+result = client.Post().remove({"id": 1})
 ```
 
 #### `update(reqdata, ctrl=None) -> dict`
@@ -243,7 +243,7 @@ Update an existing entity. The data must include the entity `id`. Returns the up
 
 ```python
 result = client.Post().update({
-    "id": "post_id",
+    "id": 1,
     # Fields to update
 })
 ```
@@ -318,7 +318,7 @@ for todo in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Todo().load({"id": "todo_id"})
+result = client.Todo().load({"id": 1})
 ```
 
 #### `remove(reqmatch, ctrl=None) -> dict`
@@ -326,7 +326,7 @@ result = client.Todo().load({"id": "todo_id"})
 Remove the entity matching the given criteria. Raises on error.
 
 ```python
-result = client.Todo().remove({"id": "todo_id"})
+result = client.Todo().remove({"id": 1})
 ```
 
 #### `update(reqdata, ctrl=None) -> dict`
@@ -335,7 +335,7 @@ Update an existing entity. The data must include the entity `id`. Returns the up
 
 ```python
 result = client.Todo().update({
-    "id": "todo_id",
+    "id": 1,
     # Fields to update
 })
 ```
@@ -417,7 +417,7 @@ for user in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.User().load({"id": "user_id"})
+result = client.User().load({"id": 1})
 ```
 
 #### `remove(reqmatch, ctrl=None) -> dict`
@@ -425,7 +425,7 @@ result = client.User().load({"id": "user_id"})
 Remove the entity matching the given criteria. Raises on error.
 
 ```python
-result = client.User().remove({"id": "user_id"})
+result = client.User().remove({"id": 1})
 ```
 
 #### `update(reqdata, ctrl=None) -> dict`
@@ -434,7 +434,7 @@ Update an existing entity. The data must include the entity `id`. Returns the up
 
 ```python
 result = client.User().update({
-    "id": "user_id",
+    "id": 1,
     # Fields to update
 })
 ```

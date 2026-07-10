@@ -50,7 +50,7 @@ end
 ### 3. Load a comment
 
 ```lua
-local comment, err = client:Comment():load({ id = "example_id" })
+local comment, err = client:Comment():load({ id = 1 })
 if err then error(err) end
 print(comment)
 ```
@@ -59,7 +59,7 @@ print(comment)
 
 ```lua
 -- Create
-local created, err = client:Comment():create({ content = "example", created_at = "example" })
+local created, err = client:Comment():create({ content = "example_content", created_at = "example_created_at" })
 if err then error(err) end
 
 -- Update
@@ -353,7 +353,7 @@ Create an instance: `local comment = client:Comment(nil)`
 #### Example: Load
 
 ```lua
-local comment, err = client:Comment():load({ id = "comment_id" })
+local comment, err = client:Comment():load({ id = 1 })
 ```
 
 #### Example: List
@@ -398,7 +398,7 @@ Create an instance: `local post = client:Post(nil)`
 #### Example: Load
 
 ```lua
-local post, err = client:Post():load({ id = "post_id" })
+local post, err = client:Post():load({ id = 1 })
 ```
 
 #### Example: List
@@ -441,7 +441,7 @@ Create an instance: `local todo = client:Todo(nil)`
 #### Example: Load
 
 ```lua
-local todo, err = client:Todo():load({ id = "todo_id" })
+local todo, err = client:Todo():load({ id = 1 })
 ```
 
 #### Example: List
@@ -491,7 +491,7 @@ Create an instance: `local user = client:User(nil)`
 #### Example: Load
 
 ```lua
-local user, err = client:User():load({ id = "user_id" })
+local user, err = client:User():load({ id = 1 })
 ```
 
 #### Example: List

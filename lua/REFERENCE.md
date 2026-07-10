@@ -133,7 +133,7 @@ local results, err = client:Comment():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Comment():load({ id = "comment_id" })
+local result, err = client:Comment():load({ id = 1 })
 ```
 
 #### `remove(reqmatch, ctrl) -> any, err`
@@ -141,7 +141,7 @@ local result, err = client:Comment():load({ id = "comment_id" })
 Remove the entity matching the given criteria.
 
 ```lua
-local result, err = client:Comment():remove({ id = "comment_id" })
+local result, err = client:Comment():remove({ id = 1 })
 ```
 
 #### `update(reqdata, ctrl) -> any, err`
@@ -150,7 +150,7 @@ Update an existing entity. The data must include the entity `id`.
 
 ```lua
 local result, err = client:Comment():update({
-  id = "comment_id",
+  id = 1,
   -- Fields to update
 })
 ```
@@ -226,7 +226,7 @@ local results, err = client:Post():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Post():load({ id = "post_id" })
+local result, err = client:Post():load({ id = 1 })
 ```
 
 #### `remove(reqmatch, ctrl) -> any, err`
@@ -234,7 +234,7 @@ local result, err = client:Post():load({ id = "post_id" })
 Remove the entity matching the given criteria.
 
 ```lua
-local result, err = client:Post():remove({ id = "post_id" })
+local result, err = client:Post():remove({ id = 1 })
 ```
 
 #### `update(reqdata, ctrl) -> any, err`
@@ -243,7 +243,7 @@ Update an existing entity. The data must include the entity `id`.
 
 ```lua
 local result, err = client:Post():update({
-  id = "post_id",
+  id = 1,
   -- Fields to update
 })
 ```
@@ -317,7 +317,7 @@ local results, err = client:Todo():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Todo():load({ id = "todo_id" })
+local result, err = client:Todo():load({ id = 1 })
 ```
 
 #### `remove(reqmatch, ctrl) -> any, err`
@@ -325,7 +325,7 @@ local result, err = client:Todo():load({ id = "todo_id" })
 Remove the entity matching the given criteria.
 
 ```lua
-local result, err = client:Todo():remove({ id = "todo_id" })
+local result, err = client:Todo():remove({ id = 1 })
 ```
 
 #### `update(reqdata, ctrl) -> any, err`
@@ -334,7 +334,7 @@ Update an existing entity. The data must include the entity `id`.
 
 ```lua
 local result, err = client:Todo():update({
-  id = "todo_id",
+  id = 1,
   -- Fields to update
 })
 ```
@@ -415,7 +415,7 @@ local results, err = client:User():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:User():load({ id = "user_id" })
+local result, err = client:User():load({ id = 1 })
 ```
 
 #### `remove(reqmatch, ctrl) -> any, err`
@@ -423,7 +423,7 @@ local result, err = client:User():load({ id = "user_id" })
 Remove the entity matching the given criteria.
 
 ```lua
-local result, err = client:User():remove({ id = "user_id" })
+local result, err = client:User():remove({ id = 1 })
 ```
 
 #### `update(reqdata, ctrl) -> any, err`
@@ -432,7 +432,7 @@ Update an existing entity. The data must include the entity `id`.
 
 ```lua
 local result, err = client:User():update({
-  id = "user_id",
+  id = 1,
   -- Fields to update
 })
 ```

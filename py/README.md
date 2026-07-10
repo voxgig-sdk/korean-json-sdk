@@ -56,7 +56,7 @@ except Exception as err:
 
 ```python
 try:
-    comment = client.Comment().load({"id": "example_id"})
+    comment = client.Comment().load({"id": 1})
     print(comment)
 except Exception as err:
     print(f"load failed: {err}")
@@ -66,7 +66,7 @@ except Exception as err:
 
 ```python
 # Create — returns the bare created record (a dict)
-created = client.Comment().create({"content": "example", "created_at": "example"})
+created = client.Comment().create({"content": "example_content", "created_at": "example_created_at"})
 
 # Update — the created record's id is a plain dict key
 client.Comment().update({"id": created["id"]})
@@ -366,7 +366,7 @@ Create an instance: `comment = client.Comment()`
 #### Example: Load
 
 ```python
-comment = client.Comment().load({"id": "comment_id"})
+comment = client.Comment().load({"id": 1})
 ```
 
 #### Example: List
@@ -411,7 +411,7 @@ Create an instance: `post = client.Post()`
 #### Example: Load
 
 ```python
-post = client.Post().load({"id": "post_id"})
+post = client.Post().load({"id": 1})
 ```
 
 #### Example: List
@@ -454,7 +454,7 @@ Create an instance: `todo = client.Todo()`
 #### Example: Load
 
 ```python
-todo = client.Todo().load({"id": "todo_id"})
+todo = client.Todo().load({"id": 1})
 ```
 
 #### Example: List
@@ -504,7 +504,7 @@ Create an instance: `user = client.User()`
 #### Example: Load
 
 ```python
-user = client.User().load({"id": "user_id"})
+user = client.User().load({"id": 1})
 ```
 
 #### Example: List

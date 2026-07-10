@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -1452,14 +1449,17 @@
           "url": "https://koreanjson.com/"
         },
         "description": "Super simple JSON API in Korean for GET, POST, PUT, DELETE actions providing JSON data in Korean for prototyping projects. 한국어 데이터를 제공하는 초간단 JSON API. GET, POST, PUT, DELETE 요청을 보내고 한국어 데이터를 받으세요.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://koreanjson.com"
           }
         ],
+        "summary": "Super simple JSON API in Korean for GET, POST, PUT, DELETE actions providing JSON data in Korean for prototyping projects.",
         "title": "Korean JSON API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://koreanjson.com"
       },
       "option": {},
       "target": {
@@ -1512,6 +1512,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -1562,6 +1565,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
