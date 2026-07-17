@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- KoreanJson SDK exists test
 
 local sdk = require("korean-json_sdk")
 
