@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import KoreanJsonSDK
-from core.error import KoreanJsonError
-from core.result import KoreanJsonResult
-from core.response import KoreanJsonResponse
-from core.spec import KoreanJsonSpec
-from feature.base_feature import KoreanJsonBaseFeature
+from projectname_sdk.core.error import KoreanJsonError
+from projectname_sdk.core.result import KoreanJsonResult
+from projectname_sdk.core.response import KoreanJsonResponse
+from projectname_sdk.core.spec import KoreanJsonSpec
+from projectname_sdk.feature.base_feature import KoreanJsonBaseFeature
 
 
 def _client():

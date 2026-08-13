@@ -59,14 +59,14 @@ print(comment)
 
 ```lua
 -- Create
-local created, err = client:Comment():create({ content = "example_content", created_at = "example_created_at" })
+local created, err = client:Comment():create({ content = "example_content", createdAt = "example_createdAt" })
 if err then error(err) end
 
 -- Update
-client:Comment():update({ id = created["id"] })
+client:Comment():update({ id = created:data_get()["id"], content = "example_content", createdAt = "example_createdAt" })
 
 -- Remove
-client:Comment():remove({ id = created["id"] })
+client:Comment():remove({ id = created:data_get()["id"] })
 ```
 
 
@@ -76,7 +76,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local comments, err = client:Comment():list()
+local posts, err = client:Post():list()
 if err then error(err) end
 ```
 
@@ -134,7 +134,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Comment():list()
+local result, err = client:Post():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -262,11 +262,11 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `content` |  |
-| `created_at` |  |
+| `createdAt` |  |
 | `id` |  |
-| `post_id` |  |
-| `updated_at` |  |
-| `user_id` |  |
+| `postId` |  |
+| `updatedAt` |  |
+| `userId` |  |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -277,11 +277,11 @@ API path: `/comments`
 | Field | Description |
 | --- | --- |
 | `content` |  |
-| `created_at` |  |
+| `createdAt` |  |
 | `id` |  |
 | `title` |  |
-| `updated_at` |  |
-| `user_id` |  |
+| `updatedAt` |  |
+| `userId` |  |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -294,7 +294,7 @@ API path: `/posts`
 | `completed` |  |
 | `id` |  |
 | `title` |  |
-| `user_id` |  |
+| `userId` |  |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -344,11 +344,11 @@ Create an instance: `local comment = client:Comment(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `content` | `string` |  |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `id` | `number` |  |
-| `post_id` | `number` |  |
-| `updated_at` | `string` |  |
-| `user_id` | `number` |  |
+| `postId` | `number` |  |
+| `updatedAt` | `string` |  |
+| `userId` | `number` |  |
 
 #### Example: Load
 
@@ -389,11 +389,11 @@ Create an instance: `local post = client:Post(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `content` | `string` |  |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `id` | `number` |  |
 | `title` | `string` |  |
-| `updated_at` | `string` |  |
-| `user_id` | `number` |  |
+| `updatedAt` | `string` |  |
+| `userId` | `number` |  |
 
 #### Example: Load
 
@@ -436,7 +436,7 @@ Create an instance: `local todo = client:Todo(nil)`
 | `completed` | `boolean` |  |
 | `id` | `number` |  |
 | `title` | `string` |  |
-| `user_id` | `number` |  |
+| `userId` | `number` |  |
 
 #### Example: Load
 
@@ -584,11 +584,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local comment = client:Comment()
-comment:list()
+local post = client:Post()
+post:list()
 
--- comment:data_get() now returns the comment data from the last list
--- comment:match_get() returns the last match criteria
+-- post:data_get() now returns the post data from the last list
+-- post:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

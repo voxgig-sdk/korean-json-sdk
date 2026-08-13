@@ -67,14 +67,14 @@ func main() {
     fmt.Println(comment)
 
     // Create a comment.
-    created, err := client.Comment(nil).Create(map[string]any{"content": "example_content", "created_at": "example_created_at"}, nil)
+    created, err := client.Comment(nil).Create(map[string]any{"content": "example_content", "createdAt": "example_createdAt"}, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(created)
 
     // Update a comment.
-    updated, err := client.Comment(nil).Update(map[string]any{"id": 1}, nil)
+    updated, err := client.Comment(nil).Update(map[string]any{"id": 1, "content": "example_content", "createdAt": "example_createdAt"}, nil)
     if err != nil {
         panic(err)
     }
@@ -96,12 +96,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-comments, err := client.Comment(nil).List(nil, nil)
+posts, err := client.Post(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = comments
+_ = posts
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -165,13 +165,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-comment, err := client.Comment(nil).List(
+post, err := client.Post(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(comment) // the returned mock data
+fmt.Println(post) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -297,11 +297,11 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"content"` |  |
-| `"created_at"` |  |
+| `"createdAt"` |  |
 | `"id"` |  |
-| `"post_id"` |  |
-| `"updated_at"` |  |
-| `"user_id"` |  |
+| `"postId"` |  |
+| `"updatedAt"` |  |
+| `"userId"` |  |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -312,11 +312,11 @@ API path: `/comments`
 | Field | Description |
 | --- | --- |
 | `"content"` |  |
-| `"created_at"` |  |
+| `"createdAt"` |  |
 | `"id"` |  |
 | `"title"` |  |
-| `"updated_at"` |  |
-| `"user_id"` |  |
+| `"updatedAt"` |  |
+| `"userId"` |  |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -329,7 +329,7 @@ API path: `/posts`
 | `"completed"` |  |
 | `"id"` |  |
 | `"title"` |  |
-| `"user_id"` |  |
+| `"userId"` |  |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -379,11 +379,11 @@ Create an instance: `comment := client.Comment(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `content` | `string` |  |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `id` | `int` |  |
-| `post_id` | `int` |  |
-| `updated_at` | `string` |  |
-| `user_id` | `int` |  |
+| `postId` | `int` |  |
+| `updatedAt` | `string` |  |
+| `userId` | `int` |  |
 
 #### Example: Load
 
@@ -436,11 +436,11 @@ Create an instance: `post := client.Post(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `content` | `string` |  |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `id` | `int` |  |
 | `title` | `string` |  |
-| `updated_at` | `string` |  |
-| `user_id` | `int` |  |
+| `updatedAt` | `string` |  |
+| `userId` | `int` |  |
 
 #### Example: Load
 
@@ -495,7 +495,7 @@ Create an instance: `todo := client.Todo(nil)`
 | `completed` | `bool` |  |
 | `id` | `int` |  |
 | `title` | `string` |  |
-| `user_id` | `int` |  |
+| `userId` | `int` |  |
 
 #### Example: Load
 
@@ -664,11 +664,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-comment := client.Comment(nil)
-comment.List(nil, nil)
+post := client.Post(nil)
+post.List(nil, nil)
 
-// comment.Data() now returns the comment data from the last list
-// comment.Match() returns the last match criteria
+// post.Data() now returns the post data from the last list
+// post.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

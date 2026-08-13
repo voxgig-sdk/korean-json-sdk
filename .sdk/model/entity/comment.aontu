@@ -11,7 +11,7 @@ main: kit: entity: comment: {
       type: "`$STRING`"
     }
     {
-      name: "created_at"
+      name: "createdAt"
       req: false
       type: "`$STRING`"
     }
@@ -21,17 +21,17 @@ main: kit: entity: comment: {
       type: "`$INTEGER`"
     }
     {
-      name: "post_id"
+      name: "postId"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "updated_at"
+      name: "updatedAt"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "user_id"
+      name: "userId"
       req: false
       type: "`$INTEGER`"
     }

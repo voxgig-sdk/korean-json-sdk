@@ -16,11 +16,11 @@ declare(strict_types=1);
 class Comment
 {
     public ?string $content = null;
-    public ?string $created_at = null;
+    public ?string $createdAt = null;
     public ?int $id = null;
-    public ?int $post_id = null;
-    public ?string $updated_at = null;
-    public ?int $user_id = null;
+    public ?int $postId = null;
+    public ?string $updatedAt = null;
+    public ?int $userId = null;
 }
 
 /** Request payload for Comment#load. */
@@ -33,28 +33,33 @@ class CommentLoadMatch
 class CommentListMatch
 {
     public ?string $content = null;
-    public ?string $created_at = null;
+    public ?string $createdAt = null;
     public ?int $id = null;
-    public ?int $post_id = null;
-    public ?string $updated_at = null;
-    public ?int $user_id = null;
+    public ?int $postId = null;
+    public ?string $updatedAt = null;
+    public ?int $userId = null;
 }
 
 /** Request payload for Comment#create. */
 class CommentCreateData
 {
     public ?string $content = null;
-    public ?string $created_at = null;
+    public ?string $createdAt = null;
     public ?int $id = null;
-    public ?int $post_id = null;
-    public ?string $updated_at = null;
-    public ?int $user_id = null;
+    public ?int $postId = null;
+    public ?string $updatedAt = null;
+    public ?int $userId = null;
 }
 
 /** Request payload for Comment#update. */
 class CommentUpdateData
 {
     public int $id;
+    public ?string $content = null;
+    public ?string $createdAt = null;
+    public ?int $postId = null;
+    public ?string $updatedAt = null;
+    public ?int $userId = null;
 }
 
 /** Request payload for Comment#remove. */
@@ -67,11 +72,11 @@ class CommentRemoveMatch
 class Post
 {
     public ?string $content = null;
-    public ?string $created_at = null;
+    public ?string $createdAt = null;
     public ?int $id = null;
     public ?string $title = null;
-    public ?string $updated_at = null;
-    public ?int $user_id = null;
+    public ?string $updatedAt = null;
+    public ?int $userId = null;
 }
 
 /** Request payload for Post#load. */
@@ -84,28 +89,33 @@ class PostLoadMatch
 class PostListMatch
 {
     public ?string $content = null;
-    public ?string $created_at = null;
+    public ?string $createdAt = null;
     public ?int $id = null;
     public ?string $title = null;
-    public ?string $updated_at = null;
-    public ?int $user_id = null;
+    public ?string $updatedAt = null;
+    public ?int $userId = null;
 }
 
 /** Request payload for Post#create. */
 class PostCreateData
 {
     public ?string $content = null;
-    public ?string $created_at = null;
+    public ?string $createdAt = null;
     public ?int $id = null;
     public ?string $title = null;
-    public ?string $updated_at = null;
-    public ?int $user_id = null;
+    public ?string $updatedAt = null;
+    public ?int $userId = null;
 }
 
 /** Request payload for Post#update. */
 class PostUpdateData
 {
     public int $id;
+    public ?string $content = null;
+    public ?string $createdAt = null;
+    public ?string $title = null;
+    public ?string $updatedAt = null;
+    public ?int $userId = null;
 }
 
 /** Request payload for Post#remove. */
@@ -120,7 +130,7 @@ class Todo
     public ?bool $completed = null;
     public ?int $id = null;
     public ?string $title = null;
-    public ?int $user_id = null;
+    public ?int $userId = null;
 }
 
 /** Request payload for Todo#load. */
@@ -135,7 +145,7 @@ class TodoListMatch
     public ?bool $completed = null;
     public ?int $id = null;
     public ?string $title = null;
-    public ?int $user_id = null;
+    public ?int $userId = null;
 }
 
 /** Request payload for Todo#create. */
@@ -144,13 +154,16 @@ class TodoCreateData
     public ?bool $completed = null;
     public ?int $id = null;
     public ?string $title = null;
-    public ?int $user_id = null;
+    public ?int $userId = null;
 }
 
 /** Request payload for Todo#update. */
 class TodoUpdateData
 {
     public int $id;
+    public ?bool $completed = null;
+    public ?string $title = null;
+    public ?int $userId = null;
 }
 
 /** Request payload for Todo#remove. */
@@ -217,6 +230,16 @@ class UserCreateData
 class UserUpdateData
 {
     public int $id;
+    public ?string $city = null;
+    public ?string $district = null;
+    public ?string $email = null;
+    public ?string $name = null;
+    public ?string $phone = null;
+    public ?string $province = null;
+    public ?string $street = null;
+    public ?string $username = null;
+    public ?string $website = null;
+    public ?string $zipcode = null;
 }
 
 /** Request payload for User#remove. */

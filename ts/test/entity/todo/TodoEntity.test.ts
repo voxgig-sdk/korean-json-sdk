@@ -26,8 +26,8 @@ import {
 describe('TodoEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when KOREANJSON_TEST_LIVE=TRUE.
-  afterEach(liveDelay('KOREANJSON_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when KOREAN_JSON_TEST_LIVE=TRUE.
+  afterEach(liveDelay('KOREAN_JSON_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = KoreanJsonSDK.test()
@@ -62,14 +62,14 @@ describe('TodoEntity', async () => {
     const todo_ref01_ent = client.Todo()
     let todo_ref01_data = setup.data.new.todo['todo_ref01']
 
-    todo_ref01_data = await todo_ref01_ent.create(todo_ref01_data)
+    todo_ref01_data = (await todo_ref01_ent.create(todo_ref01_data)).data()
     assert(null != todo_ref01_data.id)
 
 
     // LIST
     const todo_ref01_match: any = {}
 
-    const todo_ref01_list = await todo_ref01_ent.list(todo_ref01_match)
+    const todo_ref01_list = (await todo_ref01_ent.list(todo_ref01_match)).map((e: any) => e.data())
 
     assert(!isempty(select(todo_ref01_list, { id: todo_ref01_data.id })))
 
@@ -81,7 +81,7 @@ describe('TodoEntity', async () => {
     const todo_ref01_markdef_up0 = { name: 'title', value: 'Mark01-todo_ref01_' + setup.now }
     ;(todo_ref01_data_up0 as any)[todo_ref01_markdef_up0.name] = todo_ref01_markdef_up0.value
 
-    const todo_ref01_resdata_up0 = await todo_ref01_ent.update(todo_ref01_data_up0)
+    const todo_ref01_resdata_up0 = (await todo_ref01_ent.update(todo_ref01_data_up0)).data()
     assert(todo_ref01_resdata_up0.id === todo_ref01_data_up0.id)
 
     assert((todo_ref01_resdata_up0 as any)[todo_ref01_markdef_up0.name] === todo_ref01_markdef_up0.value)
@@ -90,7 +90,7 @@ describe('TodoEntity', async () => {
     // LOAD
     const todo_ref01_match_dt0: any = {}
     todo_ref01_match_dt0.id = todo_ref01_data.id
-    const todo_ref01_data_dt0 = await todo_ref01_ent.load(todo_ref01_match_dt0)
+    const todo_ref01_data_dt0 = (await todo_ref01_ent.load(todo_ref01_match_dt0)).data()
     assert(todo_ref01_data_dt0.id === todo_ref01_data.id)
 
 
@@ -102,7 +102,7 @@ describe('TodoEntity', async () => {
     // LIST
     const todo_ref01_match_rt0: any = {}
 
-    const todo_ref01_list_rt0 = await todo_ref01_ent.list(todo_ref01_match_rt0)
+    const todo_ref01_list_rt0 = (await todo_ref01_ent.list(todo_ref01_match_rt0)).map((e: any) => e.data())
 
     assert(isempty(select(todo_ref01_list_rt0, { id: todo_ref01_data.id })))
 

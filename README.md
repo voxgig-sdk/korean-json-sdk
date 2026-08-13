@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = KoreanJsonSDK.test()
-const comments = await client.Comment().list()
-// comments is an array of bare Comment records populated with mock data
-console.log(comments)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = KoreanJsonSDK.test({
+  entity: {
+    post: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const posts = await client.Post().list()
+// posts is an array of Post entities, populated with mock data
+// — call posts[0].data() for the record itself
+console.log(posts)
 ```
 
 ### Python
 
 ```python
 client = KoreanJsonSDK.test()
-comments = client.Comment().list()
-print(comments)
+posts = client.Post().list()
+print(posts)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(comments)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = KoreanJsonSDK::test([
-    "entity" => ["comment" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["post" => ["test01" => ["id" => "test01"]]],
 ]);
-$comments = $client->Comment()->list();
+$posts = $client->Post()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Comment(nil).List(
+result, err := client.Post(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Comment(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = KoreanJsonSDK.test({
-  "entity" => { "comment" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "post" => { "test01" => { "id" => "test01" } } },
 })
-comments = client.Comment.list()
+posts = client.Post.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Comment():list()
+local results, err = client:Post():list()
 ```
 
 ## Packages
@@ -110,7 +119,7 @@ import { KoreanJsonSDK } from '@voxgig-sdk/korean-json'
 
 const client = new KoreanJsonSDK()
 
-// List all comments (returns Comment[])
+// List all comments (returns CommentEntity[] — .data() for the record)
 const comments = await client.Comment().list()
 for (const comment of comments) {
   console.log(comment)
@@ -194,7 +203,7 @@ $client = new KoreanJsonSDK();
 $comments = $client->Comment()->list();
 print_r($comments);
 
-// Load a specific comment (returns the bare record; throws on error)
+// Load a specific comment (returns the ENTITY; call data_get() for the record; throws on error)
 $comment = $client->Comment()->load(["id" => 1]);
 print_r($comment);
 ```
@@ -225,7 +234,7 @@ client = KoreanJsonSDK.new
 comments = client.Comment.list
 puts comments
 
-# Load a specific comment (returns the bare record; raises on error)
+# Load a specific comment (returns the ENTITY; call data_get for the record)
 comment = client.Comment.load({ "id" => 1 })
 puts comment
 ```
@@ -362,6 +371,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://koreanjson.com/](https://koreanjson.com/)
 

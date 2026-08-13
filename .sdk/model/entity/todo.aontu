@@ -21,7 +21,7 @@ main: kit: entity: todo: {
       type: "`$STRING`"
     }
     {
-      name: "user_id"
+      name: "userId"
       req: false
       type: "`$INTEGER`"
     }

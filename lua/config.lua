@@ -36,7 +36,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "created_at",
+            ["name"] = "createdAt",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
@@ -50,21 +50,21 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "post_id",
+            ["name"] = "postId",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "updated_at",
+            ["name"] = "updatedAt",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "user_id",
+            ["name"] = "userId",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 5,
@@ -79,6 +79,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/comments",
                 ["parts"] = {
@@ -120,6 +121,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/comments",
                 ["parts"] = {
@@ -159,6 +161,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/comments/{id}",
                 ["parts"] = {
@@ -198,6 +201,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/comments/{id}",
                 ["parts"] = {
@@ -237,6 +241,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/comments/{id}",
                 ["parts"] = {
@@ -273,7 +278,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "created_at",
+            ["name"] = "createdAt",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
@@ -294,14 +299,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "updated_at",
+            ["name"] = "updatedAt",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "user_id",
+            ["name"] = "userId",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 5,
@@ -316,6 +321,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/posts",
                 ["parts"] = {
@@ -349,6 +355,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/posts",
                 ["parts"] = {
@@ -387,6 +394,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/posts/{id}",
                 ["parts"] = {
@@ -426,6 +434,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/posts/{id}",
                 ["parts"] = {
@@ -465,6 +474,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/posts/{id}",
                 ["parts"] = {
@@ -515,7 +525,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "user_id",
+            ["name"] = "userId",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 3,
@@ -530,6 +540,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/todos",
                 ["parts"] = {
@@ -563,6 +574,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/todos",
                 ["parts"] = {
@@ -601,6 +613,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/todos/{id}",
                 ["parts"] = {
@@ -640,6 +653,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/todos/{id}",
                 ["parts"] = {
@@ -679,6 +693,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/todos/{id}",
                 ["parts"] = {
@@ -793,6 +808,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/users",
                 ["parts"] = {
@@ -815,6 +831,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/users",
                 ["parts"] = {
@@ -849,6 +866,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/users/{id}",
                 ["parts"] = {
@@ -888,6 +906,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/users/{id}",
                 ["parts"] = {
@@ -927,6 +946,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/users/{id}",
                 ["parts"] = {

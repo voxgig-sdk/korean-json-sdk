@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ KoreanJsonUtility.registrar = ->(u) {
   u.prepare_params = KoreanJsonUtilities::PrepareParams
   u.prepare_path = KoreanJsonUtilities::PreparePath
   u.prepare_query = KoreanJsonUtilities::PrepareQuery
+  u.graphql_body = KoreanJsonUtilities::GraphqlBody
+  u.graphql_errors = KoreanJsonUtilities::GraphqlErrors
   u.result_basic = KoreanJsonUtilities::ResultBasic
   u.result_body = KoreanJsonUtilities::ResultBody
   u.result_headers = KoreanJsonUtilities::ResultHeaders

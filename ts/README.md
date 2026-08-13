@@ -35,7 +35,9 @@ const client = new KoreanJsonSDK()
 
 ### 2. List comment records
 
-`list()` resolves to an array of Comment objects — iterate it directly:
+`list()` resolves to an array of Comment ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const comments = await client.Comment().list()
@@ -61,20 +63,22 @@ try {
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created Comment
+// Create — returns the created Comment ENTITY (.data() for the record)
 const created = await client.Comment().create({
   content: 'example_content',
-  created_at: 'example_created_at',
+  createdAt: 'example_createdAt',
 })
 
-// Update — the id comes straight off the returned entity
+// Update — the id comes off the returned entity's data()
 const updated = await client.Comment().update({
-  id: created.id!,
+  id: created.data().id!,
+  content: 'example_content',
+  createdAt: 'example_createdAt',
 })
 
 // Remove
 await client.Comment().remove({
-  id: created.id!,
+  id: created.data().id!,
 })
 ```
 
@@ -85,8 +89,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const comments = await client.Comment().list()
-  console.log(comments)
+  const posts = await client.Post().list()
+  console.log(posts)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -152,9 +156,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = KoreanJsonSDK.test()
 
-const comment = await client.Comment().list()
-// comment is a bare entity populated with mock response data
-console.log(comment)
+const post = await client.Post().list()
+// post is the entity, populated with mock response data
+// — call post.data() for the record itself
+console.log(post)
 ```
 
 You can also use the instance method:
@@ -169,7 +174,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Comment()
+const entity = client.Post()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -327,11 +332,11 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `content` |  |
-| `created_at` |  |
+| `createdAt` |  |
 | `id` |  |
-| `post_id` |  |
-| `updated_at` |  |
-| `user_id` |  |
+| `postId` |  |
+| `updatedAt` |  |
+| `userId` |  |
 
 Operations: create, list, load, remove, update.
 
@@ -342,11 +347,11 @@ API path: `/comments`
 | Field | Description |
 | --- | --- |
 | `content` |  |
-| `created_at` |  |
+| `createdAt` |  |
 | `id` |  |
 | `title` |  |
-| `updated_at` |  |
-| `user_id` |  |
+| `updatedAt` |  |
+| `userId` |  |
 
 Operations: create, list, load, remove, update.
 
@@ -359,7 +364,7 @@ API path: `/posts`
 | `completed` |  |
 | `id` |  |
 | `title` |  |
-| `user_id` |  |
+| `userId` |  |
 
 Operations: create, list, load, remove, update.
 
@@ -409,11 +414,11 @@ Create an instance: `const comment = client.Comment()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `content` | `string` |  |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `id` | `number` |  |
-| `post_id` | `number` |  |
-| `updated_at` | `string` |  |
-| `user_id` | `number` |  |
+| `postId` | `number` |  |
+| `updatedAt` | `string` |  |
+| `userId` | `number` |  |
 
 #### Example: Load
 
@@ -454,11 +459,11 @@ Create an instance: `const post = client.Post()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `content` | `string` |  |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `id` | `number` |  |
 | `title` | `string` |  |
-| `updated_at` | `string` |  |
-| `user_id` | `number` |  |
+| `updatedAt` | `string` |  |
+| `userId` | `number` |  |
 
 #### Example: Load
 
@@ -501,7 +506,7 @@ Create an instance: `const todo = client.Todo()`
 | `completed` | `boolean` |  |
 | `id` | `number` |  |
 | `title` | `string` |  |
-| `user_id` | `number` |  |
+| `userId` | `number` |  |
 
 #### Example: Load
 
@@ -642,11 +647,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const comment = client.Comment()
-await comment.list()
+const post = client.Post()
+await post.list()
 
-// comment.data() now returns the comment data from the last `list`
-// comment.match() returns the last match criteria
+// post.data() now returns the post data from the last `list`
+// post.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -23,8 +23,8 @@ module KoreanJsonTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("KOREANJSON_TEST_LIVE")
-    override = getenv("KOREANJSON_TEST_OVERRIDE")
+    live = getenv("KOREAN_JSON_TEST_LIVE")
+    override = getenv("KOREAN_JSON_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module KoreanJsonTestRunner
       end
     end
 
-    explain = getenv("KOREANJSON_TEST_EXPLAIN")
-    m["KOREANJSON_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("KOREAN_JSON_TEST_EXPLAIN")
+    m["KOREAN_JSON_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

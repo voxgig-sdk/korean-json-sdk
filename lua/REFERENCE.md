@@ -103,11 +103,11 @@ local comment = client:Comment(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `content` | `string` | No |  |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `id` | `number` | No |  |
-| `post_id` | `number` | No |  |
-| `updated_at` | `string` | No |  |
-| `user_id` | `number` | No |  |
+| `postId` | `number` | No |  |
+| `updatedAt` | `string` | No |  |
+| `userId` | `number` | No |  |
 
 ### Operations
 
@@ -196,11 +196,11 @@ local post = client:Post(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `content` | `string` | No |  |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `id` | `number` | No |  |
 | `title` | `string` | No |  |
-| `updated_at` | `string` | No |  |
-| `user_id` | `number` | No |  |
+| `updatedAt` | `string` | No |  |
+| `userId` | `number` | No |  |
 
 ### Operations
 
@@ -291,7 +291,7 @@ local todo = client:Todo(nil)
 | `completed` | `boolean` | No |  |
 | `id` | `number` | No |  |
 | `title` | `string` | No |  |
-| `user_id` | `number` | No |  |
+| `userId` | `number` | No |  |
 
 ### Operations
 

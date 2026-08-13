@@ -5,19 +5,19 @@
         "completed": true,
         "id": "TODO00",
         "title": "s2a",
-        "user_id": "USER01"
+        "userId": "s2b"
       },
       "TODO01": {
         "completed": true,
         "id": "TODO01",
         "title": "s52",
-        "user_id": "USER01"
+        "userId": "s53"
       },
       "TODO02": {
         "completed": true,
         "id": "TODO02",
         "title": "s7a",
-        "user_id": "USER01"
+        "userId": "s7b"
       }
     }
   },
@@ -26,7 +26,7 @@
       "todo_ref01": {
         "completed": true,
         "title": "sa2",
-        "user_id": "USER01"
+        "userId": "sa3"
       }
     }
   }

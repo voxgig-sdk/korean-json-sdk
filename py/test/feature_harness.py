@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import KoreanJsonControl
-from core.error import KoreanJsonError
-from core.result import KoreanJsonResult
-from core.spec import KoreanJsonSpec
+from koreanjson_sdk.config import make_config
+from koreanjson_sdk.features import _make_feature
+from koreanjson_sdk.core.control import KoreanJsonControl
+from koreanjson_sdk.core.error import KoreanJsonError
+from koreanjson_sdk.core.result import KoreanJsonResult
+from koreanjson_sdk.core.spec import KoreanJsonSpec
 
 
 # True when this SDK was generated with the named feature.

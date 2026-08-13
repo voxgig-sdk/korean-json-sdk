@@ -8,66 +8,76 @@
 
 ---@class Comment
 ---@field content? string
----@field created_at? string
+---@field createdAt? string
 ---@field id? number
----@field post_id? number
----@field updated_at? string
----@field user_id? number
+---@field postId? number
+---@field updatedAt? string
+---@field userId? number
 
 ---@class CommentLoadMatch
 ---@field id number
 
 ---@class CommentListMatch
 ---@field content? string
----@field created_at? string
+---@field createdAt? string
 ---@field id? number
----@field post_id? number
----@field updated_at? string
----@field user_id? number
+---@field postId? number
+---@field updatedAt? string
+---@field userId? number
 
 ---@class CommentCreateData
 ---@field content? string
----@field created_at? string
+---@field createdAt? string
 ---@field id? number
----@field post_id? number
----@field updated_at? string
----@field user_id? number
+---@field postId? number
+---@field updatedAt? string
+---@field userId? number
 
 ---@class CommentUpdateData
 ---@field id number
+---@field content? string
+---@field createdAt? string
+---@field postId? number
+---@field updatedAt? string
+---@field userId? number
 
 ---@class CommentRemoveMatch
 ---@field id number
 
 ---@class Post
 ---@field content? string
----@field created_at? string
+---@field createdAt? string
 ---@field id? number
 ---@field title? string
----@field updated_at? string
----@field user_id? number
+---@field updatedAt? string
+---@field userId? number
 
 ---@class PostLoadMatch
 ---@field id number
 
 ---@class PostListMatch
 ---@field content? string
----@field created_at? string
+---@field createdAt? string
 ---@field id? number
 ---@field title? string
----@field updated_at? string
----@field user_id? number
+---@field updatedAt? string
+---@field userId? number
 
 ---@class PostCreateData
 ---@field content? string
----@field created_at? string
+---@field createdAt? string
 ---@field id? number
 ---@field title? string
----@field updated_at? string
----@field user_id? number
+---@field updatedAt? string
+---@field userId? number
 
 ---@class PostUpdateData
 ---@field id number
+---@field content? string
+---@field createdAt? string
+---@field title? string
+---@field updatedAt? string
+---@field userId? number
 
 ---@class PostRemoveMatch
 ---@field id number
@@ -76,7 +86,7 @@
 ---@field completed? boolean
 ---@field id? number
 ---@field title? string
----@field user_id? number
+---@field userId? number
 
 ---@class TodoLoadMatch
 ---@field id number
@@ -85,16 +95,19 @@
 ---@field completed? boolean
 ---@field id? number
 ---@field title? string
----@field user_id? number
+---@field userId? number
 
 ---@class TodoCreateData
 ---@field completed? boolean
 ---@field id? number
 ---@field title? string
----@field user_id? number
+---@field userId? number
 
 ---@class TodoUpdateData
 ---@field id number
+---@field completed? boolean
+---@field title? string
+---@field userId? number
 
 ---@class TodoRemoveMatch
 ---@field id number
@@ -143,6 +156,16 @@
 
 ---@class UserUpdateData
 ---@field id number
+---@field city? string
+---@field district? string
+---@field email? string
+---@field name? string
+---@field phone? string
+---@field province? string
+---@field street? string
+---@field username? string
+---@field website? string
+---@field zipcode? string
 
 ---@class UserRemoveMatch
 ---@field id number

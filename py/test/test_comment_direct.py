@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from koreanjson_sdk.utility.voxgig_struct import voxgig_struct as vs
 from koreanjson_sdk import KoreanJsonSDK
-from core import helpers
+from koreanjson_sdk.core import helpers
 from test import runner
 
 
@@ -105,11 +105,11 @@ def _comment_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "KOREANJSON_TEST_COMMENT_ENTID": {},
-        "KOREANJSON_TEST_LIVE": "FALSE",
+        "KOREAN_JSON_TEST_COMMENT_ENTID": {},
+        "KOREAN_JSON_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("KOREANJSON_TEST_LIVE") == "TRUE"
+    live = env.get("KOREAN_JSON_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

@@ -106,11 +106,11 @@ comment = client.Comment
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `content` | `String` | No |  |
-| `created_at` | `String` | No |  |
+| `createdAt` | `String` | No |  |
 | `id` | `Integer` | No |  |
-| `post_id` | `Integer` | No |  |
-| `updated_at` | `String` | No |  |
-| `user_id` | `Integer` | No |  |
+| `postId` | `Integer` | No |  |
+| `updatedAt` | `String` | No |  |
+| `userId` | `Integer` | No |  |
 
 ### Operations
 
@@ -199,11 +199,11 @@ post = client.Post
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `content` | `String` | No |  |
-| `created_at` | `String` | No |  |
+| `createdAt` | `String` | No |  |
 | `id` | `Integer` | No |  |
 | `title` | `String` | No |  |
-| `updated_at` | `String` | No |  |
-| `user_id` | `Integer` | No |  |
+| `updatedAt` | `String` | No |  |
+| `userId` | `Integer` | No |  |
 
 ### Operations
 
@@ -294,7 +294,7 @@ todo = client.Todo
 | `completed` | `Boolean` | No |  |
 | `id` | `Integer` | No |  |
 | `title` | `String` | No |  |
-| `user_id` | `Integer` | No |  |
+| `userId` | `Integer` | No |  |
 
 ### Operations
 

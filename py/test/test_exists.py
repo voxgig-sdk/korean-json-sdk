@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# KoreanJson SDK exists test
 
 import pytest
 from koreanjson_sdk import KoreanJsonSDK

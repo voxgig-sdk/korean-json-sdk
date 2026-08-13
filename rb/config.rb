@@ -37,7 +37,7 @@ module KoreanJsonConfig
             },
             {
               "active" => true,
-              "name" => "created_at",
+              "name" => "createdAt",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 1,
@@ -51,21 +51,21 @@ module KoreanJsonConfig
             },
             {
               "active" => true,
-              "name" => "post_id",
+              "name" => "postId",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 3,
             },
             {
               "active" => true,
-              "name" => "updated_at",
+              "name" => "updatedAt",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 4,
             },
             {
               "active" => true,
-              "name" => "user_id",
+              "name" => "userId",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 5,
@@ -80,6 +80,7 @@ module KoreanJsonConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/comments",
                   "parts" => [
@@ -121,6 +122,7 @@ module KoreanJsonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/comments",
                   "parts" => [
@@ -160,6 +162,7 @@ module KoreanJsonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/comments/{id}",
                   "parts" => [
@@ -199,6 +202,7 @@ module KoreanJsonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/comments/{id}",
                   "parts" => [
@@ -238,6 +242,7 @@ module KoreanJsonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "PUT",
                   "orig" => "/comments/{id}",
                   "parts" => [
@@ -274,7 +279,7 @@ module KoreanJsonConfig
             },
             {
               "active" => true,
-              "name" => "created_at",
+              "name" => "createdAt",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 1,
@@ -295,14 +300,14 @@ module KoreanJsonConfig
             },
             {
               "active" => true,
-              "name" => "updated_at",
+              "name" => "updatedAt",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 4,
             },
             {
               "active" => true,
-              "name" => "user_id",
+              "name" => "userId",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 5,
@@ -317,6 +322,7 @@ module KoreanJsonConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/posts",
                   "parts" => [
@@ -350,6 +356,7 @@ module KoreanJsonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/posts",
                   "parts" => [
@@ -388,6 +395,7 @@ module KoreanJsonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/posts/{id}",
                   "parts" => [
@@ -427,6 +435,7 @@ module KoreanJsonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/posts/{id}",
                   "parts" => [
@@ -466,6 +475,7 @@ module KoreanJsonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "PUT",
                   "orig" => "/posts/{id}",
                   "parts" => [
@@ -516,7 +526,7 @@ module KoreanJsonConfig
             },
             {
               "active" => true,
-              "name" => "user_id",
+              "name" => "userId",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 3,
@@ -531,6 +541,7 @@ module KoreanJsonConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/todos",
                   "parts" => [
@@ -564,6 +575,7 @@ module KoreanJsonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/todos",
                   "parts" => [
@@ -602,6 +614,7 @@ module KoreanJsonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/todos/{id}",
                   "parts" => [
@@ -641,6 +654,7 @@ module KoreanJsonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/todos/{id}",
                   "parts" => [
@@ -680,6 +694,7 @@ module KoreanJsonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "PUT",
                   "orig" => "/todos/{id}",
                   "parts" => [
@@ -794,6 +809,7 @@ module KoreanJsonConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/users",
                   "parts" => [
@@ -816,6 +832,7 @@ module KoreanJsonConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/users",
                   "parts" => [
@@ -850,6 +867,7 @@ module KoreanJsonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/users/{id}",
                   "parts" => [
@@ -889,6 +907,7 @@ module KoreanJsonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/users/{id}",
                   "parts" => [
@@ -928,6 +947,7 @@ module KoreanJsonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "PUT",
                   "orig" => "/users/{id}",
                   "parts" => [

@@ -121,11 +121,11 @@ function todo_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "KOREANJSON_TEST_TODO_ENTID" => [],
-        "KOREANJSON_TEST_LIVE" => "FALSE",
+        "KOREAN_JSON_TEST_TODO_ENTID" => [],
+        "KOREAN_JSON_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["KOREANJSON_TEST_LIVE"] === "TRUE";
+    $live = $env["KOREAN_JSON_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

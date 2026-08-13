@@ -48,7 +48,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Comment record (raises on error).
+  # load returns the ENTITY — call data_get for the Comment record (raises on error).
   comment = client.Comment.load({ "id" => 1 })
   puts comment
 rescue => err
@@ -59,14 +59,14 @@ end
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created Comment record.
-created = client.Comment.create({ "content" => "example_content", "created_at" => "example_created_at" })
+# create returns the ENTITY — call data_get for the created Comment record.
+created = client.Comment.create({ "content" => "example_content", "createdAt" => "example_createdAt" })
 
-# Update — index the bare record directly (created["id"]).
-client.Comment.update({ "id" => created["id"] })
+# Update — index the record via data_get (created.data_get["id"]).
+client.Comment.update({ "id" => created.data_get["id"], "content" => "example_content", "createdAt" => "example_createdAt" })
 
 # Remove
-client.Comment.remove({ "id" => created["id"] })
+client.Comment.remove({ "id" => created.data_get["id"] })
 ```
 
 
@@ -76,7 +76,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  comments = client.Comment.list()
+  posts = client.Post.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -144,12 +144,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
 client = KoreanJsonSDK.test({
-  "entity" => { "comment" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "post" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
-comment = client.Comment.list()
-puts comment
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+post = client.Post.list()
+puts post
 ```
 
 ### Use a custom fetch function
@@ -272,11 +273,11 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `content` |  |
-| `created_at` |  |
+| `createdAt` |  |
 | `id` |  |
-| `post_id` |  |
-| `updated_at` |  |
-| `user_id` |  |
+| `postId` |  |
+| `updatedAt` |  |
+| `userId` |  |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -287,11 +288,11 @@ API path: `/comments`
 | Field | Description |
 | --- | --- |
 | `content` |  |
-| `created_at` |  |
+| `createdAt` |  |
 | `id` |  |
 | `title` |  |
-| `updated_at` |  |
-| `user_id` |  |
+| `updatedAt` |  |
+| `userId` |  |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -304,7 +305,7 @@ API path: `/posts`
 | `completed` |  |
 | `id` |  |
 | `title` |  |
-| `user_id` |  |
+| `userId` |  |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -354,16 +355,16 @@ Create an instance: `comment = client.Comment`
 | Field | Type | Description |
 | --- | --- | --- |
 | `content` | `String` |  |
-| `created_at` | `String` |  |
+| `createdAt` | `String` |  |
 | `id` | `Integer` |  |
-| `post_id` | `Integer` |  |
-| `updated_at` | `String` |  |
-| `user_id` | `Integer` |  |
+| `postId` | `Integer` |  |
+| `updatedAt` | `String` |  |
+| `userId` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Comment record (raises on error).
+# load returns the ENTITY — call data_get for the Comment record (raises on error).
 comment = client.Comment.load({ "id" => 1 })
 ```
 
@@ -401,16 +402,16 @@ Create an instance: `post = client.Post`
 | Field | Type | Description |
 | --- | --- | --- |
 | `content` | `String` |  |
-| `created_at` | `String` |  |
+| `createdAt` | `String` |  |
 | `id` | `Integer` |  |
 | `title` | `String` |  |
-| `updated_at` | `String` |  |
-| `user_id` | `Integer` |  |
+| `updatedAt` | `String` |  |
+| `userId` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Post record (raises on error).
+# load returns the ENTITY — call data_get for the Post record (raises on error).
 post = client.Post.load({ "id" => 1 })
 ```
 
@@ -450,12 +451,12 @@ Create an instance: `todo = client.Todo`
 | `completed` | `Boolean` |  |
 | `id` | `Integer` |  |
 | `title` | `String` |  |
-| `user_id` | `Integer` |  |
+| `userId` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Todo record (raises on error).
+# load returns the ENTITY — call data_get for the Todo record (raises on error).
 todo = client.Todo.load({ "id" => 1 })
 ```
 
@@ -507,7 +508,7 @@ Create an instance: `user = client.User`
 #### Example: Load
 
 ```ruby
-# load returns the bare User record (raises on error).
+# load returns the ENTITY — call data_get for the User record (raises on error).
 user = client.User.load({ "id" => 1 })
 ```
 
@@ -602,11 +603,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-comment = client.Comment
-comment.list()
+post = client.Post
+post.list()
 
-# comment.data_get now returns the comment data from the last list
-# comment.match_get returns the last match criteria
+# post.data_get now returns the post data from the last list
+# post.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

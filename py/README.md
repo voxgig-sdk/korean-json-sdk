@@ -52,7 +52,7 @@ except Exception as err:
 
 ### 3. Load a comment
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -65,14 +65,14 @@ except Exception as err:
 ### 4. Create, update, and remove
 
 ```python
-# Create — returns the bare created record (a dict)
-created = client.Comment().create({"content": "example_content", "created_at": "example_created_at"})
+# Create — returns the ENTITY (call data_get() for the record)
+created = client.Comment().create({"content": "example_content", "createdAt": "example_createdAt"})
 
 # Update — the created record's id is a plain dict key
-client.Comment().update({"id": created["id"]})
+client.Comment().update({"id": created.data_get()["id"], "content": "example_content", "createdAt": "example_createdAt"})
 
 # Remove
-client.Comment().remove({"id": created["id"]})
+client.Comment().remove({"id": created.data_get()["id"]})
 ```
 
 
@@ -82,8 +82,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    comments = client.Comment().list()
-    print(comments)
+    posts = client.Post().list()
+    print(posts)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -149,9 +149,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = KoreanJsonSDK.test()
 
-# Entity ops return the bare record and raise on error.
-comment = client.Comment().list()
-# comment contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+post = client.Post().list()
+# post contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -252,7 +253,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -275,11 +276,11 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `content` |  |
-| `created_at` |  |
+| `createdAt` |  |
 | `id` |  |
-| `post_id` |  |
-| `updated_at` |  |
-| `user_id` |  |
+| `postId` |  |
+| `updatedAt` |  |
+| `userId` |  |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -290,11 +291,11 @@ API path: `/comments`
 | Field | Description |
 | --- | --- |
 | `content` |  |
-| `created_at` |  |
+| `createdAt` |  |
 | `id` |  |
 | `title` |  |
-| `updated_at` |  |
-| `user_id` |  |
+| `updatedAt` |  |
+| `userId` |  |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -307,7 +308,7 @@ API path: `/posts`
 | `completed` |  |
 | `id` |  |
 | `title` |  |
-| `user_id` |  |
+| `userId` |  |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -357,11 +358,11 @@ Create an instance: `comment = client.Comment()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `content` | `str` |  |
-| `created_at` | `str` |  |
+| `createdAt` | `str` |  |
 | `id` | `int` |  |
-| `post_id` | `int` |  |
-| `updated_at` | `str` |  |
-| `user_id` | `int` |  |
+| `postId` | `int` |  |
+| `updatedAt` | `str` |  |
+| `userId` | `int` |  |
 
 #### Example: Load
 
@@ -402,11 +403,11 @@ Create an instance: `post = client.Post()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `content` | `str` |  |
-| `created_at` | `str` |  |
+| `createdAt` | `str` |  |
 | `id` | `int` |  |
 | `title` | `str` |  |
-| `updated_at` | `str` |  |
-| `user_id` | `int` |  |
+| `updatedAt` | `str` |  |
+| `userId` | `int` |  |
 
 #### Example: Load
 
@@ -449,7 +450,7 @@ Create an instance: `todo = client.Todo()`
 | `completed` | `bool` |  |
 | `id` | `int` |  |
 | `title` | `str` |  |
-| `user_id` | `int` |  |
+| `userId` | `int` |  |
 
 #### Example: Load
 
@@ -596,11 +597,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-comment = client.Comment()
-comment.list()
+post = client.Post()
+post.list()
 
-# comment.data_get() now returns the comment data from the last list
-# comment.match_get() returns the last match criteria
+# post.data_get() now returns the post data from the last list
+# post.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

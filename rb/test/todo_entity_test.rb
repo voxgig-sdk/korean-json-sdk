@@ -62,7 +62,7 @@ class TodoEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set KOREANJSON_TEST_TODO_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set KOREAN_JSON_TEST_TODO_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -73,7 +73,7 @@ class TodoEntityTest < Minitest::Test
       Vs.getpath(setup[:data], "new.todo"), "todo_ref01"))
 
     todo_ref01_data_result = todo_ref01_ent.create(todo_ref01_data, nil)
-    todo_ref01_data = Helpers.to_map(todo_ref01_data_result)
+    todo_ref01_data = Helpers.to_map(todo_ref01_data_result.respond_to?(:data_get) ? todo_ref01_data_result.data_get : todo_ref01_data_result)
     assert !todo_ref01_data.nil?
     assert !todo_ref01_data["id"].nil?
 
@@ -98,7 +98,7 @@ class TodoEntityTest < Minitest::Test
     todo_ref01_data_up0_up[todo_ref01_markdef_up0_name] = todo_ref01_markdef_up0_value
 
     todo_ref01_resdata_up0_result = todo_ref01_ent.update(todo_ref01_data_up0_up, nil)
-    todo_ref01_resdata_up0 = Helpers.to_map(todo_ref01_resdata_up0_result)
+    todo_ref01_resdata_up0 = Helpers.to_map(todo_ref01_resdata_up0_result.respond_to?(:data_get) ? todo_ref01_resdata_up0_result.data_get : todo_ref01_resdata_up0_result)
     assert !todo_ref01_resdata_up0.nil?
     assert_equal todo_ref01_resdata_up0["id"], todo_ref01_data_up0_up["id"]
     assert_equal todo_ref01_resdata_up0[todo_ref01_markdef_up0_name], todo_ref01_markdef_up0_value
@@ -108,7 +108,7 @@ class TodoEntityTest < Minitest::Test
       "id" => todo_ref01_data["id"],
     }
     todo_ref01_data_dt0_loaded = todo_ref01_ent.load(todo_ref01_match_dt0, nil)
-    todo_ref01_data_dt0_load_result = Helpers.to_map(todo_ref01_data_dt0_loaded)
+    todo_ref01_data_dt0_load_result = Helpers.to_map(todo_ref01_data_dt0_loaded.respond_to?(:data_get) ? todo_ref01_data_dt0_loaded.data_get : todo_ref01_data_dt0_loaded)
     assert !todo_ref01_data_dt0_load_result.nil?
     assert_equal todo_ref01_data_dt0_load_result["id"], todo_ref01_data["id"]
 
@@ -158,22 +158,22 @@ def todo_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["KOREANJSON_TEST_TODO_ENTID"]
+  entid_env_raw = ENV["KOREAN_JSON_TEST_TODO_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "KOREANJSON_TEST_TODO_ENTID" => idmap,
-    "KOREANJSON_TEST_LIVE" => "FALSE",
-    "KOREANJSON_TEST_EXPLAIN" => "FALSE",
+    "KOREAN_JSON_TEST_TODO_ENTID" => idmap,
+    "KOREAN_JSON_TEST_LIVE" => "FALSE",
+    "KOREAN_JSON_TEST_EXPLAIN" => "FALSE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["KOREANJSON_TEST_TODO_ENTID"])
+    env["KOREAN_JSON_TEST_TODO_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["KOREANJSON_TEST_LIVE"] == "TRUE"
+  if env["KOREAN_JSON_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
       },
@@ -182,13 +182,13 @@ def todo_basic_setup(extra)
     client = KoreanJsonSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["KOREANJSON_TEST_LIVE"] == "TRUE"
+  live = env["KOREAN_JSON_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["KOREANJSON_TEST_EXPLAIN"] == "TRUE",
+    explain: env["KOREAN_JSON_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

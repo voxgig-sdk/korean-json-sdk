@@ -153,11 +153,11 @@ const comment = client.Comment()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `content` | `string` | No |  |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `id` | `number` | No |  |
-| `post_id` | `number` | No |  |
-| `updated_at` | `string` | No |  |
-| `user_id` | `number` | No |  |
+| `postId` | `number` | No |  |
+| `updatedAt` | `string` | No |  |
+| `userId` | `number` | No |  |
 
 ### Operations
 
@@ -244,11 +244,11 @@ const post = client.Post()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `content` | `string` | No |  |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `id` | `number` | No |  |
 | `title` | `string` | No |  |
-| `updated_at` | `string` | No |  |
-| `user_id` | `number` | No |  |
+| `updatedAt` | `string` | No |  |
+| `userId` | `number` | No |  |
 
 ### Operations
 
@@ -337,7 +337,7 @@ const todo = client.Todo()
 | `completed` | `boolean` | No |  |
 | `id` | `number` | No |  |
 | `title` | `string` | No |  |
-| `user_id` | `number` | No |  |
+| `userId` | `number` | No |  |
 
 ### Operations
 

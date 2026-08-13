@@ -100,11 +100,11 @@ comment = client.Comment()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `content` | `str` | No |  |
-| `created_at` | `str` | No |  |
+| `createdAt` | `str` | No |  |
 | `id` | `int` | No |  |
-| `post_id` | `int` | No |  |
-| `updated_at` | `str` | No |  |
-| `user_id` | `int` | No |  |
+| `postId` | `int` | No |  |
+| `updatedAt` | `str` | No |  |
+| `userId` | `int` | No |  |
 
 ### Operations
 
@@ -194,11 +194,11 @@ post = client.Post()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `content` | `str` | No |  |
-| `created_at` | `str` | No |  |
+| `createdAt` | `str` | No |  |
 | `id` | `int` | No |  |
 | `title` | `str` | No |  |
-| `updated_at` | `str` | No |  |
-| `user_id` | `int` | No |  |
+| `updatedAt` | `str` | No |  |
+| `userId` | `int` | No |  |
 
 ### Operations
 
@@ -290,7 +290,7 @@ todo = client.Todo()
 | `completed` | `bool` | No |  |
 | `id` | `int` | No |  |
 | `title` | `str` | No |  |
-| `user_id` | `int` | No |  |
+| `userId` | `int` | No |  |
 
 ### Operations
 

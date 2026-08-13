@@ -111,11 +111,11 @@ fmt.Println(comment.GetName()) // "comment"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `content` | `string` | No |  |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `id` | `int` | No |  |
-| `post_id` | `int` | No |  |
-| `updated_at` | `string` | No |  |
-| `user_id` | `int` | No |  |
+| `postId` | `int` | No |  |
+| `updatedAt` | `string` | No |  |
+| `userId` | `int` | No |  |
 
 ### Operations
 
@@ -219,11 +219,11 @@ fmt.Println(post.GetName()) // "post"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `content` | `string` | No |  |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `id` | `int` | No |  |
 | `title` | `string` | No |  |
-| `updated_at` | `string` | No |  |
-| `user_id` | `int` | No |  |
+| `updatedAt` | `string` | No |  |
+| `userId` | `int` | No |  |
 
 ### Operations
 
@@ -329,7 +329,7 @@ fmt.Println(todo.GetName()) // "todo"
 | `completed` | `bool` | No |  |
 | `id` | `int` | No |  |
 | `title` | `string` | No |  |
-| `user_id` | `int` | No |  |
+| `userId` | `int` | No |  |
 
 ### Operations
 

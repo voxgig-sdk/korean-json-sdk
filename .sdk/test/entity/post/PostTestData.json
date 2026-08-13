@@ -3,27 +3,27 @@
     "post": {
       "POST00": {
         "content": "s3c",
-        "created_at": "s3d",
+        "createdAt": "s3d",
         "id": "POST00",
         "title": "s3f",
-        "updated_at": "s40",
-        "user_id": "USER01"
+        "updatedAt": "s40",
+        "userId": "s41"
       },
       "POST01": {
         "content": "s78",
-        "created_at": "s79",
+        "createdAt": "s79",
         "id": "POST01",
         "title": "s7b",
-        "updated_at": "s7c",
-        "user_id": "USER01"
+        "updatedAt": "s7c",
+        "userId": "s7d"
       },
       "POST02": {
         "content": "sb4",
-        "created_at": "sb5",
+        "createdAt": "sb5",
         "id": "POST02",
         "title": "sb7",
-        "updated_at": "sb8",
-        "user_id": "USER01"
+        "updatedAt": "sb8",
+        "userId": "sb9"
       }
     }
   },
@@ -31,10 +31,10 @@
     "post": {
       "post_ref01": {
         "content": "sf0",
-        "created_at": "sf1",
+        "createdAt": "sf1",
         "title": "sf3",
-        "updated_at": "sf4",
-        "user_id": "USER01"
+        "updatedAt": "sf4",
+        "userId": "sf5"
       }
     }
   }

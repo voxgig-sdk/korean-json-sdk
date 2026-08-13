@@ -49,7 +49,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare Comment record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Comment record (throws on error).
     $comment = $client->Comment()->load(["id" => 1]);
     print_r($comment);
 } catch (\Throwable $err) {
@@ -60,14 +60,14 @@ try {
 ### 4. Create, update, and remove
 
 ```php
-// create() returns the bare created Comment record.
-$created = $client->Comment()->create(["content" => "example_content", "created_at" => "example_created_at"]);
+// create() returns the ENTITY — call data_get() for the created Comment record.
+$created = $client->Comment()->create(["content" => "example_content", "createdAt" => "example_createdAt"]);
 
-// Update — index the bare record directly ($created["id"]).
-$client->Comment()->update(["id" => $created["id"]]);
+// Update — index the record via data_get() ($created->data_get()["id"]).
+$client->Comment()->update(["id" => $created->data_get()["id"], "content" => "example_content", "createdAt" => "example_createdAt"]);
 
 // Remove
-$client->Comment()->remove(["id" => $created["id"]]);
+$client->Comment()->remove(["id" => $created->data_get()["id"]]);
 ```
 
 
@@ -78,7 +78,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $comments = $client->Comment()->list();
+    $posts = $client->Post()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -150,12 +150,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```php
 $client = KoreanJsonSDK::test([
-    "entity" => ["comment" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["post" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
-$comment = $client->Comment()->list();
-print_r($comment);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$post = $client->Post()->list();
+print_r($post);
 ```
 
 ### Use a custom fetch function
@@ -259,7 +260,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -282,11 +283,11 @@ On error, `ok` is `false` and `$err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `content` |  |
-| `created_at` |  |
+| `createdAt` |  |
 | `id` |  |
-| `post_id` |  |
-| `updated_at` |  |
-| `user_id` |  |
+| `postId` |  |
+| `updatedAt` |  |
+| `userId` |  |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -297,11 +298,11 @@ API path: `/comments`
 | Field | Description |
 | --- | --- |
 | `content` |  |
-| `created_at` |  |
+| `createdAt` |  |
 | `id` |  |
 | `title` |  |
-| `updated_at` |  |
-| `user_id` |  |
+| `updatedAt` |  |
+| `userId` |  |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -314,7 +315,7 @@ API path: `/posts`
 | `completed` |  |
 | `id` |  |
 | `title` |  |
-| `user_id` |  |
+| `userId` |  |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -364,16 +365,16 @@ Create an instance: `$comment = $client->Comment();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `content` | `string` |  |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `id` | `int` |  |
-| `post_id` | `int` |  |
-| `updated_at` | `string` |  |
-| `user_id` | `int` |  |
+| `postId` | `int` |  |
+| `updatedAt` | `string` |  |
+| `userId` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Comment record (throws on error).
+// load() returns the ENTITY — call data_get() for the Comment record (throws on error).
 $comment = $client->Comment()->load(["id" => 1]);
 ```
 
@@ -411,16 +412,16 @@ Create an instance: `$post = $client->Post();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `content` | `string` |  |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `id` | `int` |  |
 | `title` | `string` |  |
-| `updated_at` | `string` |  |
-| `user_id` | `int` |  |
+| `updatedAt` | `string` |  |
+| `userId` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Post record (throws on error).
+// load() returns the ENTITY — call data_get() for the Post record (throws on error).
 $post = $client->Post()->load(["id" => 1]);
 ```
 
@@ -460,12 +461,12 @@ Create an instance: `$todo = $client->Todo();`
 | `completed` | `bool` |  |
 | `id` | `int` |  |
 | `title` | `string` |  |
-| `user_id` | `int` |  |
+| `userId` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Todo record (throws on error).
+// load() returns the ENTITY — call data_get() for the Todo record (throws on error).
 $todo = $client->Todo()->load(["id" => 1]);
 ```
 
@@ -517,7 +518,7 @@ Create an instance: `$user = $client->User();`
 #### Example: Load
 
 ```php
-// load() returns the bare User record (throws on error).
+// load() returns the ENTITY — call data_get() for the User record (throws on error).
 $user = $client->User()->load(["id" => 1]);
 ```
 
@@ -612,11 +613,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$comment = $client->Comment();
-$comment->list();
+$post = $client->Post();
+$post->list();
 
-// $comment->data_get() now returns the comment data from the last list
-// $comment->match_get() returns the last match criteria
+// $post->data_get() now returns the post data from the last list
+// $post->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

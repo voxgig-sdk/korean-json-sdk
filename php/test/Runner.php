@@ -43,8 +43,8 @@ class KoreanJsonTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('KOREANJSON_TEST_LIVE');
-        $override = self::getenv('KOREANJSON_TEST_OVERRIDE');
+        $live = self::getenv('KOREAN_JSON_TEST_LIVE');
+        $override = self::getenv('KOREAN_JSON_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class KoreanJsonTestRunner
             }
         }
 
-        $explain = self::getenv('KOREANJSON_TEST_EXPLAIN');
+        $explain = self::getenv('KOREAN_JSON_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['KOREANJSON_TEST_EXPLAIN'] = $explain;
+            $m['KOREAN_JSON_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

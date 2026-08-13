@@ -3,27 +3,27 @@
     "comment": {
       "COMMENT00": {
         "content": "s3c",
-        "created_at": "s3d",
+        "createdAt": "s3d",
         "id": "COMMENT00",
-        "post_id": "POST01",
-        "updated_at": "s40",
-        "user_id": "USER01"
+        "postId": "s3f",
+        "updatedAt": "s40",
+        "userId": "s41"
       },
       "COMMENT01": {
         "content": "s78",
-        "created_at": "s79",
+        "createdAt": "s79",
         "id": "COMMENT01",
-        "post_id": "POST01",
-        "updated_at": "s7c",
-        "user_id": "USER01"
+        "postId": "s7b",
+        "updatedAt": "s7c",
+        "userId": "s7d"
       },
       "COMMENT02": {
         "content": "sb4",
-        "created_at": "sb5",
+        "createdAt": "sb5",
         "id": "COMMENT02",
-        "post_id": "POST01",
-        "updated_at": "sb8",
-        "user_id": "USER01"
+        "postId": "sb7",
+        "updatedAt": "sb8",
+        "userId": "sb9"
       }
     }
   },
@@ -31,10 +31,10 @@
     "comment": {
       "comment_ref01": {
         "content": "sf0",
-        "created_at": "sf1",
-        "post_id": "POST01",
-        "updated_at": "sf4",
-        "user_id": "USER01"
+        "createdAt": "sf1",
+        "postId": "sf3",
+        "updatedAt": "sf4",
+        "userId": "sf5"
       }
     }
   }

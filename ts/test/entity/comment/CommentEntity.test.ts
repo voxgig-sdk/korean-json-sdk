@@ -26,8 +26,8 @@ import {
 describe('CommentEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when KOREANJSON_TEST_LIVE=TRUE.
-  afterEach(liveDelay('KOREANJSON_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when KOREAN_JSON_TEST_LIVE=TRUE.
+  afterEach(liveDelay('KOREAN_JSON_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = KoreanJsonSDK.test()
@@ -62,14 +62,14 @@ describe('CommentEntity', async () => {
     const comment_ref01_ent = client.Comment()
     let comment_ref01_data = setup.data.new.comment['comment_ref01']
 
-    comment_ref01_data = await comment_ref01_ent.create(comment_ref01_data)
+    comment_ref01_data = (await comment_ref01_ent.create(comment_ref01_data)).data()
     assert(null != comment_ref01_data.id)
 
 
     // LIST
     const comment_ref01_match: any = {}
 
-    const comment_ref01_list = await comment_ref01_ent.list(comment_ref01_match)
+    const comment_ref01_list = (await comment_ref01_ent.list(comment_ref01_match)).map((e: any) => e.data())
 
     assert(!isempty(select(comment_ref01_list, { id: comment_ref01_data.id })))
 
@@ -81,7 +81,7 @@ describe('CommentEntity', async () => {
     const comment_ref01_markdef_up0 = { name: 'content', value: 'Mark01-comment_ref01_' + setup.now }
     ;(comment_ref01_data_up0 as any)[comment_ref01_markdef_up0.name] = comment_ref01_markdef_up0.value
 
-    const comment_ref01_resdata_up0 = await comment_ref01_ent.update(comment_ref01_data_up0)
+    const comment_ref01_resdata_up0 = (await comment_ref01_ent.update(comment_ref01_data_up0)).data()
     assert(comment_ref01_resdata_up0.id === comment_ref01_data_up0.id)
 
     assert((comment_ref01_resdata_up0 as any)[comment_ref01_markdef_up0.name] === comment_ref01_markdef_up0.value)
@@ -90,7 +90,7 @@ describe('CommentEntity', async () => {
     // LOAD
     const comment_ref01_match_dt0: any = {}
     comment_ref01_match_dt0.id = comment_ref01_data.id
-    const comment_ref01_data_dt0 = await comment_ref01_ent.load(comment_ref01_match_dt0)
+    const comment_ref01_data_dt0 = (await comment_ref01_ent.load(comment_ref01_match_dt0)).data()
     assert(comment_ref01_data_dt0.id === comment_ref01_data.id)
 
 
@@ -102,7 +102,7 @@ describe('CommentEntity', async () => {
     // LIST
     const comment_ref01_match_rt0: any = {}
 
-    const comment_ref01_list_rt0 = await comment_ref01_ent.list(comment_ref01_match_rt0)
+    const comment_ref01_list_rt0 = (await comment_ref01_ent.list(comment_ref01_match_rt0)).map((e: any) => e.data())
 
     assert(isempty(select(comment_ref01_list_rt0, { id: comment_ref01_data.id })))
 

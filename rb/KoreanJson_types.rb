@@ -13,27 +13,27 @@
 # @!attribute [rw] content
 #   @return [String, nil]
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
 # @!attribute [rw] id
 #   @return [Integer, nil]
 #
-# @!attribute [rw] post_id
+# @!attribute [rw] postId
 #   @return [Integer, nil]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 #
-# @!attribute [rw] user_id
+# @!attribute [rw] userId
 #   @return [Integer, nil]
 Comment = Struct.new(
   :content,
-  :created_at,
+  :createdAt,
   :id,
-  :post_id,
-  :updated_at,
-  :user_id,
+  :postId,
+  :updatedAt,
+  :userId,
   keyword_init: true
 )
 
@@ -51,27 +51,27 @@ CommentLoadMatch = Struct.new(
 # @!attribute [rw] content
 #   @return [String, nil]
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
 # @!attribute [rw] id
 #   @return [Integer, nil]
 #
-# @!attribute [rw] post_id
+# @!attribute [rw] postId
 #   @return [Integer, nil]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 #
-# @!attribute [rw] user_id
+# @!attribute [rw] userId
 #   @return [Integer, nil]
 CommentListMatch = Struct.new(
   :content,
-  :created_at,
+  :createdAt,
   :id,
-  :post_id,
-  :updated_at,
-  :user_id,
+  :postId,
+  :updatedAt,
+  :userId,
   keyword_init: true
 )
 
@@ -80,27 +80,27 @@ CommentListMatch = Struct.new(
 # @!attribute [rw] content
 #   @return [String, nil]
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
 # @!attribute [rw] id
 #   @return [Integer, nil]
 #
-# @!attribute [rw] post_id
+# @!attribute [rw] postId
 #   @return [Integer, nil]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 #
-# @!attribute [rw] user_id
+# @!attribute [rw] userId
 #   @return [Integer, nil]
 CommentCreateData = Struct.new(
   :content,
-  :created_at,
+  :createdAt,
   :id,
-  :post_id,
-  :updated_at,
-  :user_id,
+  :postId,
+  :updatedAt,
+  :userId,
   keyword_init: true
 )
 
@@ -108,8 +108,28 @@ CommentCreateData = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [Integer]
+#
+# @!attribute [rw] content
+#   @return [String, nil]
+#
+# @!attribute [rw] createdAt
+#   @return [String, nil]
+#
+# @!attribute [rw] postId
+#   @return [Integer, nil]
+#
+# @!attribute [rw] updatedAt
+#   @return [String, nil]
+#
+# @!attribute [rw] userId
+#   @return [Integer, nil]
 CommentUpdateData = Struct.new(
   :id,
+  :content,
+  :createdAt,
+  :postId,
+  :updatedAt,
+  :userId,
   keyword_init: true
 )
 
@@ -127,7 +147,7 @@ CommentRemoveMatch = Struct.new(
 # @!attribute [rw] content
 #   @return [String, nil]
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
 # @!attribute [rw] id
@@ -136,18 +156,18 @@ CommentRemoveMatch = Struct.new(
 # @!attribute [rw] title
 #   @return [String, nil]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 #
-# @!attribute [rw] user_id
+# @!attribute [rw] userId
 #   @return [Integer, nil]
 Post = Struct.new(
   :content,
-  :created_at,
+  :createdAt,
   :id,
   :title,
-  :updated_at,
-  :user_id,
+  :updatedAt,
+  :userId,
   keyword_init: true
 )
 
@@ -165,7 +185,7 @@ PostLoadMatch = Struct.new(
 # @!attribute [rw] content
 #   @return [String, nil]
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
 # @!attribute [rw] id
@@ -174,18 +194,18 @@ PostLoadMatch = Struct.new(
 # @!attribute [rw] title
 #   @return [String, nil]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 #
-# @!attribute [rw] user_id
+# @!attribute [rw] userId
 #   @return [Integer, nil]
 PostListMatch = Struct.new(
   :content,
-  :created_at,
+  :createdAt,
   :id,
   :title,
-  :updated_at,
-  :user_id,
+  :updatedAt,
+  :userId,
   keyword_init: true
 )
 
@@ -194,7 +214,7 @@ PostListMatch = Struct.new(
 # @!attribute [rw] content
 #   @return [String, nil]
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
 # @!attribute [rw] id
@@ -203,18 +223,18 @@ PostListMatch = Struct.new(
 # @!attribute [rw] title
 #   @return [String, nil]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 #
-# @!attribute [rw] user_id
+# @!attribute [rw] userId
 #   @return [Integer, nil]
 PostCreateData = Struct.new(
   :content,
-  :created_at,
+  :createdAt,
   :id,
   :title,
-  :updated_at,
-  :user_id,
+  :updatedAt,
+  :userId,
   keyword_init: true
 )
 
@@ -222,8 +242,28 @@ PostCreateData = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [Integer]
+#
+# @!attribute [rw] content
+#   @return [String, nil]
+#
+# @!attribute [rw] createdAt
+#   @return [String, nil]
+#
+# @!attribute [rw] title
+#   @return [String, nil]
+#
+# @!attribute [rw] updatedAt
+#   @return [String, nil]
+#
+# @!attribute [rw] userId
+#   @return [Integer, nil]
 PostUpdateData = Struct.new(
   :id,
+  :content,
+  :createdAt,
+  :title,
+  :updatedAt,
+  :userId,
   keyword_init: true
 )
 
@@ -247,13 +287,13 @@ PostRemoveMatch = Struct.new(
 # @!attribute [rw] title
 #   @return [String, nil]
 #
-# @!attribute [rw] user_id
+# @!attribute [rw] userId
 #   @return [Integer, nil]
 Todo = Struct.new(
   :completed,
   :id,
   :title,
-  :user_id,
+  :userId,
   keyword_init: true
 )
 
@@ -277,13 +317,13 @@ TodoLoadMatch = Struct.new(
 # @!attribute [rw] title
 #   @return [String, nil]
 #
-# @!attribute [rw] user_id
+# @!attribute [rw] userId
 #   @return [Integer, nil]
 TodoListMatch = Struct.new(
   :completed,
   :id,
   :title,
-  :user_id,
+  :userId,
   keyword_init: true
 )
 
@@ -298,13 +338,13 @@ TodoListMatch = Struct.new(
 # @!attribute [rw] title
 #   @return [String, nil]
 #
-# @!attribute [rw] user_id
+# @!attribute [rw] userId
 #   @return [Integer, nil]
 TodoCreateData = Struct.new(
   :completed,
   :id,
   :title,
-  :user_id,
+  :userId,
   keyword_init: true
 )
 
@@ -312,8 +352,20 @@ TodoCreateData = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [Integer]
+#
+# @!attribute [rw] completed
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] title
+#   @return [String, nil]
+#
+# @!attribute [rw] userId
+#   @return [Integer, nil]
 TodoUpdateData = Struct.new(
   :id,
+  :completed,
+  :title,
+  :userId,
   keyword_init: true
 )
 
@@ -486,8 +538,48 @@ UserCreateData = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [Integer]
+#
+# @!attribute [rw] city
+#   @return [String, nil]
+#
+# @!attribute [rw] district
+#   @return [String, nil]
+#
+# @!attribute [rw] email
+#   @return [String, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
+#
+# @!attribute [rw] phone
+#   @return [String, nil]
+#
+# @!attribute [rw] province
+#   @return [String, nil]
+#
+# @!attribute [rw] street
+#   @return [String, nil]
+#
+# @!attribute [rw] username
+#   @return [String, nil]
+#
+# @!attribute [rw] website
+#   @return [String, nil]
+#
+# @!attribute [rw] zipcode
+#   @return [String, nil]
 UserUpdateData = Struct.new(
   :id,
+  :city,
+  :district,
+  :email,
+  :name,
+  :phone,
+  :province,
+  :street,
+  :username,
+  :website,
+  :zipcode,
   keyword_init: true
 )
 
