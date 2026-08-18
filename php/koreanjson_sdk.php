@@ -40,7 +40,7 @@ class KoreanJsonSDK
         $utility = new KoreanJsonUtility();
         $this->_utility = $utility;
 
-        $config = KoreanJsonConfig::make_config();
+        $config = KoreanJsonConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

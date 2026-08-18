@@ -28,7 +28,7 @@ class KoreanJsonSDK
     utility = KoreanJsonUtility.new
     @_utility = utility
 
-    config = KoreanJsonConfig.make_config
+    config = KoreanJsonConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

@@ -40,7 +40,7 @@ class UserEntityTest extends TestCase
         $this->assertCount(3, $seen);
 
         // Inbound: streaming active -> yields each item from the feature.
-        $cfg = KoreanJsonConfig::make_config();
+        $cfg = KoreanJsonConfig::shared_config();
         if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
             $sdk = KoreanJsonSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
             $got = [];
