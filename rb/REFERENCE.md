@@ -105,12 +105,12 @@ comment = client.Comment
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `String` | No |  |
-| `createdAt` | `String` | No |  |
-| `id` | `Integer` | No |  |
-| `postId` | `Integer` | No |  |
-| `updatedAt` | `String` | No |  |
-| `userId` | `Integer` | No |  |
+| `content` | `String` | No | Comment content in Korean |
+| `createdAt` | `String` | No | Comment creation timestamp |
+| `id` | `Integer` | No | Comment ID |
+| `postId` | `Integer` | No | Post ID the comment belongs to |
+| `updatedAt` | `String` | No | Comment last update timestamp |
+| `userId` | `Integer` | No | User ID who created the comment |
 
 ### Operations
 
@@ -198,12 +198,12 @@ post = client.Post
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `String` | No |  |
-| `createdAt` | `String` | No |  |
-| `id` | `Integer` | No |  |
-| `title` | `String` | No |  |
-| `updatedAt` | `String` | No |  |
-| `userId` | `Integer` | No |  |
+| `content` | `String` | No | Post content in Korean |
+| `createdAt` | `String` | No | Post creation timestamp |
+| `id` | `Integer` | No | Post ID |
+| `title` | `String` | No | Post title in Korean |
+| `updatedAt` | `String` | No | Post last update timestamp |
+| `userId` | `Integer` | No | User ID who created the post |
 
 ### Operations
 
@@ -291,10 +291,10 @@ todo = client.Todo
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `completed` | `Boolean` | No |  |
-| `id` | `Integer` | No |  |
-| `title` | `String` | No |  |
-| `userId` | `Integer` | No |  |
+| `completed` | `Boolean` | No | Todo completion status |
+| `id` | `Integer` | No | Todo ID |
+| `title` | `String` | No | Todo title in Korean |
+| `userId` | `Integer` | No | User ID who owns the todo |
 
 ### Operations
 
@@ -382,17 +382,17 @@ user = client.User
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | `String` | No |  |
-| `district` | `String` | No |  |
-| `email` | `String` | No |  |
-| `id` | `Integer` | No |  |
-| `name` | `String` | No |  |
-| `phone` | `String` | No |  |
-| `province` | `String` | No |  |
-| `street` | `String` | No |  |
-| `username` | `String` | No |  |
-| `website` | `String` | No |  |
-| `zipcode` | `String` | No |  |
+| `city` | `String` | No | User city in Korean |
+| `district` | `String` | No | User district in Korean |
+| `email` | `String` | No | User email |
+| `id` | `Integer` | No | User ID |
+| `name` | `String` | No | User name in Korean |
+| `phone` | `String` | No | User phone number |
+| `province` | `String` | No | User province in Korean |
+| `street` | `String` | No | User street in Korean |
+| `username` | `String` | No | Username |
+| `website` | `String` | No | User website |
+| `zipcode` | `String` | No | User zipcode |
 
 ### Operations
 

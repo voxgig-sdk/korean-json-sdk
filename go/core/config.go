@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "KoreanJson",
+			"slug": "korean-json",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -36,26 +39,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "content",
+						"short": "Comment content in Korean",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "createdAt",
+						"short": "Comment creation timestamp",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Comment ID",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "postId",
+						"short": "Post ID the comment belongs to",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "updatedAt",
+						"short": "Comment last update timestamp",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "userId",
+						"short": "User ID who created the comment",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -235,26 +244,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "content",
+						"short": "Post content in Korean",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "createdAt",
+						"short": "Post creation timestamp",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Post ID",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "Post title in Korean",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "updatedAt",
+						"short": "Post last update timestamp",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "userId",
+						"short": "User ID who created the post",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -427,18 +442,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "completed",
+						"short": "Todo completion status",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Todo ID",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "Todo title in Korean",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "userId",
+						"short": "User ID who owns the todo",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -611,46 +630,57 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "city",
+						"short": "User city in Korean",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "district",
+						"short": "User district in Korean",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "email",
+						"short": "User email",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "User ID",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "User name in Korean",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "phone",
+						"short": "User phone number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "province",
+						"short": "User province in Korean",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "street",
+						"short": "User street in Korean",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "username",
+						"short": "Username",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "website",
+						"short": "User website",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "zipcode",
+						"short": "User zipcode",
 						"type": "`$STRING`",
 					},
 				},

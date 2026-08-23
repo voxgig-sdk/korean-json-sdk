@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -331,12 +331,12 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `createdAt` |  |
-| `id` |  |
-| `postId` |  |
-| `updatedAt` |  |
-| `userId` |  |
+| `content` | Comment content in Korean |
+| `createdAt` | Comment creation timestamp |
+| `id` | Comment ID |
+| `postId` | Post ID the comment belongs to |
+| `updatedAt` | Comment last update timestamp |
+| `userId` | User ID who created the comment |
 
 Operations: create, list, load, remove, update.
 
@@ -346,12 +346,12 @@ API path: `/comments`
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `createdAt` |  |
-| `id` |  |
-| `title` |  |
-| `updatedAt` |  |
-| `userId` |  |
+| `content` | Post content in Korean |
+| `createdAt` | Post creation timestamp |
+| `id` | Post ID |
+| `title` | Post title in Korean |
+| `updatedAt` | Post last update timestamp |
+| `userId` | User ID who created the post |
 
 Operations: create, list, load, remove, update.
 
@@ -361,10 +361,10 @@ API path: `/posts`
 
 | Field | Description |
 | --- | --- |
-| `completed` |  |
-| `id` |  |
-| `title` |  |
-| `userId` |  |
+| `completed` | Todo completion status |
+| `id` | Todo ID |
+| `title` | Todo title in Korean |
+| `userId` | User ID who owns the todo |
 
 Operations: create, list, load, remove, update.
 
@@ -374,17 +374,17 @@ API path: `/todos`
 
 | Field | Description |
 | --- | --- |
-| `city` |  |
-| `district` |  |
-| `email` |  |
-| `id` |  |
-| `name` |  |
-| `phone` |  |
-| `province` |  |
-| `street` |  |
-| `username` |  |
-| `website` |  |
-| `zipcode` |  |
+| `city` | User city in Korean |
+| `district` | User district in Korean |
+| `email` | User email |
+| `id` | User ID |
+| `name` | User name in Korean |
+| `phone` | User phone number |
+| `province` | User province in Korean |
+| `street` | User street in Korean |
+| `username` | Username |
+| `website` | User website |
+| `zipcode` | User zipcode |
 
 Operations: create, list, load, remove, update.
 
@@ -413,12 +413,12 @@ Create an instance: `const comment = client.Comment()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `string` |  |
-| `createdAt` | `string` |  |
-| `id` | `number` |  |
-| `postId` | `number` |  |
-| `updatedAt` | `string` |  |
-| `userId` | `number` |  |
+| `content` | `string` | Comment content in Korean |
+| `createdAt` | `string` | Comment creation timestamp |
+| `id` | `number` | Comment ID |
+| `postId` | `number` | Post ID the comment belongs to |
+| `updatedAt` | `string` | Comment last update timestamp |
+| `userId` | `number` | User ID who created the comment |
 
 #### Example: Load
 
@@ -458,12 +458,12 @@ Create an instance: `const post = client.Post()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `string` |  |
-| `createdAt` | `string` |  |
-| `id` | `number` |  |
-| `title` | `string` |  |
-| `updatedAt` | `string` |  |
-| `userId` | `number` |  |
+| `content` | `string` | Post content in Korean |
+| `createdAt` | `string` | Post creation timestamp |
+| `id` | `number` | Post ID |
+| `title` | `string` | Post title in Korean |
+| `updatedAt` | `string` | Post last update timestamp |
+| `userId` | `number` | User ID who created the post |
 
 #### Example: Load
 
@@ -503,10 +503,10 @@ Create an instance: `const todo = client.Todo()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `completed` | `boolean` |  |
-| `id` | `number` |  |
-| `title` | `string` |  |
-| `userId` | `number` |  |
+| `completed` | `boolean` | Todo completion status |
+| `id` | `number` | Todo ID |
+| `title` | `string` | Todo title in Korean |
+| `userId` | `number` | User ID who owns the todo |
 
 #### Example: Load
 
@@ -546,17 +546,17 @@ Create an instance: `const user = client.User()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | `string` |  |
-| `district` | `string` |  |
-| `email` | `string` |  |
-| `id` | `number` |  |
-| `name` | `string` |  |
-| `phone` | `string` |  |
-| `province` | `string` |  |
-| `street` | `string` |  |
-| `username` | `string` |  |
-| `website` | `string` |  |
-| `zipcode` | `string` |  |
+| `city` | `string` | User city in Korean |
+| `district` | `string` | User district in Korean |
+| `email` | `string` | User email |
+| `id` | `number` | User ID |
+| `name` | `string` | User name in Korean |
+| `phone` | `string` | User phone number |
+| `province` | `string` | User province in Korean |
+| `street` | `string` | User street in Korean |
+| `username` | `string` | Username |
+| `website` | `string` | User website |
+| `zipcode` | `string` | User zipcode |
 
 #### Example: Load
 

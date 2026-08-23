@@ -272,12 +272,12 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `createdAt` |  |
-| `id` |  |
-| `postId` |  |
-| `updatedAt` |  |
-| `userId` |  |
+| `content` | Comment content in Korean |
+| `createdAt` | Comment creation timestamp |
+| `id` | Comment ID |
+| `postId` | Post ID the comment belongs to |
+| `updatedAt` | Comment last update timestamp |
+| `userId` | User ID who created the comment |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -287,12 +287,12 @@ API path: `/comments`
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `createdAt` |  |
-| `id` |  |
-| `title` |  |
-| `updatedAt` |  |
-| `userId` |  |
+| `content` | Post content in Korean |
+| `createdAt` | Post creation timestamp |
+| `id` | Post ID |
+| `title` | Post title in Korean |
+| `updatedAt` | Post last update timestamp |
+| `userId` | User ID who created the post |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -302,10 +302,10 @@ API path: `/posts`
 
 | Field | Description |
 | --- | --- |
-| `completed` |  |
-| `id` |  |
-| `title` |  |
-| `userId` |  |
+| `completed` | Todo completion status |
+| `id` | Todo ID |
+| `title` | Todo title in Korean |
+| `userId` | User ID who owns the todo |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -315,17 +315,17 @@ API path: `/todos`
 
 | Field | Description |
 | --- | --- |
-| `city` |  |
-| `district` |  |
-| `email` |  |
-| `id` |  |
-| `name` |  |
-| `phone` |  |
-| `province` |  |
-| `street` |  |
-| `username` |  |
-| `website` |  |
-| `zipcode` |  |
+| `city` | User city in Korean |
+| `district` | User district in Korean |
+| `email` | User email |
+| `id` | User ID |
+| `name` | User name in Korean |
+| `phone` | User phone number |
+| `province` | User province in Korean |
+| `street` | User street in Korean |
+| `username` | Username |
+| `website` | User website |
+| `zipcode` | User zipcode |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -354,12 +354,12 @@ Create an instance: `comment = client.Comment`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `String` |  |
-| `createdAt` | `String` |  |
-| `id` | `Integer` |  |
-| `postId` | `Integer` |  |
-| `updatedAt` | `String` |  |
-| `userId` | `Integer` |  |
+| `content` | `String` | Comment content in Korean |
+| `createdAt` | `String` | Comment creation timestamp |
+| `id` | `Integer` | Comment ID |
+| `postId` | `Integer` | Post ID the comment belongs to |
+| `updatedAt` | `String` | Comment last update timestamp |
+| `userId` | `Integer` | User ID who created the comment |
 
 #### Example: Load
 
@@ -401,12 +401,12 @@ Create an instance: `post = client.Post`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `String` |  |
-| `createdAt` | `String` |  |
-| `id` | `Integer` |  |
-| `title` | `String` |  |
-| `updatedAt` | `String` |  |
-| `userId` | `Integer` |  |
+| `content` | `String` | Post content in Korean |
+| `createdAt` | `String` | Post creation timestamp |
+| `id` | `Integer` | Post ID |
+| `title` | `String` | Post title in Korean |
+| `updatedAt` | `String` | Post last update timestamp |
+| `userId` | `Integer` | User ID who created the post |
 
 #### Example: Load
 
@@ -448,10 +448,10 @@ Create an instance: `todo = client.Todo`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `completed` | `Boolean` |  |
-| `id` | `Integer` |  |
-| `title` | `String` |  |
-| `userId` | `Integer` |  |
+| `completed` | `Boolean` | Todo completion status |
+| `id` | `Integer` | Todo ID |
+| `title` | `String` | Todo title in Korean |
+| `userId` | `Integer` | User ID who owns the todo |
 
 #### Example: Load
 
@@ -493,17 +493,17 @@ Create an instance: `user = client.User`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | `String` |  |
-| `district` | `String` |  |
-| `email` | `String` |  |
-| `id` | `Integer` |  |
-| `name` | `String` |  |
-| `phone` | `String` |  |
-| `province` | `String` |  |
-| `street` | `String` |  |
-| `username` | `String` |  |
-| `website` | `String` |  |
-| `zipcode` | `String` |  |
+| `city` | `String` | User city in Korean |
+| `district` | `String` | User district in Korean |
+| `email` | `String` | User email |
+| `id` | `Integer` | User ID |
+| `name` | `String` | User name in Korean |
+| `phone` | `String` | User phone number |
+| `province` | `String` | User province in Korean |
+| `street` | `String` | User street in Korean |
+| `username` | `String` | Username |
+| `website` | `String` | User website |
+| `zipcode` | `String` | User zipcode |
 
 #### Example: Load
 

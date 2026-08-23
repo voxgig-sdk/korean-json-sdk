@@ -33,6 +33,9 @@ class KoreanJsonConfig
         return [
             "main" => [
                 "name" => "KoreanJson",
+                "slug" => "korean-json",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -58,26 +61,32 @@ class KoreanJsonConfig
           'fields' => [
             [
               'name' => 'content',
+              'short' => 'Comment content in Korean',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'createdAt',
+              'short' => 'Comment creation timestamp',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'short' => 'Comment ID',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'postId',
+              'short' => 'Post ID the comment belongs to',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'updatedAt',
+              'short' => 'Comment last update timestamp',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'userId',
+              'short' => 'User ID who created the comment',
               'type' => '`$INTEGER`',
             ],
           ],
@@ -257,26 +266,32 @@ class KoreanJsonConfig
           'fields' => [
             [
               'name' => 'content',
+              'short' => 'Post content in Korean',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'createdAt',
+              'short' => 'Post creation timestamp',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'short' => 'Post ID',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'title',
+              'short' => 'Post title in Korean',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'updatedAt',
+              'short' => 'Post last update timestamp',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'userId',
+              'short' => 'User ID who created the post',
               'type' => '`$INTEGER`',
             ],
           ],
@@ -449,18 +464,22 @@ class KoreanJsonConfig
           'fields' => [
             [
               'name' => 'completed',
+              'short' => 'Todo completion status',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'id',
+              'short' => 'Todo ID',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'title',
+              'short' => 'Todo title in Korean',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'userId',
+              'short' => 'User ID who owns the todo',
               'type' => '`$INTEGER`',
             ],
           ],
@@ -633,46 +652,57 @@ class KoreanJsonConfig
           'fields' => [
             [
               'name' => 'city',
+              'short' => 'User city in Korean',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'district',
+              'short' => 'User district in Korean',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'email',
+              'short' => 'User email',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'short' => 'User ID',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'name',
+              'short' => 'User name in Korean',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'phone',
+              'short' => 'User phone number',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'province',
+              'short' => 'User province in Korean',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'street',
+              'short' => 'User street in Korean',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'username',
+              'short' => 'Username',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'website',
+              'short' => 'User website',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'zipcode',
+              'short' => 'User zipcode',
               'type' => '`$STRING`',
             ],
           ],

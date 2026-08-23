@@ -104,12 +104,12 @@ $comment = $client->Comment();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `string` | No |  |
-| `createdAt` | `string` | No |  |
-| `id` | `int` | No |  |
-| `postId` | `int` | No |  |
-| `updatedAt` | `string` | No |  |
-| `userId` | `int` | No |  |
+| `content` | `string` | No | Comment content in Korean |
+| `createdAt` | `string` | No | Comment creation timestamp |
+| `id` | `int` | No | Comment ID |
+| `postId` | `int` | No | Post ID the comment belongs to |
+| `updatedAt` | `string` | No | Comment last update timestamp |
+| `userId` | `int` | No | User ID who created the comment |
 
 ### Operations
 
@@ -197,12 +197,12 @@ $post = $client->Post();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `string` | No |  |
-| `createdAt` | `string` | No |  |
-| `id` | `int` | No |  |
-| `title` | `string` | No |  |
-| `updatedAt` | `string` | No |  |
-| `userId` | `int` | No |  |
+| `content` | `string` | No | Post content in Korean |
+| `createdAt` | `string` | No | Post creation timestamp |
+| `id` | `int` | No | Post ID |
+| `title` | `string` | No | Post title in Korean |
+| `updatedAt` | `string` | No | Post last update timestamp |
+| `userId` | `int` | No | User ID who created the post |
 
 ### Operations
 
@@ -290,10 +290,10 @@ $todo = $client->Todo();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `completed` | `bool` | No |  |
-| `id` | `int` | No |  |
-| `title` | `string` | No |  |
-| `userId` | `int` | No |  |
+| `completed` | `bool` | No | Todo completion status |
+| `id` | `int` | No | Todo ID |
+| `title` | `string` | No | Todo title in Korean |
+| `userId` | `int` | No | User ID who owns the todo |
 
 ### Operations
 
@@ -381,17 +381,17 @@ $user = $client->User();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | `string` | No |  |
-| `district` | `string` | No |  |
-| `email` | `string` | No |  |
-| `id` | `int` | No |  |
-| `name` | `string` | No |  |
-| `phone` | `string` | No |  |
-| `province` | `string` | No |  |
-| `street` | `string` | No |  |
-| `username` | `string` | No |  |
-| `website` | `string` | No |  |
-| `zipcode` | `string` | No |  |
+| `city` | `string` | No | User city in Korean |
+| `district` | `string` | No | User district in Korean |
+| `email` | `string` | No | User email |
+| `id` | `int` | No | User ID |
+| `name` | `string` | No | User name in Korean |
+| `phone` | `string` | No | User phone number |
+| `province` | `string` | No | User province in Korean |
+| `street` | `string` | No | User street in Korean |
+| `username` | `string` | No | Username |
+| `website` | `string` | No | User website |
+| `zipcode` | `string` | No | User zipcode |
 
 ### Operations
 

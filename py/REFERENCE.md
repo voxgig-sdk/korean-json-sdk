@@ -99,12 +99,12 @@ comment = client.Comment()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `str` | No |  |
-| `createdAt` | `str` | No |  |
-| `id` | `int` | No |  |
-| `postId` | `int` | No |  |
-| `updatedAt` | `str` | No |  |
-| `userId` | `int` | No |  |
+| `content` | `str` | No | Comment content in Korean |
+| `createdAt` | `str` | No | Comment creation timestamp |
+| `id` | `int` | No | Comment ID |
+| `postId` | `int` | No | Post ID the comment belongs to |
+| `updatedAt` | `str` | No | Comment last update timestamp |
+| `userId` | `int` | No | User ID who created the comment |
 
 ### Operations
 
@@ -193,12 +193,12 @@ post = client.Post()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `str` | No |  |
-| `createdAt` | `str` | No |  |
-| `id` | `int` | No |  |
-| `title` | `str` | No |  |
-| `updatedAt` | `str` | No |  |
-| `userId` | `int` | No |  |
+| `content` | `str` | No | Post content in Korean |
+| `createdAt` | `str` | No | Post creation timestamp |
+| `id` | `int` | No | Post ID |
+| `title` | `str` | No | Post title in Korean |
+| `updatedAt` | `str` | No | Post last update timestamp |
+| `userId` | `int` | No | User ID who created the post |
 
 ### Operations
 
@@ -287,10 +287,10 @@ todo = client.Todo()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `completed` | `bool` | No |  |
-| `id` | `int` | No |  |
-| `title` | `str` | No |  |
-| `userId` | `int` | No |  |
+| `completed` | `bool` | No | Todo completion status |
+| `id` | `int` | No | Todo ID |
+| `title` | `str` | No | Todo title in Korean |
+| `userId` | `int` | No | User ID who owns the todo |
 
 ### Operations
 
@@ -379,17 +379,17 @@ user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | `str` | No |  |
-| `district` | `str` | No |  |
-| `email` | `str` | No |  |
-| `id` | `int` | No |  |
-| `name` | `str` | No |  |
-| `phone` | `str` | No |  |
-| `province` | `str` | No |  |
-| `street` | `str` | No |  |
-| `username` | `str` | No |  |
-| `website` | `str` | No |  |
-| `zipcode` | `str` | No |  |
+| `city` | `str` | No | User city in Korean |
+| `district` | `str` | No | User district in Korean |
+| `email` | `str` | No | User email |
+| `id` | `int` | No | User ID |
+| `name` | `str` | No | User name in Korean |
+| `phone` | `str` | No | User phone number |
+| `province` | `str` | No | User province in Korean |
+| `street` | `str` | No | User street in Korean |
+| `username` | `str` | No | Username |
+| `website` | `str` | No | User website |
+| `zipcode` | `str` | No | User zipcode |
 
 ### Operations
 

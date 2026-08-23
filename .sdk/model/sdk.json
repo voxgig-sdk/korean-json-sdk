@@ -36,36 +36,42 @@
               "active": true,
               "name": "content",
               "req": false,
+              "short": "Comment content in Korean",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "createdAt",
               "req": false,
+              "short": "Comment creation timestamp",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Comment ID",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "postId",
               "req": false,
+              "short": "Post ID the comment belongs to",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "updatedAt",
               "req": false,
+              "short": "Comment last update timestamp",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "userId",
               "req": false,
+              "short": "User ID who created the comment",
               "type": "`$INTEGER`"
             }
           ],
@@ -267,36 +273,42 @@
               "active": true,
               "name": "content",
               "req": false,
+              "short": "Post content in Korean",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "createdAt",
               "req": false,
+              "short": "Post creation timestamp",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Post ID",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "Post title in Korean",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "updatedAt",
               "req": false,
+              "short": "Post last update timestamp",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "userId",
               "req": false,
+              "short": "User ID who created the post",
               "type": "`$INTEGER`"
             }
           ],
@@ -489,24 +501,28 @@
               "active": true,
               "name": "completed",
               "req": false,
+              "short": "Todo completion status",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Todo ID",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "Todo title in Korean",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "userId",
               "req": false,
+              "short": "User ID who owns the todo",
               "type": "`$INTEGER`"
             }
           ],
@@ -699,66 +715,77 @@
               "active": true,
               "name": "city",
               "req": false,
+              "short": "User city in Korean",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "district",
               "req": false,
+              "short": "User district in Korean",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "email",
               "req": false,
+              "short": "User email",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "User ID",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "User name in Korean",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "phone",
               "req": false,
+              "short": "User phone number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "province",
               "req": false,
+              "short": "User province in Korean",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "street",
               "req": false,
+              "short": "User street in Korean",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "username",
               "req": false,
+              "short": "Username",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "website",
               "req": false,
+              "short": "User website",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "zipcode",
               "req": false,
+              "short": "User zipcode",
               "type": "`$STRING`"
             }
           ],

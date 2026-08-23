@@ -1,0 +1,212 @@
+# Entity: comment
+
+main: kit: entity: comment: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "content"
+      req: false
+      short: "Comment content in Korean"
+      type: "`$STRING`"
+    }
+    {
+      name: "createdAt"
+      req: false
+      short: "Comment creation timestamp"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Comment ID"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "postId"
+      req: false
+      short: "Post ID the comment belongs to"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "updatedAt"
+      req: false
+      short: "Comment last update timestamp"
+      type: "`$STRING`"
+    }
+    {
+      name: "userId"
+      req: false
+      short: "User ID who created the comment"
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "comment"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/comments"
+          parts: [
+            "comments"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "post_id"
+                orig: "post_id"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "user_id"
+                orig: "user_id"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/comments"
+          parts: [
+            "comments"
+          ]
+          select: {
+            exist: [
+              "post_id"
+              "user_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/comments/{id}"
+          parts: [
+            "comments"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "DELETE"
+          orig: "/comments/{id}"
+          parts: [
+            "comments"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/comments/{id}"
+          parts: [
+            "comments"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
