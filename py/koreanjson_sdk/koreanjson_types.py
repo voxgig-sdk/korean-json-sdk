@@ -30,12 +30,8 @@ class CommentLoadMatch(TypedDict):
 
 
 class CommentListMatch(TypedDict, total=False):
-    content: str
-    createdAt: str
-    id: int
-    postId: int
-    updatedAt: str
-    userId: int
+    post_id: int
+    user_id: int
 
 
 class CommentCreateData(TypedDict, total=False):
@@ -77,12 +73,7 @@ class PostLoadMatch(TypedDict):
 
 
 class PostListMatch(TypedDict, total=False):
-    content: str
-    createdAt: str
-    id: int
-    title: str
-    updatedAt: str
-    userId: int
+    user_id: int
 
 
 class PostCreateData(TypedDict, total=False):
@@ -122,10 +113,7 @@ class TodoLoadMatch(TypedDict):
 
 
 class TodoListMatch(TypedDict, total=False):
-    completed: bool
-    id: int
-    title: str
-    userId: int
+    user_id: int
 
 
 class TodoCreateData(TypedDict, total=False):

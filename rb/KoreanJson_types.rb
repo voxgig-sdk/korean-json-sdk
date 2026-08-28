@@ -48,30 +48,14 @@ CommentLoadMatch = Struct.new(
 
 # Request payload for Comment#list.
 #
-# @!attribute [rw] content
-#   @return [String, nil]
-#
-# @!attribute [rw] createdAt
-#   @return [String, nil]
-#
-# @!attribute [rw] id
+# @!attribute [rw] post_id
 #   @return [Integer, nil]
 #
-# @!attribute [rw] postId
-#   @return [Integer, nil]
-#
-# @!attribute [rw] updatedAt
-#   @return [String, nil]
-#
-# @!attribute [rw] userId
+# @!attribute [rw] user_id
 #   @return [Integer, nil]
 CommentListMatch = Struct.new(
-  :content,
-  :createdAt,
-  :id,
-  :postId,
-  :updatedAt,
-  :userId,
+  :post_id,
+  :user_id,
   keyword_init: true
 )
 
@@ -182,30 +166,10 @@ PostLoadMatch = Struct.new(
 
 # Request payload for Post#list.
 #
-# @!attribute [rw] content
-#   @return [String, nil]
-#
-# @!attribute [rw] createdAt
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
-#
-# @!attribute [rw] updatedAt
-#   @return [String, nil]
-#
-# @!attribute [rw] userId
+# @!attribute [rw] user_id
 #   @return [Integer, nil]
 PostListMatch = Struct.new(
-  :content,
-  :createdAt,
-  :id,
-  :title,
-  :updatedAt,
-  :userId,
+  :user_id,
   keyword_init: true
 )
 
@@ -308,22 +272,10 @@ TodoLoadMatch = Struct.new(
 
 # Request payload for Todo#list.
 #
-# @!attribute [rw] completed
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
-#
-# @!attribute [rw] userId
+# @!attribute [rw] user_id
 #   @return [Integer, nil]
 TodoListMatch = Struct.new(
-  :completed,
-  :id,
-  :title,
-  :userId,
+  :user_id,
   keyword_init: true
 )
 

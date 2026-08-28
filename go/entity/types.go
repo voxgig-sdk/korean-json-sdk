@@ -29,12 +29,8 @@ type CommentLoadMatch struct {
 
 // CommentListMatch is the typed request payload for Comment.ListTyped.
 type CommentListMatch struct {
-	Content *string `json:"content,omitempty"`
-	CreatedAt *string `json:"createdAt,omitempty"`
-	Id *int `json:"id,omitempty"`
-	PostId *int `json:"postId,omitempty"`
-	UpdatedAt *string `json:"updatedAt,omitempty"`
-	UserId *int `json:"userId,omitempty"`
+	PostId *int `json:"post_id,omitempty"`
+	UserId *int `json:"user_id,omitempty"`
 }
 
 // CommentCreateData is the typed request payload for Comment.CreateTyped.
@@ -79,12 +75,7 @@ type PostLoadMatch struct {
 
 // PostListMatch is the typed request payload for Post.ListTyped.
 type PostListMatch struct {
-	Content *string `json:"content,omitempty"`
-	CreatedAt *string `json:"createdAt,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Title *string `json:"title,omitempty"`
-	UpdatedAt *string `json:"updatedAt,omitempty"`
-	UserId *int `json:"userId,omitempty"`
+	UserId *int `json:"user_id,omitempty"`
 }
 
 // PostCreateData is the typed request payload for Post.CreateTyped.
@@ -127,10 +118,7 @@ type TodoLoadMatch struct {
 
 // TodoListMatch is the typed request payload for Todo.ListTyped.
 type TodoListMatch struct {
-	Completed *bool `json:"completed,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Title *string `json:"title,omitempty"`
-	UserId *int `json:"userId,omitempty"`
+	UserId *int `json:"user_id,omitempty"`
 }
 
 // TodoCreateData is the typed request payload for Todo.CreateTyped.

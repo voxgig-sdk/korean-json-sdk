@@ -32,12 +32,8 @@ class CommentLoadMatch
 /** Request payload for Comment#list. */
 class CommentListMatch
 {
-    public ?string $content = null;
-    public ?string $createdAt = null;
-    public ?int $id = null;
-    public ?int $postId = null;
-    public ?string $updatedAt = null;
-    public ?int $userId = null;
+    public ?int $post_id = null;
+    public ?int $user_id = null;
 }
 
 /** Request payload for Comment#create. */
@@ -88,12 +84,7 @@ class PostLoadMatch
 /** Request payload for Post#list. */
 class PostListMatch
 {
-    public ?string $content = null;
-    public ?string $createdAt = null;
-    public ?int $id = null;
-    public ?string $title = null;
-    public ?string $updatedAt = null;
-    public ?int $userId = null;
+    public ?int $user_id = null;
 }
 
 /** Request payload for Post#create. */
@@ -142,10 +133,7 @@ class TodoLoadMatch
 /** Request payload for Todo#list. */
 class TodoListMatch
 {
-    public ?bool $completed = null;
-    public ?int $id = null;
-    public ?string $title = null;
-    public ?int $userId = null;
+    public ?int $user_id = null;
 }
 
 /** Request payload for Todo#create. */

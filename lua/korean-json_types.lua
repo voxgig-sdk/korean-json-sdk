@@ -18,12 +18,8 @@
 ---@field id number
 
 ---@class CommentListMatch
----@field content? string
----@field createdAt? string
----@field id? number
----@field postId? number
----@field updatedAt? string
----@field userId? number
+---@field post_id? number
+---@field user_id? number
 
 ---@class CommentCreateData
 ---@field content? string
@@ -56,12 +52,7 @@
 ---@field id number
 
 ---@class PostListMatch
----@field content? string
----@field createdAt? string
----@field id? number
----@field title? string
----@field updatedAt? string
----@field userId? number
+---@field user_id? number
 
 ---@class PostCreateData
 ---@field content? string
@@ -92,10 +83,7 @@
 ---@field id number
 
 ---@class TodoListMatch
----@field completed? boolean
----@field id? number
----@field title? string
----@field userId? number
+---@field user_id? number
 
 ---@class TodoCreateData
 ---@field completed? boolean

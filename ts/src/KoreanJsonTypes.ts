@@ -19,12 +19,8 @@ export interface CommentLoadMatch {
 }
 
 export interface CommentListMatch {
-  content?: string
-  createdAt?: string
-  id?: number
-  postId?: number
-  updatedAt?: string
-  userId?: number
+  post_id?: number
+  user_id?: number
 }
 
 export interface CommentCreateData {
@@ -63,12 +59,7 @@ export interface PostLoadMatch {
 }
 
 export interface PostListMatch {
-  content?: string
-  createdAt?: string
-  id?: number
-  title?: string
-  updatedAt?: string
-  userId?: number
+  user_id?: number
 }
 
 export interface PostCreateData {
@@ -105,10 +96,7 @@ export interface TodoLoadMatch {
 }
 
 export interface TodoListMatch {
-  completed?: boolean
-  id?: number
-  title?: string
-  userId?: number
+  user_id?: number
 }
 
 export interface TodoCreateData {
