@@ -12,6 +12,7 @@ main: kit: entity: comment: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "createdAt"
       req: false
       short: "Comment creation timestamp"
@@ -30,6 +31,7 @@ main: kit: entity: comment: {
       type: "`$INTEGER`"
     }
     {
+      format: "date-time"
       name: "updatedAt"
       req: false
       short: "Comment last update timestamp"
@@ -56,8 +58,10 @@ main: kit: entity: comment: {
         {
           method: "POST"
           orig: "/comments"
-          parts: [
-            "comments"
+          segments: [
+            {
+              lit: "comments"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -90,8 +94,10 @@ main: kit: entity: comment: {
           }
           method: "GET"
           orig: "/comments"
-          parts: [
-            "comments"
+          segments: [
+            {
+              lit: "comments"
+            }
           ]
           select: {
             exist: [
@@ -123,9 +129,13 @@ main: kit: entity: comment: {
           }
           method: "GET"
           orig: "/comments/{id}"
-          parts: [
-            "comments"
-            "{id}"
+          segments: [
+            {
+              lit: "comments"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -156,9 +166,13 @@ main: kit: entity: comment: {
           }
           method: "DELETE"
           orig: "/comments/{id}"
-          parts: [
-            "comments"
-            "{id}"
+          segments: [
+            {
+              lit: "comments"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -189,9 +203,13 @@ main: kit: entity: comment: {
           }
           method: "PUT"
           orig: "/comments/{id}"
-          parts: [
-            "comments"
-            "{id}"
+          segments: [
+            {
+              lit: "comments"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

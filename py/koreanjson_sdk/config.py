@@ -1,6 +1,14 @@
 # KoreanJson SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -61,6 +69,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "createdAt",
             "short": "Comment creation timestamp",
             "type": "`$STRING`",
@@ -76,6 +85,7 @@ def make_config():
             "type": "`$INTEGER`",
           },
           {
+            "format": "date-time",
             "name": "updatedAt",
             "short": "Comment last update timestamp",
             "type": "`$STRING`",
@@ -86,6 +96,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "comment",
         "op": {
           "create": {
@@ -97,14 +111,19 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/comments",
-                "parts": [
-                  "comments",
+                "segments": [
+                  {
+                    "lit": "comments",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "comments",
+                ],
               },
             ],
           },
@@ -132,8 +151,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/comments",
-                "parts": [
-                  "comments",
+                "segments": [
+                  {
+                    "lit": "comments",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -145,6 +166,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "comments",
+                ],
               },
             ],
           },
@@ -167,9 +191,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/comments/{id}",
-                "parts": [
-                  "comments",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "comments",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -180,6 +208,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "comments",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -202,9 +234,13 @@ def make_config():
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/comments/{id}",
-                "parts": [
-                  "comments",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "comments",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -215,6 +251,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "comments",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -237,9 +277,13 @@ def make_config():
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/comments/{id}",
-                "parts": [
-                  "comments",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "comments",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -250,6 +294,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "comments",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -266,6 +314,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "createdAt",
             "short": "Post creation timestamp",
             "type": "`$STRING`",
@@ -281,6 +330,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "updatedAt",
             "short": "Post last update timestamp",
             "type": "`$STRING`",
@@ -291,6 +341,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "post",
         "op": {
           "create": {
@@ -302,14 +356,19 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/posts",
-                "parts": [
-                  "posts",
+                "segments": [
+                  {
+                    "lit": "posts",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "posts",
+                ],
               },
             ],
           },
@@ -331,8 +390,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/posts",
-                "parts": [
-                  "posts",
+                "segments": [
+                  {
+                    "lit": "posts",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -343,6 +404,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "posts",
+                ],
               },
             ],
           },
@@ -365,9 +429,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/posts/{id}",
-                "parts": [
-                  "posts",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "posts",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -378,6 +446,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "posts",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -400,9 +472,13 @@ def make_config():
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/posts/{id}",
-                "parts": [
-                  "posts",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "posts",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -413,6 +489,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "posts",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -435,9 +515,13 @@ def make_config():
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/posts/{id}",
-                "parts": [
-                  "posts",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "posts",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -448,6 +532,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "posts",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -479,6 +567,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "todo",
         "op": {
           "create": {
@@ -490,14 +582,19 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/todos",
-                "parts": [
-                  "todos",
+                "segments": [
+                  {
+                    "lit": "todos",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "todos",
+                ],
               },
             ],
           },
@@ -519,8 +616,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/todos",
-                "parts": [
-                  "todos",
+                "segments": [
+                  {
+                    "lit": "todos",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -531,6 +630,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "todos",
+                ],
               },
             ],
           },
@@ -553,9 +655,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/todos/{id}",
-                "parts": [
-                  "todos",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "todos",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -566,6 +672,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "todos",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -588,9 +698,13 @@ def make_config():
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/todos/{id}",
-                "parts": [
-                  "todos",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "todos",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -601,6 +715,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "todos",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -623,9 +741,13 @@ def make_config():
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/todos/{id}",
-                "parts": [
-                  "todos",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "todos",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -636,6 +758,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "todos",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -657,6 +783,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "email",
             "name": "email",
             "short": "User email",
             "type": "`$STRING`",
@@ -702,6 +829,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "user",
         "op": {
           "create": {
@@ -713,14 +844,19 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/users",
-                "parts": [
-                  "users",
+                "segments": [
+                  {
+                    "lit": "users",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "users",
+                ],
               },
             ],
           },
@@ -733,14 +869,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/users",
-                "parts": [
-                  "users",
+                "segments": [
+                  {
+                    "lit": "users",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "users",
+                ],
               },
             ],
           },
@@ -763,9 +904,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/users/{id}",
-                "parts": [
-                  "users",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "users",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -776,6 +921,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "users",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -798,9 +947,13 @@ def make_config():
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/users/{id}",
-                "parts": [
-                  "users",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "users",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -811,6 +964,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "users",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -833,9 +990,13 @@ def make_config():
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/users/{id}",
-                "parts": [
-                  "users",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "users",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -846,6 +1007,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "users",
+                  "{id}",
+                ],
               },
             ],
           },

@@ -52,6 +52,7 @@ module KoreanJsonConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "createdAt",
               "short" => "Comment creation timestamp",
               "type" => "`$STRING`",
@@ -67,6 +68,7 @@ module KoreanJsonConfig
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "date-time",
               "name" => "updatedAt",
               "short" => "Comment last update timestamp",
               "type" => "`$STRING`",
@@ -77,6 +79,10 @@ module KoreanJsonConfig
               "type" => "`$INTEGER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "comment",
           "op" => {
             "create" => {
@@ -88,14 +94,19 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/comments",
-                  "parts" => [
-                    "comments",
+                  "segments" => [
+                    {
+                      "lit" => "comments",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "comments",
+                  ],
                 },
               ],
             },
@@ -123,8 +134,10 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/comments",
-                  "parts" => [
-                    "comments",
+                  "segments" => [
+                    {
+                      "lit" => "comments",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -136,6 +149,9 @@ module KoreanJsonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "comments",
+                  ],
                 },
               ],
             },
@@ -158,9 +174,13 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/comments/{id}",
-                  "parts" => [
-                    "comments",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "comments",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -171,6 +191,10 @@ module KoreanJsonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "comments",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -193,9 +217,13 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/comments/{id}",
-                  "parts" => [
-                    "comments",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "comments",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -206,6 +234,10 @@ module KoreanJsonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "comments",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -228,9 +260,13 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "PUT",
                   "orig" => "/comments/{id}",
-                  "parts" => [
-                    "comments",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "comments",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -241,6 +277,10 @@ module KoreanJsonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "comments",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -257,6 +297,7 @@ module KoreanJsonConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "createdAt",
               "short" => "Post creation timestamp",
               "type" => "`$STRING`",
@@ -272,6 +313,7 @@ module KoreanJsonConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "updatedAt",
               "short" => "Post last update timestamp",
               "type" => "`$STRING`",
@@ -282,6 +324,10 @@ module KoreanJsonConfig
               "type" => "`$INTEGER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "post",
           "op" => {
             "create" => {
@@ -293,14 +339,19 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/posts",
-                  "parts" => [
-                    "posts",
+                  "segments" => [
+                    {
+                      "lit" => "posts",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "posts",
+                  ],
                 },
               ],
             },
@@ -322,8 +373,10 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/posts",
-                  "parts" => [
-                    "posts",
+                  "segments" => [
+                    {
+                      "lit" => "posts",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -334,6 +387,9 @@ module KoreanJsonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "posts",
+                  ],
                 },
               ],
             },
@@ -356,9 +412,13 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/posts/{id}",
-                  "parts" => [
-                    "posts",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "posts",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -369,6 +429,10 @@ module KoreanJsonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "posts",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -391,9 +455,13 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/posts/{id}",
-                  "parts" => [
-                    "posts",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "posts",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -404,6 +472,10 @@ module KoreanJsonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "posts",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -426,9 +498,13 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "PUT",
                   "orig" => "/posts/{id}",
-                  "parts" => [
-                    "posts",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "posts",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -439,6 +515,10 @@ module KoreanJsonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "posts",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -470,6 +550,10 @@ module KoreanJsonConfig
               "type" => "`$INTEGER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "todo",
           "op" => {
             "create" => {
@@ -481,14 +565,19 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/todos",
-                  "parts" => [
-                    "todos",
+                  "segments" => [
+                    {
+                      "lit" => "todos",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "todos",
+                  ],
                 },
               ],
             },
@@ -510,8 +599,10 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/todos",
-                  "parts" => [
-                    "todos",
+                  "segments" => [
+                    {
+                      "lit" => "todos",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -522,6 +613,9 @@ module KoreanJsonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "todos",
+                  ],
                 },
               ],
             },
@@ -544,9 +638,13 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/todos/{id}",
-                  "parts" => [
-                    "todos",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "todos",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -557,6 +655,10 @@ module KoreanJsonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "todos",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -579,9 +681,13 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/todos/{id}",
-                  "parts" => [
-                    "todos",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "todos",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -592,6 +698,10 @@ module KoreanJsonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "todos",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -614,9 +724,13 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "PUT",
                   "orig" => "/todos/{id}",
-                  "parts" => [
-                    "todos",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "todos",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -627,6 +741,10 @@ module KoreanJsonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "todos",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -648,6 +766,7 @@ module KoreanJsonConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "email",
               "name" => "email",
               "short" => "User email",
               "type" => "`$STRING`",
@@ -693,6 +812,10 @@ module KoreanJsonConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "user",
           "op" => {
             "create" => {
@@ -704,14 +827,19 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/users",
-                  "parts" => [
-                    "users",
+                  "segments" => [
+                    {
+                      "lit" => "users",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "users",
+                  ],
                 },
               ],
             },
@@ -724,14 +852,19 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/users",
-                  "parts" => [
-                    "users",
+                  "segments" => [
+                    {
+                      "lit" => "users",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "users",
+                  ],
                 },
               ],
             },
@@ -754,9 +887,13 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/users/{id}",
-                  "parts" => [
-                    "users",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "users",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -767,6 +904,10 @@ module KoreanJsonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "users",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -789,9 +930,13 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/users/{id}",
-                  "parts" => [
-                    "users",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "users",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -802,6 +947,10 @@ module KoreanJsonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "users",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -824,9 +973,13 @@ module KoreanJsonConfig
                   "kind" => "http",
                   "method" => "PUT",
                   "orig" => "/users/{id}",
-                  "parts" => [
-                    "users",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "users",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -837,6 +990,10 @@ module KoreanJsonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "users",
+                    "{id}",
+                  ],
                 },
               ],
             },

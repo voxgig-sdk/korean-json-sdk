@@ -12,6 +12,7 @@ main: kit: entity: post: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "createdAt"
       req: false
       short: "Post creation timestamp"
@@ -30,6 +31,7 @@ main: kit: entity: post: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "updatedAt"
       req: false
       short: "Post last update timestamp"
@@ -56,8 +58,10 @@ main: kit: entity: post: {
         {
           method: "POST"
           orig: "/posts"
-          parts: [
-            "posts"
+          segments: [
+            {
+              lit: "posts"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -83,8 +87,10 @@ main: kit: entity: post: {
           }
           method: "GET"
           orig: "/posts"
-          parts: [
-            "posts"
+          segments: [
+            {
+              lit: "posts"
+            }
           ]
           select: {
             exist: [
@@ -115,9 +121,13 @@ main: kit: entity: post: {
           }
           method: "GET"
           orig: "/posts/{id}"
-          parts: [
-            "posts"
-            "{id}"
+          segments: [
+            {
+              lit: "posts"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -148,9 +158,13 @@ main: kit: entity: post: {
           }
           method: "DELETE"
           orig: "/posts/{id}"
-          parts: [
-            "posts"
-            "{id}"
+          segments: [
+            {
+              lit: "posts"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -181,9 +195,13 @@ main: kit: entity: post: {
           }
           method: "PUT"
           orig: "/posts/{id}"
-          parts: [
-            "posts"
-            "{id}"
+          segments: [
+            {
+              lit: "posts"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

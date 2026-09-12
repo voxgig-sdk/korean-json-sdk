@@ -101,7 +101,7 @@ func TestPostEntity(t *testing.T) {
 		// CREATE
 		postRef01Ent := client.Post(nil)
 		postRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "post"}, setup.data), "post_ref01"))
+			vs.GetPath(setup.data, []any{"new", "post"}), "post_ref01"))
 
 		postRef01DataResult, err := postRef01Ent.Create(postRef01Data, nil)
 		if err != nil {
@@ -225,7 +225,7 @@ func postBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"post01", "post02", "post03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -253,10 +253,22 @@ func postBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["KOREAN_JSON_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewKoreanJsonSDK(core.ToMapAny(mergedOpts))
 	}
