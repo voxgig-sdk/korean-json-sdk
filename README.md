@@ -105,7 +105,7 @@ local results, err = client:Post():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/korean-json` | publish pending — [install from git tag](https://github.com/voxgig-sdk/korean-json-sdk/releases) |
+| TypeScript | `@voxgig-sdk/korean-json-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/korean-json-sdk/releases) |
 | Python | `voxgig-sdk-korean-json` | publish pending — [install from git tag](https://github.com/voxgig-sdk/korean-json-sdk/releases) |
 | PHP | `voxgig-sdk/korean-json` | publish pending — [install from git tag](https://github.com/voxgig-sdk/korean-json-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/korean-json-sdk/go` | `go get github.com/voxgig-sdk/korean-json-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Post():list()
 ### TypeScript
 
 ```ts
-import { KoreanJsonSDK } from '@voxgig-sdk/korean-json'
+import { KoreanJsonSDK } from '@voxgig-sdk/korean-json-sdk'
 
 const client = new KoreanJsonSDK()
 

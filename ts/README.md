@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { KoreanJsonSDK } from '@voxgig-sdk/korean-json'
+import { KoreanJsonSDK } from '@voxgig-sdk/korean-json-sdk'
 
 const client = new KoreanJsonSDK()
 ```
@@ -660,7 +660,7 @@ korean-json/
 Import the SDK from the package root:
 
 ```ts
-import { KoreanJsonSDK } from '@voxgig-sdk/korean-json'
+import { KoreanJsonSDK } from '@voxgig-sdk/korean-json-sdk'
 ```
 
 ### Entity state
