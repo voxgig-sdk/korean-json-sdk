@@ -4,7 +4,10 @@ declare(strict_types=1);
 // KoreanJson SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class KoreanJsonFeatures
@@ -14,8 +17,14 @@ class KoreanJsonFeatures
         switch ($name) {
             case "base":
                 return new KoreanJsonBaseFeature();
+            case "ratelimit":
+                return new KoreanJsonRatelimitFeature();
+            case "retry":
+                return new KoreanJsonRetryFeature();
             case "test":
                 return new KoreanJsonTestFeature();
+            case "timeout":
+                return new KoreanJsonTimeoutFeature();
             default:
                 return new KoreanJsonBaseFeature();
         }
@@ -31,7 +40,10 @@ class KoreanJsonFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

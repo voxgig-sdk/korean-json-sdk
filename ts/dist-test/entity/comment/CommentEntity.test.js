@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.KOREAN_JSON_TEST_LIVE;
         for (const op of ['create', 'list', 'update', 'load', 'remove']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'comment.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'comment.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set KOREAN_JSON_TEST_COMMENT_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "content", "req": false, "short": "Comment content in Korean", "type": "`$STRING`", "index$": 0 }, { "active": true, "format": "date-time", "name": "createdAt", "req": false, "short": "Comment creation timestamp", "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "id", "req": false, "short": "Comment ID", "type": "`$INTEGER`", "index$": 2 }, { "active": true, "name": "postId", "req": false, "short": "Post ID the comment belongs to", "type": "`$INTEGER`", "index$": 3 }, { "active": true, "format": "date-time", "name": "updatedAt", "req": false, "short": "Comment last update timestamp", "type": "`$STRING`", "index$": 4 }, { "active": true, "name": "userId", "req": false, "short": "User ID who created the comment", "type": "`$INTEGER`", "index$": 5 }], "id": { "field": "id", "name": "id" }, "name": "comment", "op": { "create": { "input": "data", "name": "create", "points": [{ "active": true, "args": {}, "contract": { "id": "POST /comments", "json": "{\"operationId\":\"createComment\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"description\":\"Comment content in Korean\",\"type\":\"string\"},\"postId\":{\"description\":\"Post ID the comment belongs to\",\"type\":\"integer\"},\"userId\":{\"description\":\"User ID who created the comment\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"description\":\"Comment content in Korean\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Comment creation timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"id\":{\"description\":\"Comment ID\",\"type\":\"integer\"},\"postId\":{\"description\":\"Post ID the comment belongs to\",\"type\":\"integer\"},\"updatedAt\":{\"description\":\"Comment last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"userId\":{\"description\":\"User ID who created the comment\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Comment created successfully\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "POST", "orig": "/comments", "segments": [{ "lit": "comments" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" }, "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": { "query": [{ "active": true, "kind": "query", "name": "post_id", "orig": "post_id", "reqd": false, "type": "`$INTEGER`", "index$": 0 }, { "active": true, "kind": "query", "name": "user_id", "orig": "user_id", "reqd": false, "type": "`$INTEGER`", "index$": 1 }] }, "contract": { "id": "GET /comments", "json": "{\"operationId\":\"getComments\",\"parameters\":[{\"description\":\"Filter comments by user ID\",\"in\":\"query\",\"name\":\"userId\",\"required\":false,\"schema\":{\"type\":\"integer\"}},{\"description\":\"Filter comments by post ID\",\"in\":\"query\",\"name\":\"postId\",\"required\":false,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"content\":{\"description\":\"Comment content in Korean\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Comment creation timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"id\":{\"description\":\"Comment ID\",\"type\":\"integer\"},\"postId\":{\"description\":\"Post ID the comment belongs to\",\"type\":\"integer\"},\"updatedAt\":{\"description\":\"Comment last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"userId\":{\"description\":\"User ID who created the comment\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/comments", "segments": [{ "lit": "comments" }], "select": { "exist": ["post_id", "user_id"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "id", "orig": "id", "reqd": true, "type": "`$INTEGER`", "index$": 0 }] }, "contract": { "id": "GET /comments/{id}", "json": "{\"operationId\":\"getCommentById\",\"parameters\":[{\"description\":\"Comment ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"description\":\"Comment content in Korean\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Comment creation timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"id\":{\"description\":\"Comment ID\",\"type\":\"integer\"},\"postId\":{\"description\":\"Post ID the comment belongs to\",\"type\":\"integer\"},\"updatedAt\":{\"description\":\"Comment last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"userId\":{\"description\":\"User ID who created the comment\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Comment not found\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/comments/{id}", "segments": [{ "lit": "comments" }, { "var": "id" }], "select": { "exist": ["id"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" }, "remove": { "input": "data", "name": "remove", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "id", "orig": "id", "reqd": true, "type": "`$INTEGER`", "index$": 0 }] }, "contract": { "id": "DELETE /comments/{id}", "json": "{\"operationId\":\"deleteComment\",\"parameters\":[{\"description\":\"Comment ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Comment deleted successfully\"},\"404\":{\"description\":\"Comment not found\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "DELETE", "orig": "/comments/{id}", "segments": [{ "lit": "comments" }, { "var": "id" }], "select": { "exist": ["id"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "remove" }, "update": { "input": "data", "name": "update", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "id", "orig": "id", "reqd": true, "type": "`$INTEGER`", "index$": 0 }] }, "contract": { "id": "PUT /comments/{id}", "json": "{\"operationId\":\"updateComment\",\"parameters\":[{\"description\":\"Comment ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"description\":\"Comment content in Korean\",\"type\":\"string\"},\"postId\":{\"description\":\"Post ID the comment belongs to\",\"type\":\"integer\"},\"userId\":{\"description\":\"User ID who created the comment\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"description\":\"Comment content in Korean\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Comment creation timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"id\":{\"description\":\"Comment ID\",\"type\":\"integer\"},\"postId\":{\"description\":\"Post ID the comment belongs to\",\"type\":\"integer\"},\"updatedAt\":{\"description\":\"Comment last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"userId\":{\"description\":\"User ID who created the comment\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Comment updated successfully\"},\"404\":{\"description\":\"Comment not found\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "PUT", "orig": "/comments/{id}", "segments": [{ "lit": "comments" }, { "var": "id" }], "select": { "exist": ["id"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "update" } }, "relations": { "ancestors": [] }, "key$": "comment", "name__orig": "comment", "Name": "Comment", "name_": "comment", "name-": "comment", "NAME": "COMMENT", "index$": 0 }, { "active": true, "entity": "comment", "key$": "BasicCommentFlow", "kind": "basic", "name": "BasicCommentFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "comment_ref01" }, "match": {}, "op": "create", "spec": [], "valid": [], "index$": 0 }, { "active": true, "data": {}, "input": {}, "match": {}, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "comment_ref01" } }], "index$": 1 }, { "active": true, "data": {}, "input": { "ref": "comment_ref01", "srcdatavar": "comment_ref01_data", "suffix": "_up0", "textfield": "content" }, "match": {}, "op": "update", "spec": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-comment_ref01" } }], "valid": [], "index$": 2 }, { "active": true, "data": {}, "input": { "ref": "comment_ref01", "srcdatavar": "comment_ref01_data", "suffix": "_dt0" }, "match": { "id": "comment01" }, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-comment_ref01" } }], "index$": 3 }, { "active": true, "data": {}, "input": { "ref": "comment_ref01", "suffix": "_rm0" }, "match": { "id": "comment01" }, "op": "remove", "spec": [], "valid": [], "index$": 4 }, { "active": true, "data": {}, "input": { "suffix": "_rt0" }, "match": {}, "op": "list", "spec": [], "valid": [{ "apply": "ItemNotExists", "def": { "ref": "comment_ref01" } }], "index$": 5 }] }, 'Comment');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -125,12 +123,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['KOREAN_JSON_TEST_COMMENT_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'KOREAN_JSON_TEST_COMMENT_ENTID': idmap,
         'KOREAN_JSON_TEST_LIVE': 'FALSE',
@@ -138,7 +130,13 @@ function basicSetup(extra) {
     });
     idmap = env['KOREAN_JSON_TEST_COMMENT_ENTID'];
     const live = 'TRUE' === env.KOREAN_JSON_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['KOREAN_JSON_TEST_COMMENT_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.KoreanJsonSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -149,7 +147,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -161,7 +160,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.KOREAN_JSON_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

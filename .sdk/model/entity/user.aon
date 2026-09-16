@@ -85,6 +85,12 @@ main: kit: entity: user: {
       name: "create"
       points: [
         {
+          contract: {
+            id: "POST /users"
+            json: "{\"operationId\":\"createUser\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"city\":{\"description\":\"User city in Korean\",\"type\":\"string\"},\"district\":{\"description\":\"User district in Korean\",\"type\":\"string\"},\"email\":{\"description\":\"User email\",\"format\":\"email\",\"type\":\"string\"},\"name\":{\"description\":\"User name in Korean\",\"type\":\"string\"},\"phone\":{\"description\":\"User phone number\",\"type\":\"string\"},\"province\":{\"description\":\"User province in Korean\",\"type\":\"string\"},\"street\":{\"description\":\"User street in Korean\",\"type\":\"string\"},\"username\":{\"description\":\"Username\",\"type\":\"string\"},\"website\":{\"description\":\"User website\",\"type\":\"string\"},\"zipcode\":{\"description\":\"User zipcode\",\"type\":\"string\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"city\":{\"description\":\"User city in Korean\",\"type\":\"string\"},\"district\":{\"description\":\"User district in Korean\",\"type\":\"string\"},\"email\":{\"description\":\"User email\",\"format\":\"email\",\"type\":\"string\"},\"id\":{\"description\":\"User ID\",\"type\":\"integer\"},\"name\":{\"description\":\"User name in Korean\",\"type\":\"string\"},\"phone\":{\"description\":\"User phone number\",\"type\":\"string\"},\"province\":{\"description\":\"User province in Korean\",\"type\":\"string\"},\"street\":{\"description\":\"User street in Korean\",\"type\":\"string\"},\"username\":{\"description\":\"Username\",\"type\":\"string\"},\"website\":{\"description\":\"User website\",\"type\":\"string\"},\"zipcode\":{\"description\":\"User zipcode\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"User created successfully\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/users"
           segments: [
@@ -103,6 +109,12 @@ main: kit: entity: user: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /users"
+            json: "{\"operationId\":\"getUsers\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"city\":{\"description\":\"User city in Korean\",\"type\":\"string\"},\"district\":{\"description\":\"User district in Korean\",\"type\":\"string\"},\"email\":{\"description\":\"User email\",\"format\":\"email\",\"type\":\"string\"},\"id\":{\"description\":\"User ID\",\"type\":\"integer\"},\"name\":{\"description\":\"User name in Korean\",\"type\":\"string\"},\"phone\":{\"description\":\"User phone number\",\"type\":\"string\"},\"province\":{\"description\":\"User province in Korean\",\"type\":\"string\"},\"street\":{\"description\":\"User street in Korean\",\"type\":\"string\"},\"username\":{\"description\":\"Username\",\"type\":\"string\"},\"website\":{\"description\":\"User website\",\"type\":\"string\"},\"zipcode\":{\"description\":\"User zipcode\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/users"
           segments: [
@@ -131,6 +143,12 @@ main: kit: entity: user: {
                 type: "`$INTEGER`"
               }
             ]
+          }
+          contract: {
+            id: "GET /users/{id}"
+            json: "{\"operationId\":\"getUserById\",\"parameters\":[{\"description\":\"User ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"city\":{\"description\":\"User city in Korean\",\"type\":\"string\"},\"district\":{\"description\":\"User district in Korean\",\"type\":\"string\"},\"email\":{\"description\":\"User email\",\"format\":\"email\",\"type\":\"string\"},\"id\":{\"description\":\"User ID\",\"type\":\"integer\"},\"name\":{\"description\":\"User name in Korean\",\"type\":\"string\"},\"phone\":{\"description\":\"User phone number\",\"type\":\"string\"},\"province\":{\"description\":\"User province in Korean\",\"type\":\"string\"},\"street\":{\"description\":\"User street in Korean\",\"type\":\"string\"},\"username\":{\"description\":\"Username\",\"type\":\"string\"},\"website\":{\"description\":\"User website\",\"type\":\"string\"},\"zipcode\":{\"description\":\"User zipcode\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"User not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/users/{id}"
@@ -169,6 +187,12 @@ main: kit: entity: user: {
               }
             ]
           }
+          contract: {
+            id: "DELETE /users/{id}"
+            json: "{\"operationId\":\"deleteUser\",\"parameters\":[{\"description\":\"User ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"User deleted successfully\"},\"404\":{\"description\":\"User not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "DELETE"
           orig: "/users/{id}"
           segments: [
@@ -205,6 +229,12 @@ main: kit: entity: user: {
                 type: "`$INTEGER`"
               }
             ]
+          }
+          contract: {
+            id: "PUT /users/{id}"
+            json: "{\"operationId\":\"updateUser\",\"parameters\":[{\"description\":\"User ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"city\":{\"description\":\"User city in Korean\",\"type\":\"string\"},\"district\":{\"description\":\"User district in Korean\",\"type\":\"string\"},\"email\":{\"description\":\"User email\",\"format\":\"email\",\"type\":\"string\"},\"name\":{\"description\":\"User name in Korean\",\"type\":\"string\"},\"phone\":{\"description\":\"User phone number\",\"type\":\"string\"},\"province\":{\"description\":\"User province in Korean\",\"type\":\"string\"},\"street\":{\"description\":\"User street in Korean\",\"type\":\"string\"},\"username\":{\"description\":\"Username\",\"type\":\"string\"},\"website\":{\"description\":\"User website\",\"type\":\"string\"},\"zipcode\":{\"description\":\"User zipcode\",\"type\":\"string\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"city\":{\"description\":\"User city in Korean\",\"type\":\"string\"},\"district\":{\"description\":\"User district in Korean\",\"type\":\"string\"},\"email\":{\"description\":\"User email\",\"format\":\"email\",\"type\":\"string\"},\"id\":{\"description\":\"User ID\",\"type\":\"integer\"},\"name\":{\"description\":\"User name in Korean\",\"type\":\"string\"},\"phone\":{\"description\":\"User phone number\",\"type\":\"string\"},\"province\":{\"description\":\"User province in Korean\",\"type\":\"string\"},\"street\":{\"description\":\"User street in Korean\",\"type\":\"string\"},\"username\":{\"description\":\"Username\",\"type\":\"string\"},\"website\":{\"description\":\"User website\",\"type\":\"string\"},\"zipcode\":{\"description\":\"User zipcode\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"User updated successfully\"},\"404\":{\"description\":\"User not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "PUT"
           orig: "/users/{id}"

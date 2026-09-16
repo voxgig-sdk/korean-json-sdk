@@ -1,12 +1,18 @@
 # KoreanJson SDK feature factory
 
 from koreanjson_sdk.feature.base_feature import KoreanJsonBaseFeature
+from koreanjson_sdk.feature.ratelimit_feature import KoreanJsonRatelimitFeature
+from koreanjson_sdk.feature.retry_feature import KoreanJsonRetryFeature
 from koreanjson_sdk.feature.test_feature import KoreanJsonTestFeature
+from koreanjson_sdk.feature.timeout_feature import KoreanJsonTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: KoreanJsonBaseFeature(),
+    "ratelimit": lambda: KoreanJsonRatelimitFeature(),
+    "retry": lambda: KoreanJsonRetryFeature(),
     "test": lambda: KoreanJsonTestFeature(),
+    "timeout": lambda: KoreanJsonTimeoutFeature(),
 }
 
 

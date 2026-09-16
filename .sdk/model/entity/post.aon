@@ -56,6 +56,12 @@ main: kit: entity: post: {
       name: "create"
       points: [
         {
+          contract: {
+            id: "POST /posts"
+            json: "{\"operationId\":\"createPost\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"description\":\"Post content in Korean\",\"type\":\"string\"},\"title\":{\"description\":\"Post title in Korean\",\"type\":\"string\"},\"userId\":{\"description\":\"User ID who created the post\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"description\":\"Post content in Korean\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Post creation timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"id\":{\"description\":\"Post ID\",\"type\":\"integer\"},\"title\":{\"description\":\"Post title in Korean\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Post last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"userId\":{\"description\":\"User ID who created the post\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Post created successfully\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/posts"
           segments: [
@@ -84,6 +90,12 @@ main: kit: entity: post: {
                 type: "`$INTEGER`"
               }
             ]
+          }
+          contract: {
+            id: "GET /posts"
+            json: "{\"operationId\":\"getPosts\",\"parameters\":[{\"description\":\"Filter posts by user ID\",\"in\":\"query\",\"name\":\"userId\",\"required\":false,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"content\":{\"description\":\"Post content in Korean\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Post creation timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"id\":{\"description\":\"Post ID\",\"type\":\"integer\"},\"title\":{\"description\":\"Post title in Korean\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Post last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"userId\":{\"description\":\"User ID who created the post\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/posts"
@@ -118,6 +130,12 @@ main: kit: entity: post: {
                 type: "`$INTEGER`"
               }
             ]
+          }
+          contract: {
+            id: "GET /posts/{id}"
+            json: "{\"operationId\":\"getPostById\",\"parameters\":[{\"description\":\"Post ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"description\":\"Post content in Korean\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Post creation timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"id\":{\"description\":\"Post ID\",\"type\":\"integer\"},\"title\":{\"description\":\"Post title in Korean\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Post last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"userId\":{\"description\":\"User ID who created the post\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Post not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/posts/{id}"
@@ -156,6 +174,12 @@ main: kit: entity: post: {
               }
             ]
           }
+          contract: {
+            id: "DELETE /posts/{id}"
+            json: "{\"operationId\":\"deletePost\",\"parameters\":[{\"description\":\"Post ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Post deleted successfully\"},\"404\":{\"description\":\"Post not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "DELETE"
           orig: "/posts/{id}"
           segments: [
@@ -192,6 +216,12 @@ main: kit: entity: post: {
                 type: "`$INTEGER`"
               }
             ]
+          }
+          contract: {
+            id: "PUT /posts/{id}"
+            json: "{\"operationId\":\"updatePost\",\"parameters\":[{\"description\":\"Post ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"description\":\"Post content in Korean\",\"type\":\"string\"},\"title\":{\"description\":\"Post title in Korean\",\"type\":\"string\"},\"userId\":{\"description\":\"User ID who created the post\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"description\":\"Post content in Korean\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Post creation timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"id\":{\"description\":\"Post ID\",\"type\":\"integer\"},\"title\":{\"description\":\"Post title in Korean\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Post last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"userId\":{\"description\":\"User ID who created the post\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Post updated successfully\"},\"404\":{\"description\":\"Post not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "PUT"
           orig: "/posts/{id}"

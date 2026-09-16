@@ -56,6 +56,12 @@ main: kit: entity: comment: {
       name: "create"
       points: [
         {
+          contract: {
+            id: "POST /comments"
+            json: "{\"operationId\":\"createComment\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"description\":\"Comment content in Korean\",\"type\":\"string\"},\"postId\":{\"description\":\"Post ID the comment belongs to\",\"type\":\"integer\"},\"userId\":{\"description\":\"User ID who created the comment\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"description\":\"Comment content in Korean\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Comment creation timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"id\":{\"description\":\"Comment ID\",\"type\":\"integer\"},\"postId\":{\"description\":\"Post ID the comment belongs to\",\"type\":\"integer\"},\"updatedAt\":{\"description\":\"Comment last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"userId\":{\"description\":\"User ID who created the comment\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Comment created successfully\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/comments"
           segments: [
@@ -92,6 +98,12 @@ main: kit: entity: comment: {
               }
             ]
           }
+          contract: {
+            id: "GET /comments"
+            json: "{\"operationId\":\"getComments\",\"parameters\":[{\"description\":\"Filter comments by user ID\",\"in\":\"query\",\"name\":\"userId\",\"required\":false,\"schema\":{\"type\":\"integer\"}},{\"description\":\"Filter comments by post ID\",\"in\":\"query\",\"name\":\"postId\",\"required\":false,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"content\":{\"description\":\"Comment content in Korean\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Comment creation timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"id\":{\"description\":\"Comment ID\",\"type\":\"integer\"},\"postId\":{\"description\":\"Post ID the comment belongs to\",\"type\":\"integer\"},\"updatedAt\":{\"description\":\"Comment last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"userId\":{\"description\":\"User ID who created the comment\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/comments"
           segments: [
@@ -126,6 +138,12 @@ main: kit: entity: comment: {
                 type: "`$INTEGER`"
               }
             ]
+          }
+          contract: {
+            id: "GET /comments/{id}"
+            json: "{\"operationId\":\"getCommentById\",\"parameters\":[{\"description\":\"Comment ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"description\":\"Comment content in Korean\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Comment creation timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"id\":{\"description\":\"Comment ID\",\"type\":\"integer\"},\"postId\":{\"description\":\"Post ID the comment belongs to\",\"type\":\"integer\"},\"updatedAt\":{\"description\":\"Comment last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"userId\":{\"description\":\"User ID who created the comment\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Comment not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/comments/{id}"
@@ -164,6 +182,12 @@ main: kit: entity: comment: {
               }
             ]
           }
+          contract: {
+            id: "DELETE /comments/{id}"
+            json: "{\"operationId\":\"deleteComment\",\"parameters\":[{\"description\":\"Comment ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Comment deleted successfully\"},\"404\":{\"description\":\"Comment not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "DELETE"
           orig: "/comments/{id}"
           segments: [
@@ -200,6 +224,12 @@ main: kit: entity: comment: {
                 type: "`$INTEGER`"
               }
             ]
+          }
+          contract: {
+            id: "PUT /comments/{id}"
+            json: "{\"operationId\":\"updateComment\",\"parameters\":[{\"description\":\"Comment ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"description\":\"Comment content in Korean\",\"type\":\"string\"},\"postId\":{\"description\":\"Post ID the comment belongs to\",\"type\":\"integer\"},\"userId\":{\"description\":\"User ID who created the comment\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"content\":{\"description\":\"Comment content in Korean\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Comment creation timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"id\":{\"description\":\"Comment ID\",\"type\":\"integer\"},\"postId\":{\"description\":\"Post ID the comment belongs to\",\"type\":\"integer\"},\"updatedAt\":{\"description\":\"Comment last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"userId\":{\"description\":\"User ID who created the comment\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Comment updated successfully\"},\"404\":{\"description\":\"Comment not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "PUT"
           orig: "/comments/{id}"
