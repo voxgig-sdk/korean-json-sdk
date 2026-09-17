@@ -1,6 +1,6 @@
 # Entity Models
 
-@"comment.aon"
-@"post.aon"
-@"todo.aon"
-@"user.aon"
+@"./comment.aon"
+@"./post.aon"
+@"./todo.aon"
+@"./user.aon"

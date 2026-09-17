@@ -105,12 +105,12 @@ local results, err = client:Post():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/korean-json-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/korean-json-sdk/releases) |
-| Python | `voxgig-sdk-korean-json` | publish pending — [install from git tag](https://github.com/voxgig-sdk/korean-json-sdk/releases) |
-| PHP | `voxgig-sdk/korean-json` | publish pending — [install from git tag](https://github.com/voxgig-sdk/korean-json-sdk/releases) |
+| TypeScript | `@voxgig-sdk/korean-json-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/korean-json-sdk/tags) |
+| Python | `voxgig-sdk-korean-json` | publish pending — [install from git tag](https://github.com/voxgig-sdk/korean-json-sdk/tags) |
+| PHP | `voxgig-sdk/korean-json` | publish pending — [install from git tag](https://github.com/voxgig-sdk/korean-json-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/korean-json-sdk/go` | `go get github.com/voxgig-sdk/korean-json-sdk/go@latest` |
-| Ruby | `voxgig-sdk-korean-json` | publish pending — [install from git tag](https://github.com/voxgig-sdk/korean-json-sdk/releases) |
-| Lua | `voxgig-sdk-korean-json` | publish pending — [install from git tag](https://github.com/voxgig-sdk/korean-json-sdk/releases) |
+| Ruby | `voxgig-sdk-korean-json` | publish pending — [install from git tag](https://github.com/voxgig-sdk/korean-json-sdk/tags) |
+| Lua | `voxgig-sdk-korean-json` | publish pending — [install from git tag](https://github.com/voxgig-sdk/korean-json-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/korean-json-sdk/go-cli` | `go install github.com/voxgig-sdk/korean-json-sdk/go-cli/cmd/korean-json@latest` |
 | Go MCP server | `github.com/voxgig-sdk/korean-json-sdk/go-mcp` | `go get github.com/voxgig-sdk/korean-json-sdk/go-mcp@latest` |
 

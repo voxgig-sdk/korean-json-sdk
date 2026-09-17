@@ -1,6 +1,6 @@
 # Flows
 
-@"BasicCommentFlow.aon"
-@"BasicPostFlow.aon"
-@"BasicTodoFlow.aon"
-@"BasicUserFlow.aon"
+@"./BasicCommentFlow.aon"
+@"./BasicPostFlow.aon"
+@"./BasicTodoFlow.aon"
+@"./BasicUserFlow.aon"
